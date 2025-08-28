@@ -1,39 +1,6 @@
-.social-link.no-margin {
-  margin-left: 0;
-}
-.social-link + .social-link {
-  margin-left: 0.5rem;
-}
-.social-link svg {
-  vertical-align: middle;
-}
-/* Social link (X/Twitter) in footer */
-.social-link {
-  display: inline-block;
-  margin-left: 1rem;
-  color: var(--primary-color, #1da1f2);
-  transition: color 0.2s;
-  text-decoration: none;
-  vertical-align: middle;
-}
-.social-link:hover,
-.social-link:focus {
-  color: var(--accent-color, #0a0a0a);
-  outline: none;
-}
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
 .dark-toggle-btn {
   margin-left: 16px;
+}
 /* Dark mode variables */
 .dark-mode {
   --bg: #181a1b;
@@ -43,6 +10,7 @@
   --brand-dark: #0a8793;
   --surface: #23272a;
   --shadow: 0 4px 24px rgba(0,0,0,0.25);
+}
 
 body.dark-mode {
   background: var(--bg);
@@ -353,48 +321,16 @@ img { max-width: 100%; display: block; border-radius: var(--radius); box-shadow:
   font-size: 1rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   transition: background var(--transition), box-shadow var(--transition);
-  position: relative;
-  overflow: hidden;
-  outline: none;
 }
 .btn:hover {
   background: #1f2937;
   box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-  transform: translateY(-2px) scale(1.03);
-  filter: brightness(1.08);
 }
 .btn-primary {
   background: var(--brand);
 }
 .btn-primary:hover {
   background: var(--brand-dark);
-  transform: translateY(-2px) scale(1.04);
-  filter: brightness(1.10);
-}
-
-.btn:focus, .btn-primary:focus {
-  outline: 2px solid var(--brand-dark);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 3px rgba(14,165,183,0.18);
-}
-
-/* Ripple effect */
-.btn .ripple {
-  position: absolute;
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple 0.5s linear;
-  background: rgba(255,255,255,0.4);
-  pointer-events: none;
-  z-index: 2;
-}
-
-@keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
 }
 
 /* Highlights */
