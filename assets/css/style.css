@@ -1,3 +1,105 @@
+/* Mobile-first layout: prioritize mobile viewing */
+html, body {
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+@media (max-width: 900px) {
+/* removed stray closing brace */
+  .navbar {
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 8px;
+  }
+  .logo img {
+    height: 28px;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    background: rgba(17,24,39,0.98);
+    position: absolute;
+    top: 54px;
+    right: 8px;
+    left: 8px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(14,165,183,0.13);
+    z-index: 100;
+  }
+  .nav-links.open {
+    display: flex !important;
+  }
+  .nav-link {
+    padding: 14px 10px;
+    font-size: 1.08rem;
+    border-radius: 8px;
+  }
+  .hamburger {
+    display: flex;
+    margin-left: auto;
+  }
+  .blogs, .portfolio, .services-page, .team, .blogs-preview, .contact {
+    padding: 16px 4px;
+  }
+  .blog-cards, .portfolio-cards, .team-container, .service-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .blog-card, .card, .team-member, .service-item {
+    padding: 12px 6px;
+    border-radius: 10px;
+  }
+  .blog-image, .portfolio-img, .team-photo {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  h1, h2 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+  h3 {
+    font-size: 1.08rem;
+    margin-bottom: 8px;
+  }
+  .btn, .btn-primary {
+    font-size: 1rem;
+    padding: 12px 18px;
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .footer-socials {
+    gap: 8px;
+  }
+  .footer-socials .social-link img {
+    width: 22px;
+    height: 22px;
+  }
+  footer {
+    padding: 14px 4px;
+    font-size: 0.97rem;
+  }
+  .accordion-button {
+    font-size: 0.98rem;
+    padding: 10px 8px;
+    border-radius: 8px;
+  }
+  .service-cards, .service-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .center {
+    text-align: center;
+    margin-top: 12px;
+  }
+}
 /* Mobile menu overlay */
 .mobile-menu-overlay {
   display: none;
