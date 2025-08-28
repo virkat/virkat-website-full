@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 40"><rect width="180" height="40" rx="10" fill="#0ea5b7"/><text x="50%" y="55%" text-anchor="middle" font-size="28" fill="#fff" font-family="Segoe UI, Arial, sans-serif" dy=".3em">Virkat</text></svg>
+<svg width="350" height="83" viewBox="0 0 350 83" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<g>
+		<!-- Left "V" shape -->
+		<polygon points="0,0 20,0 40,40 60,0 80,0 40,70" fill="#231F20"/>
+		<!-- Middle "A" shape -->
+		<polygon points="90,70 110,0 130,0 150,70 135,70 120,20 105,70" fill="#231F20"/>
+		<!-- "VIRKAT" text -->
+		<text x="170" y="40" font-family="Arial, Helvetica, sans-serif" font-size="36" fill="#231F20" font-weight="bold" letter-spacing="6">VIRKAT</text>
+		<!-- "ANALYTICS" text -->
+		<text x="170" y="70" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#A7A9AC" letter-spacing="6">ANALYTICS</text>
+	</g>
+</svg>
