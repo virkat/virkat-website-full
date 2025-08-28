@@ -1,3 +1,9 @@
+.social-link.no-margin {
+  margin-left: 0;
+}
+.social-link + .social-link {
+  margin-left: 0.5rem;
+}
 .social-link svg {
   vertical-align: middle;
 }
