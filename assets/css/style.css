@@ -1,3 +1,31 @@
+.social-link svg {
+  vertical-align: middle;
+}
+/* Social link (X/Twitter) in footer */
+.social-link {
+  display: inline-block;
+  margin-left: 1rem;
+  color: var(--primary-color, #1da1f2);
+  transition: color 0.2s;
+  text-decoration: none;
+  vertical-align: middle;
+}
+.social-link:hover,
+.social-link:focus {
+  color: var(--accent-color, #0a0a0a);
+  outline: none;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 .dark-toggle-btn {
   margin-left: 16px;
 /* Dark mode variables */
