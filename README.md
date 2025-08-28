@@ -79,7 +79,7 @@ The site uses a custom SVG logo for crisp display on all backgrounds. The logo i
 
 ## Deployment
 - The site is deployed using GitHub Pages from the `main` branch.
-- Custom domain: www.virkat.org (see `CNAME` file)
+
 
 ## License
 © 2025 Virkat. All rights reserved.

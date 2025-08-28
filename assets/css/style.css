@@ -1,3 +1,22 @@
+/* Footer social icons */
+.footer-socials {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+.footer-socials .social-link img {
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  filter: grayscale(0.2) brightness(1.1);
+  transition: filter 0.2s, transform 0.2s;
+}
+.footer-socials .social-link img:hover,
+.footer-socials .social-link img:focus {
+  filter: none;
+  transform: scale(1.12);
+}
 .dark-toggle-btn {
   margin-left: 16px;
 }
@@ -11,8 +30,8 @@
   --surface: #23272a;
   --shadow: 0 4px 24px rgba(0,0,0,0.25);
 }
-
 body.dark-mode {
+/* removed stray closing brace */
   background: var(--bg);
   color: var(--ink);
 }
