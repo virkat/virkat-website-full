@@ -1,4 +1,4 @@
-  // Dark mode toggle
+// Dark mode toggle
   const darkToggle = document.getElementById('darkModeToggle');
   const root = document.documentElement;
   function setDarkMode(on) {
@@ -80,6 +80,20 @@
     revealEls.forEach(el => el.classList.add('visible'));
   }
 document.addEventListener('DOMContentLoaded', () => {
+  // Ripple effect for buttons
+  document.querySelectorAll('.btn, .btn-primary').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const rect = btn.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple';
+      ripple.style.left = (e.clientX - rect.left) + 'px';
+      ripple.style.top = (e.clientY - rect.top) + 'px';
+      ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
+      btn.appendChild(ripple);
+      ripple.addEventListener('animationend', () => ripple.remove());
+    });
+  });
+
   // Auto highlight current page
   const current = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-link').forEach(a => {
