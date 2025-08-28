@@ -1,3 +1,6 @@
+.share-buttons {
+  flex-direction: row !important;
+}
 /* Always display share buttons in a horizontal row */
 .share-buttons {
   display: flex;
@@ -566,8 +569,8 @@ img { max-width: 100%; display: block; border-radius: var(--radius); box-shadow:
 .btn-primary:hover {
   background: var(--brand-dark);
 }
-
 /* Highlights */
+/* removed stray closing brace */
 .highlight-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
