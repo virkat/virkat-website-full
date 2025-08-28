@@ -13,12 +13,21 @@
     height: 26px;
   }
   .nav-links {
+    display: none;
     flex-direction: column;
     gap: 8px;
     padding: 0;
     background: rgba(17,24,39,0.98);
-    position: static;
-    box-shadow: none;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    left: 10px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(14,165,183,0.13);
+    z-index: 100;
+  }
+  .nav-links.open {
+    display: flex !important;
   }
   .nav-link {
     padding: 10px 8px;
@@ -305,8 +314,8 @@ img { max-width: 100%; display: block; border-radius: var(--radius); box-shadow:
   box-shadow: 0 4px 24px rgba(0,0,0,0.13);
   background: rgba(17,24,39,0.96);
 }
-
 /* Hamburger menu styles */
+/* removed stray closing brace */
 .hamburger {
   display: none;
   flex-direction: column;
