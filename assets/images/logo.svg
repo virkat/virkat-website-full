@@ -1,12 +1,11 @@
-<svg width="350" height="83" viewBox="0 0 350 83" fill="none" xmlns="http://www.w3.org/2000/svg">
-	<g>
-		<!-- Left "V" shape -->
-		<polygon points="0,0 20,0 40,40 60,0 80,0 40,70" fill="#231F20"/>
-		<!-- Middle "A" shape -->
-		<polygon points="90,70 110,0 130,0 150,70 135,70 120,20 105,70" fill="#231F20"/>
-		<!-- "VIRKAT" text -->
-		<text x="170" y="40" font-family="Arial, Helvetica, sans-serif" font-size="36" fill="#231F20" font-weight="bold" letter-spacing="6">VIRKAT</text>
-		<!-- "ANALYTICS" text -->
-		<text x="170" y="70" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#A7A9AC" letter-spacing="6">ANALYTICS</text>
-	</g>
+<svg width="357" height="79" viewBox="0 0 357 79" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<rect width="357" height="79" fill="#221F20"/>
+	<!-- Left "V" shape -->
+	<polygon points="10,15 25,15 45,50 65,15 80,15 45,65" fill="#fff"/>
+	<!-- Middle "A" shape -->
+	<polygon points="95,65 115,15 135,15 155,65 140,65 125,30 110,65" fill="#fff"/>
+	<!-- "VIRKAT" text -->
+	<text x="170" y="40" font-family="Arial, Helvetica, sans-serif" font-size="36" fill="#fff" font-weight="bold" letter-spacing="6">VIRKAT</text>
+	<!-- "ANALYTICS" text -->
+	<text x="170" y="65" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#A7A9AC" letter-spacing="6">ANALYTICS</text>
 </svg>
