@@ -1,6 +1,48 @@
+  <script defer src="assets/js/script.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Structured Data: Services -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Data Analysis",
+    "provider": {"@type": "Organization", "name": "Virkat"},
+    "areaServed": "Pakistan",
+    "description": "Descriptive, diagnostic, and prescriptive analytics to answer the why and the what-next."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Statistical Analysis",
+    "provider": {"@type": "Organization", "name": "Virkat"},
+    "areaServed": "Pakistan",
+    "description": "Hypothesis testing, A/B tests, regression, time series, experimental design."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Data Cleaning",
+    "provider": {"@type": "Organization", "name": "Virkat"},
+    "areaServed": "Pakistan",
+    "description": "Schema validation, deduplication, missing data handling, standardization."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Document Conversion",
+    "provider": {"@type": "Organization", "name": "Virkat"},
+    "areaServed": "Pakistan",
+    "description": "Automated reporting pipelines into PDF, Word, and web dashboards."
+  }
+  </script>
   <!-- Structured Data: Breadcrumbs -->
   <script type="application/ld+json">
   {
@@ -39,7 +81,8 @@
 <body>
   <header>
     <nav class="navbar">
-      <div class="logo">Virkat</div>
+  <div class="logo">Virkat</div>
+  <button id="darkModeToggle" class="btn dark-toggle-btn" aria-label="Toggle dark mode">🌙</button>
       <ul class="nav-links">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="team.html" class="nav-link">Team</a></li>

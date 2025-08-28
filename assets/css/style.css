@@ -1,3 +1,69 @@
+.dark-toggle-btn {
+  margin-left: 16px;
+}
+/* Dark mode variables */
+.dark-mode {
+  --bg: #181a1b;
+  --ink: #f3f4f6;
+  --ink-muted: #b0b3b8;
+  --brand: #0ea5b7;
+  --brand-dark: #0a8793;
+  --surface: #23272a;
+  --shadow: 0 4px 24px rgba(0,0,0,0.25);
+}
+
+body.dark-mode {
+  background: var(--bg);
+  color: var(--ink);
+}
+.dark-mode .navbar,
+.dark-mode .footer,
+.dark-mode footer {
+  background: #23272a;
+  color: #f3f4f6;
+}
+.dark-mode .logo img {
+  filter: brightness(0.9) invert(0.9);
+}
+.dark-mode .card,
+.dark-mode .h-card,
+.dark-mode .team-member,
+.dark-mode .service-item,
+.dark-mode .blog-card,
+.dark-mode .portfolio-cards .card {
+  background: #23272a;
+  color: #f3f4f6;
+  border-color: #333;
+}
+.dark-mode .accordion-content,
+.dark-mode .blogs-preview,
+.dark-mode .highlight-cards,
+.dark-mode .portfolio,
+.dark-mode .services-page,
+.dark-mode .home-services {
+  background: #202225;
+}
+.dark-mode .btn,
+.dark-mode .btn-primary {
+  color: #fff;
+  background: #0ea5b7;
+}
+.dark-mode .btn:hover,
+.dark-mode .btn-primary:hover {
+  background: #0a8793;
+}
+.dark-mode .portfolio-img,
+.dark-mode .team-photo,
+.dark-mode .blog-image {
+  filter: brightness(0.92);
+}
+.dark-mode .accordion-button {
+  background: #0ea5b7;
+  color: #fff;
+}
+.dark-mode .accordion-button:hover {
+  background: #0a8793;
+}
 /* Portfolio filter buttons */
 .portfolio-filters {
   margin-bottom: 18px;

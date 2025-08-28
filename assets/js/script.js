@@ -1,3 +1,24 @@
+  // Dark mode toggle
+  const darkToggle = document.getElementById('darkModeToggle');
+  const root = document.documentElement;
+  function setDarkMode(on) {
+    if (on) {
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('darkMode', 'on');
+      if (darkToggle) darkToggle.textContent = '☀️';
+    } else {
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('darkMode', 'off');
+      if (darkToggle) darkToggle.textContent = '🌙';
+    }
+  }
+  if (darkToggle) {
+    darkToggle.addEventListener('click', () => {
+      setDarkMode(!document.body.classList.contains('dark-mode'));
+    });
+    // On load, set mode from localStorage
+    setDarkMode(localStorage.getItem('darkMode') === 'on');
+  }
   // Portfolio filtering
   const filterBtns = document.querySelectorAll('.filter-btn');
   const portfolioCards = document.querySelectorAll('.portfolio-cards .card');
