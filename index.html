@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Virkat: Data & Analytics consultancy. Google-certified experts in data analysis, reporting, and automation for government and business." />
+  <meta name="keywords" content="data, analytics, reporting, consulting, Punjab, government, automation, statistics, R, Python, Quarto, foodgrain, dashboard" />
+  <meta name="author" content="Asad Raza Virk, Kisa Fatima" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Virkat — Data & Analytics" />
+  <meta property="og:description" content="Google-certified experts in data analysis, reporting, and automation for government and business." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.virkat.org/" />
+  <meta property="og:image" content="https://www.virkat.org/assets/images/banner.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Virkat — Data & Analytics" />
+  <meta name="twitter:description" content="Google-certified experts in data analysis, reporting, and automation for government and business." />
+  <meta name="twitter:image" content="https://www.virkat.org/assets/images/banner.jpg" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Virkat — Data & Analytics</title>
@@ -84,33 +102,44 @@
 
   <section class="portfolio reveal">
     <h2>Portfolio & Case Studies</h2>
+    <div class="portfolio-filters center">
+      <button class="btn filter-btn" data-filter="all">All</button>
+      <button class="btn filter-btn" data-filter="government">Government</button>
+      <button class="btn filter-btn" data-filter="consulting">Consulting</button>
+      <button class="btn filter-btn" data-filter="training">Training</button>
+    </div>
     <div class="portfolio-cards">
       <a class="card" href="projects.html#project-foodgrain">
-        <img src="https://source.unsplash.com/400x180/?grain,warehouse" alt="Foodgrain Reporting" class="portfolio-img" />
+  <img src="https://source.unsplash.com/400x180/?grain,warehouse" alt="Foodgrain Reporting" class="portfolio-img" data-type="government" />
         <h3>Automated Foodgrain Reporting System</h3>
         <p class="meta">Punjab Food Department</p>
         <p>Designed and implemented a robust data pipeline for real-time foodgrain procurement, storage, and distribution analytics, improving transparency and efficiency across 100+ centers.</p>
       </a>
       <a class="card" href="projects.html#project-quality">
-        <img src="https://source.unsplash.com/400x180/?dashboard,analytics" alt="Quality Control Dashboard" class="portfolio-img" />
+  <img src="https://source.unsplash.com/400x180/?dashboard,analytics" alt="Quality Control Dashboard" class="portfolio-img" data-type="government" />
         <h3>Statistical Quality Control Dashboard</h3>
         <p class="meta">Government Sector</p>
         <p>Developed interactive dashboards in R and Python for monitoring quality, compliance, and risk in public sector supply chains, enabling data-driven decision-making.</p>
       </a>
       <a class="card" href="projects.html#project-docs">
-        <img src="https://source.unsplash.com/400x180/?documents,automation" alt="Document Conversion" class="portfolio-img" />
+  <img src="https://source.unsplash.com/400x180/?documents,automation" alt="Document Conversion" class="portfolio-img" data-type="consulting" />
         <h3>Automated Document Conversion Suite</h3>
         <p class="meta">Consulting Project</p>
         <p>Built automated workflows to convert and validate reports across PDF, Word, and HTML, reducing manual effort and errors for clients in education and government.</p>
       </a>
       <a class="card" href="projects.html#project-forecast">
-        <img src="https://source.unsplash.com/400x180/?forecast,data" alt="Wheat Stock Forecasting" class="portfolio-img" />
+  <img src="https://source.unsplash.com/400x180/?forecast,data" alt="Wheat Stock Forecasting" class="portfolio-img" data-type="government" />
         <h3>Wheat Stock Forecasting Model</h3>
         <p class="meta">Punjab Food Department</p>
         <p>Developed a predictive model for wheat stock levels using time series analysis, helping optimize procurement and storage decisions.</p>
       </a>
       <a class="card" href="projects.html#project-training">
-        <img src="https://source.unsplash.com/400x180/?training,workshop" alt="Data Literacy Training" class="portfolio-img" />
+  <img src="https://source.unsplash.com/400x180/?training,workshop" alt="Data Literacy Training" class="portfolio-img" data-type="training" />
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="lightbox-modal">
+      <span class="lightbox-close">&times;</span>
+      <img class="lightbox-content" src="" alt="Project Image" />
+    </div>
         <h3>Data Literacy Training Program</h3>
         <p class="meta">Public Sector</p>
         <p>Designed and delivered a training program to upskill government staff in data analysis, visualization, and reporting best practices.</p>

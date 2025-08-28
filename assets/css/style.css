@@ -1,3 +1,44 @@
+/* Portfolio filter buttons */
+.portfolio-filters {
+  margin-bottom: 18px;
+  gap: 10px;
+}
+.filter-btn.active {
+  background: var(--brand-dark);
+  color: #fff;
+}
+
+/* Lightbox modal */
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.85);
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+}
+.lightbox-modal.open {
+  display: flex;
+}
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(14,165,183,0.18);
+}
+.lightbox-close {
+  position: absolute;
+  top: 32px;
+  right: 48px;
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+  text-shadow: 0 2px 8px #000;
+}
 /* Portfolio images */
 .portfolio-img {
   width: 100%;

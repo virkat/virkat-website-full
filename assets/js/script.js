@@ -1,3 +1,47 @@
+  // Portfolio filtering
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const portfolioCards = document.querySelectorAll('.portfolio-cards .card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      portfolioCards.forEach(card => {
+        const img = card.querySelector('.portfolio-img');
+        const type = img ? img.getAttribute('data-type') : '';
+        if (filter === 'all' || type === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+  // Set 'All' as default active
+  if (filterBtns.length) filterBtns[0].classList.add('active');
+
+  // Portfolio lightbox
+  const lightbox = document.getElementById('lightbox-modal');
+  const lightboxImg = lightbox ? lightbox.querySelector('.lightbox-content') : null;
+  const lightboxClose = lightbox ? lightbox.querySelector('.lightbox-close') : null;
+  document.querySelectorAll('.portfolio-img').forEach(img => {
+    img.addEventListener('click', e => {
+      e.preventDefault();
+      if (lightbox && lightboxImg) {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('open');
+      }
+    });
+  });
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', () => lightbox.classList.remove('open'));
+  }
+  if (lightbox) {
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) lightbox.classList.remove('open');
+    });
+  }
   // Section reveal on scroll
   const revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && revealEls.length) {
