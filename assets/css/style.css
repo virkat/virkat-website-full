@@ -1,3 +1,66 @@
+/* Responsive: Mobile-first improvements */
+@media (max-width: 600px) {
+  html, body {
+    font-size: 15px;
+    padding: 0;
+  }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 10px;
+  }
+  .logo img {
+    height: 26px;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    background: rgba(17,24,39,0.98);
+    position: static;
+    box-shadow: none;
+  }
+  .nav-link {
+    padding: 10px 8px;
+    font-size: 1rem;
+  }
+  .blogs, .portfolio, .services-page, .team, .blogs-preview, .contact {
+    padding: 18px 6px;
+  }
+  .blog-cards, .portfolio-cards, .team-container {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .blog-card, .card, .team-member, .service-item {
+    padding: 14px 8px;
+  }
+  .blog-image, .portfolio-img, .team-photo {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  h1, h2 {
+    font-size: 1.3rem;
+  }
+  h3 {
+    font-size: 1.1rem;
+  }
+  footer {
+    padding: 16px 6px;
+    font-size: 0.98rem;
+  }
+  .footer-socials {
+    gap: 10px;
+  }
+  .footer-socials .social-link img {
+    width: 22px;
+    height: 22px;
+  }
+  .accordion-button {
+    font-size: 0.98rem;
+    padding: 10px 8px;
+  }
+}
 /* Hide SEO tags and keywords in blog posts for cleaner look */
 .blog-seo-tags,
 .blog-keywords,
@@ -237,8 +300,8 @@ img { max-width: 100%; display: block; border-radius: var(--radius); box-shadow:
   box-shadow: var(--shadow);
   transition: box-shadow 0.2s cubic-bezier(.4,0,.2,1), background 0.2s cubic-bezier(.4,0,.2,1);
 }
-
 .navbar.scrolled {
+/* removed stray closing brace */
   box-shadow: 0 4px 24px rgba(0,0,0,0.13);
   background: rgba(17,24,39,0.96);
 }
