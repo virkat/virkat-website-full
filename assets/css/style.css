@@ -1,3 +1,8 @@
+/* Hide SEO tags and keywords in blog posts for cleaner look */
+.blog-seo-tags,
+.blog-keywords {
+  display: none;
+}
 /* Footer social icons */
 .footer-socials {
   margin-top: 12px;
@@ -92,8 +97,8 @@ body.dark-mode {
   background: var(--brand-dark);
   color: #fff;
 }
-
 /* Lightbox modal */
+/* removed stray closing brace */
 .lightbox-modal {
   display: none;
   position: fixed;
