@@ -1,3 +1,23 @@
+/* Mobile menu overlay */
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(17,24,39,0.92);
+  z-index: 99;
+  transition: opacity 0.2s;
+}
+.mobile-menu-overlay.open {
+  display: block;
+}
+@media (max-width: 600px) {
+  .mobile-menu-overlay.open {
+    display: block;
+  }
+  .nav-links.open {
+    z-index: 100;
+  }
+}
 /* Responsive: Mobile-first improvements */
 @media (max-width: 600px) {
   html, body {
@@ -382,8 +402,8 @@ img { max-width: 100%; display: block; border-radius: var(--radius); box-shadow:
 .nav-link.active, .nav-link:hover {
   background: var(--brand);
 }
-
 /* Hero */
+/* removed stray closing brace */
 .hero { position: relative; }
 .hero-banner {
   width: 100%;

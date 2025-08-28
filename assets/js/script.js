@@ -103,20 +103,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Hamburger menu toggle
+  // Hamburger menu toggle with overlay
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
-  if (hamburger && navLinks) {
+  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+  if (hamburger && navLinks && mobileMenuOverlay) {
     hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
+      const isOpen = navLinks.classList.toggle('open');
       hamburger.classList.toggle('open');
+      mobileMenuOverlay.classList.toggle('open', isOpen);
     });
     // Close menu on link click (mobile)
     navLinks.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('open');
         hamburger.classList.remove('open');
+        mobileMenuOverlay.classList.remove('open');
       });
+    });
+    // Close menu if overlay is clicked
+    mobileMenuOverlay.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('open');
+      mobileMenuOverlay.classList.remove('open');
     });
   }
 
