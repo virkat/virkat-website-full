@@ -1,3 +1,48 @@
+/* Portfolio / Case Studies */
+.portfolio {
+  padding: 36px 32px;
+  background: var(--surface);
+}
+.portfolio h2 {
+  text-align: center;
+  margin-bottom: 18px;
+  font-size: 2rem;
+}
+.portfolio-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+  margin-top: 18px;
+}
+.portfolio-cards .card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--radius);
+  padding: 22px 18px;
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--transition), transform 0.22s cubic-bezier(.4,0,.2,1);
+  opacity: 0;
+  animation: fadeInUp 0.7s ease forwards;
+}
+.portfolio-cards .card:hover {
+  box-shadow: 0 8px 32px rgba(14,165,183,0.10);
+  transform: translateY(-6px) scale(1.03);
+}
+.portfolio-cards .meta {
+  color: var(--ink-muted);
+  font-size: .98rem;
+  margin-bottom: 6px;
+}
+/* Section reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
 .google-badge {
   max-width: 120px;
   margin: 8px auto 12px auto;
@@ -42,11 +87,62 @@ img { max-width: 100%; display: block; border-radius: var(--radius); box-shadow:
   justify-content: space-between;
   align-items: center;
   padding: 18px 32px;
-  background: #111827;
+  background: rgba(17,24,39,0.85);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   position: sticky;
   top: 0;
   z-index: 10;
   box-shadow: var(--shadow);
+  transition: box-shadow 0.2s cubic-bezier(.4,0,.2,1), background 0.2s cubic-bezier(.4,0,.2,1);
+}
+
+.navbar.scrolled {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+  background: rgba(17,24,39,0.96);
+}
+
+/* Hamburger menu styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  margin-left: 12px;
+  z-index: 20;
+}
+.hamburger span {
+  height: 4px;
+  width: 100%;
+  background: #fff;
+  border-radius: 2px;
+  margin: 4px 0;
+  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+}
+.nav-links.open {
+  display: flex !important;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 18px;
+  background: rgba(17,24,39,0.98);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(14,165,183,0.13);
+  padding: 18px 24px;
+  gap: 10px;
+  min-width: 160px;
+  animation: fadeInUp 0.4s ease;
+}
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
 }
 .logo {
   color: #fff;

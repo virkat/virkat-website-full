@@ -12,7 +12,12 @@
   <header>
     <nav class="navbar">
       <div class="logo">
-        <img src="assets/images/logo.svg" alt="Virkat Logo" style="height:32px;width:auto;vertical-align:middle;" />
+        <img src="assets/images/logo.svg" alt="Virkat Logo" />
+      </div>
+      <div class="hamburger" aria-label="Open navigation" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
       <ul class="nav-links">
         <li><a href="index.html" class="nav-link">Home</a></li>
@@ -24,7 +29,7 @@
     </nav>
   </header>
 
-  <section class="hero">
+  <section class="hero reveal">
     <img src="assets/images/banner.jpg" alt="Virkat Banner" class="hero-banner" />
     <div class="hero-text">
       <h1>Data that drives decisions</h1>
@@ -33,7 +38,7 @@
     </div>
   </section>
 
-  <section class="highlight-cards">
+  <section class="highlight-cards reveal">
     <div class="h-card">
       <h3>Google Certified</h3>
       <p>Asad Raza Virk — Data Scientist<br/>Kisa Fatima — Data Analyst</p>
@@ -48,7 +53,7 @@
     </div>
   </section>
 
-  <section class="home-services">
+  <section class="home-services reveal">
     <h2>Services</h2>
     <div class="service-cards">
       <div class="card">
@@ -77,7 +82,37 @@
     </div>
   </section>
 
-  <section class="blogs-preview">
+  <section class="portfolio reveal">
+    <h2>Portfolio & Case Studies</h2>
+    <div class="portfolio-cards">
+      <a class="card" href="projects.html#project-foodgrain">
+        <h3>Automated Foodgrain Reporting System</h3>
+        <p class="meta">Punjab Food Department</p>
+        <p>Designed and implemented a robust data pipeline for real-time foodgrain procurement, storage, and distribution analytics, improving transparency and efficiency across 100+ centers.</p>
+      </a>
+      <a class="card" href="projects.html#project-quality">
+        <h3>Statistical Quality Control Dashboard</h3>
+        <p class="meta">Government Sector</p>
+        <p>Developed interactive dashboards in R and Python for monitoring quality, compliance, and risk in public sector supply chains, enabling data-driven decision-making.</p>
+      </a>
+      <a class="card" href="projects.html#project-docs">
+        <h3>Automated Document Conversion Suite</h3>
+        <p class="meta">Consulting Project</p>
+        <p>Built automated workflows to convert and validate reports across PDF, Word, and HTML, reducing manual effort and errors for clients in education and government.</p>
+      </a>
+      <a class="card" href="projects.html#project-forecast">
+        <h3>Wheat Stock Forecasting Model</h3>
+        <p class="meta">Punjab Food Department</p>
+        <p>Developed a predictive model for wheat stock levels using time series analysis, helping optimize procurement and storage decisions.</p>
+      </a>
+      <a class="card" href="projects.html#project-training">
+        <h3>Data Literacy Training Program</h3>
+        <p class="meta">Public Sector</p>
+        <p>Designed and delivered a training program to upskill government staff in data analysis, visualization, and reporting best practices.</p>
+      </a>
+    </div>
+  </section>
+  <section class="blogs-preview reveal">
     <h2>Latest Blogs</h2>
     <div class="blog-cards">
       <article class="card">
@@ -94,7 +129,7 @@
     <div class="center"><a class="btn" href="blogs.html">Read the blogs</a></div>
   </section>
 
-  <section id="contact" class="contact">
+  <section id="contact" class="contact reveal">
     <h2>Contact</h2>
     <p>We’d love to hear about your project.</p>
     <a class="btn btn-primary" href="mailto:info@virkat.org?subject=Project%20Inquiry%20(Virkat)&body=Hi%20Virkat%20team,%0A%0AProject%20summary:%0ATimeline:%0ABudget:%0A%0AThanks!">Email Us</a>
