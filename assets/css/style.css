@@ -1,3 +1,18 @@
+/* Always display share buttons in a horizontal row */
+.share-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.share-buttons span {
+  margin-right: 6px;
+}
+.share-buttons a img {
+  vertical-align: middle;
+  width: 26px;
+  height: 26px;
+}
 /* Mobile-first layout: prioritize mobile viewing */
 html, body {
   font-size: 16px;
@@ -527,8 +542,8 @@ img { max-width: 100%; display: block; border-radius: var(--radius); box-shadow:
   border-radius: 0 0 var(--radius) var(--radius);
 }
 .hero .btn { margin-top: 16px; font-size: 1.1rem; }
-
 /* Buttons */
+/* removed stray closing brace */
 .btn {
   display: inline-block;
   padding: 12px 20px;
