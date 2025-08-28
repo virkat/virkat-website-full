@@ -1,3 +1,7 @@
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: none; }
+}
 /* Base */
 * { box-sizing: border-box; }
 :root {
@@ -121,10 +125,13 @@ img { max-width: 100%; display: block; border-radius: var(--radius); box-shadow:
   border-radius: var(--radius);
   padding: 22px 18px;
   box-shadow: var(--shadow);
-  transition: box-shadow var(--transition);
+  transition: box-shadow var(--transition), transform 0.22s cubic-bezier(.4,0,.2,1);
+  opacity: 0;
+  animation: fadeInUp 0.7s ease forwards;
 }
 .h-card:hover {
   box-shadow: 0 8px 32px rgba(14,165,183,0.10);
+  transform: translateY(-6px) scale(1.03);
 }
 .h-card h3 { margin: 0 0 10px; }
 
@@ -143,10 +150,13 @@ img { max-width: 100%; display: block; border-radius: var(--radius); box-shadow:
   border-radius: var(--radius);
   padding: 22px 18px;
   box-shadow: var(--shadow);
-  transition: box-shadow var(--transition);
+  transition: box-shadow var(--transition), transform 0.22s cubic-bezier(.4,0,.2,1);
+  opacity: 0;
+  animation: fadeInUp 0.7s ease forwards;
 }
 .card:hover {
   box-shadow: 0 8px 32px rgba(14,165,183,0.10);
+  transform: translateY(-6px) scale(1.03);
 }
 .icon { font-size: 32px; margin-bottom: 8px; }
 .center { text-align: center; margin-top: 18px; }
@@ -184,10 +194,13 @@ footer {
   padding: 28px 18px 22px 18px;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  transition: box-shadow var(--transition);
+  transition: box-shadow var(--transition), transform 0.22s cubic-bezier(.4,0,.2,1);
+  opacity: 0;
+  animation: fadeInUp 0.7s ease forwards;
 }
 .team-member:hover {
   box-shadow: 0 8px 32px rgba(14,165,183,0.10);
+  transform: translateY(-6px) scale(1.03);
 }
 .team-photo {
   width: 120px;
@@ -240,10 +253,13 @@ footer {
   padding: 22px 18px;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  transition: box-shadow var(--transition);
+  transition: box-shadow var(--transition), transform 0.22s cubic-bezier(.4,0,.2,1);
+  opacity: 0;
+  animation: fadeInUp 0.7s ease forwards;
 }
 .service-item:hover {
   box-shadow: 0 8px 32px rgba(14,165,183,0.10);
+  transform: translateY(-6px) scale(1.03);
 }
 
 /* Blogs page */
@@ -254,10 +270,13 @@ footer {
   margin-bottom: 22px;
   overflow: hidden;
   box-shadow: var(--shadow);
-  transition: box-shadow var(--transition);
+  transition: box-shadow var(--transition), transform 0.22s cubic-bezier(.4,0,.2,1);
+  opacity: 0;
+  animation: fadeInUp 0.7s ease forwards;
 }
 .blog-card:hover {
   box-shadow: 0 8px 32px rgba(14,165,183,0.10);
+  transform: translateY(-6px) scale(1.03);
 }
 .blog-header {
   padding: 18px;
