@@ -1,3 +1,13 @@
+.google-badge {
+  max-width: 120px;
+  margin: 8px auto 12px auto;
+  display: block;
+}
+.logo img {
+  height: 32px;
+  width: auto;
+  vertical-align: middle;
+}
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: none; }
