@@ -1,3 +1,77 @@
+/* Modern, bold, sectioned layout inspired by mu-sigma.com */
+body {
+  background: #f9fafb;
+  color: #1a202c;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+}
+.hero, .highlight-cards, .home-services, .portfolio, .blogs, .team, .services-page, .contact {
+  margin-bottom: 32px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(14,165,183,0.04);
+}
+.hero {
+  background: linear-gradient(90deg, #e0f7fa 0%, #fff 100%);
+  text-align: center;
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+.hero h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 18px;
+  color: #0ea5b7;
+  letter-spacing: 0.5px;
+}
+.hero p {
+  font-size: 1.18rem;
+  color: #374151;
+  margin-bottom: 24px;
+}
+.highlight-cards, .home-services, .portfolio, .blogs, .team, .services-page, .contact {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(14,165,183,0.04);
+  margin-bottom: 32px;
+  padding: 32px 12px;
+}
+.highlight-cards h3, .home-services h2, .portfolio h2, .blogs h2, .team h1, .services-page h1, .contact h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0ea5b7;
+  margin-bottom: 18px;
+  text-align: center;
+}
+.section-divider {
+  width: 80px;
+  height: 4px;
+  background: #0ea5b7;
+  border-radius: 2px;
+  margin: 24px auto 32px auto;
+}
+.center {
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .hero, .highlight-cards, .home-services, .portfolio, .blogs, .team, .services-page, .contact {
+    padding: 18px 2px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+  }
+  .hero h1 {
+    font-size: 1.3rem;
+  }
+  .highlight-cards h3, .home-services h2, .portfolio h2, .blogs h2, .team h1, .services-page h1, .contact h2 {
+    font-size: 1.08rem;
+  }
+  .section-divider {
+    width: 40px;
+    height: 3px;
+    margin: 14px auto 18px auto;
+  }
+}
 .share-buttons {
   flex-direction: row !important;
 }
@@ -593,8 +667,8 @@ img { max-width: 100%; display: block; border-radius: var(--radius); box-shadow:
   transform: translateY(-6px) scale(1.03);
 }
 .h-card h3 { margin: 0 0 10px; }
-
 /* Services (home) */
+/* removed stray closing brace */
 .home-services { padding: 36px 32px; }
 .home-services h2 { text-align: center; margin-bottom: 18px; font-size: 2rem; }
 .service-cards {
