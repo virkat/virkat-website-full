@@ -1,6 +1,7 @@
 /* Hide SEO tags and keywords in blog posts for cleaner look */
 .blog-seo-tags,
-.blog-keywords {
+.blog-keywords,
+.blog-header .tags {
   display: none;
 }
 /* Footer social icons */
@@ -220,8 +221,8 @@ html, body {
   line-height: 1.6;
 }
 img { max-width: 100%; display: block; border-radius: var(--radius); box-shadow: var(--shadow); }
-
 /* Navbar */
+/* removed stray closing brace */
 .navbar {
   display: flex;
   justify-content: space-between;
