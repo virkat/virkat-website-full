@@ -74,11 +74,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Cache-bust helper for static assets like images
+  // Cache-bust helper for static assets like images (unique per page load)
+  const __cb = Date.now().toString();
   function withCacheBust(url) {
     if (!url) return url;
-    const v = 'v=20250830';
-    return url + (url.includes('?') ? '&' : '?') + v;
+    const sep = url.includes('?') ? '&' : '?';
+    return `${url}${sep}v=${__cb}`;
+  }
+  const FALLBACK_IMG = 'assets/images/banner.jpg';
+
+  // Add cache-busting to image src attributes inside an HTML string
+  function addCacheBustToImages(html) {
+    if (!html) return html;
+    return html.replace(/src="(assets\/images\/[^"\?]+)(\?[^"']*)?"/g, (m, p1) => `src="${withCacheBust(p1)}"`);
   }
 
   // Minimal Markdown to HTML converter (subset)
@@ -160,6 +168,15 @@ document.addEventListener('DOMContentLoaded', () => {
         </a>
           `;
           blogPostsContainer.appendChild(blogCard);
+          // Attach image error fallback for card image
+          const imgEl = blogCard.querySelector('img.blog-image');
+          if (imgEl) {
+            imgEl.addEventListener('error', () => {
+              console.warn('Card image failed to load:', imgEl.src);
+              showToast('Could not load blog image. Showing fallback.');
+              imgEl.src = withCacheBust(FALLBACK_IMG);
+            }, { once: true });
+          }
         });
 
         // Simple in-memory cache for prefetched posts
@@ -210,7 +227,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let contentToLoad = '';
             if (isMarkdown) {
               const md = fetchedText != null ? fetchedText : await response.text();
-              const articleHtml = markdownToHtml(md);
+              let articleHtml = markdownToHtml(md);
+              // Ensure inline images from assets/images get cache-busted
+              articleHtml = addCacheBustToImages(articleHtml);
               const hero = blogImage ? `<img src="${blogImage}" alt="${blogTitle}" class="blog-image" loading="lazy" />` : '';
         contentToLoad = `
                 <div class="blog-post-content">
@@ -228,11 +247,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 try {
                   const parser = new DOMParser();
                   const doc = parser.parseFromString(html, 'text/html');
+                  // Cache-bust images inside the HTML if they point to our assets/images
+                  doc.querySelectorAll('img').forEach(img => {
+                    try {
+                      const src = img.getAttribute('src') || '';
+                      if (src.startsWith('assets/images/') || src.includes('/assets/images/')) {
+                        img.setAttribute('src', withCacheBust(src));
+                      }
+                    } catch (_) {}
+                  });
                   const contentNode = doc.querySelector('.blog-post-content') || doc.body || doc.documentElement;
                   contentToLoad = contentNode ? contentNode.innerHTML : html;
                 } catch (_) {
                   // Fallback to raw HTML if parsing fails
-                  contentToLoad = html || '';
+                  contentToLoad = addCacheBustToImages(html || '');
                 }
               }
 
@@ -257,6 +285,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const minutes = calculateReadingTime(text);
                 readingTimeEl.textContent = minutes;
               }
+
+              // Add error fallbacks for images in the loaded content (hero + inline)
+              dynamicContent.querySelectorAll('img').forEach(img => {
+                img.addEventListener('error', () => {
+                  console.warn('Post image failed to load:', img.src);
+                  showToast('Could not load an image in the post. Showing fallback.');
+                  img.src = withCacheBust(FALLBACK_IMG);
+                }, { once: true });
+              });
 
               // Render share buttons inside the loaded content
               dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
