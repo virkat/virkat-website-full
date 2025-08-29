@@ -283,7 +283,8 @@ a:hover {
 
 /* Ensure Asad's face isn't cropped at the top */
 .team-member img.asad-photo {
-  object-position: top center;
+  /* Nudge focal point slightly down from the top for better framing */
+  object-position: 50% 20%;
 }
 
 /* Blog Page Specific Styles */
