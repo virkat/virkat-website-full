@@ -83,6 +83,13 @@ document.addEventListener('DOMContentLoaded', () => {
     md = md.replace(/```([\s\S]*?)```/g, (m, p1) => `<pre><code>${p1.replace(/\n/g, '\n')}</code></pre>`);
     // Inline code `code`
     md = md.replace(/`([^`]+)`/g, '<code>$1</code>');
+  // Emphasis and strong
+  // Strong (bold) first to avoid interfering with italic parsing
+  md = md.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  md = md.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+  // Italic (simple)
+  md = md.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  md = md.replace(/_([^_]+)_/g, '<em>$1</em>');
     // Images ![alt](src)
     md = md.replace(/!\[([^\]]*)\]\(([^\)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />');
     // Links [text](url)
