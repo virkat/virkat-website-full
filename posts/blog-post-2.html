@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisa's Journey: A Data Analyst's Story</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals with Amber Accent -->
+    <!-- Application Structure Plan: A thematic, single-page dashboard structure was chosen over a linear blog format to improve usability and engagement. The user can navigate non-linearly via a sticky navigation bar to sections that answer specific questions: 'The Journey' (Why start?), 'The Toolkit' (What skills?), 'The Story' (What's the core concept?), and 'The Outcome' (What's the career impact?). This task-oriented design allows prospective students or career-changers to quickly find relevant information. Interactive elements like tabs for skills and a chart for salary data make information discovery an active, rather than passive, experience. -->
+    <!-- Visualization & Content Choices: 
+        - Key Stats (Cost, Duration): Goal: Inform. Method: HTML/CSS stat cards. Interaction: Hover effects. Justification: Provides quick, scannable key metrics for decision-making.
+        - Skills (SQL, R, Tableau): Goal: Organize. Method: Interactive JS Tabs. Interaction: Click to reveal content. Justification: Breaks down the skill list into digestible, user-controlled segments, preventing a wall of text.
+        - Data Storytelling Concept: Goal: Explain. Method: HTML/CSS process flow diagram. Interaction: Static visual. Justification: Visually simplifies an abstract concept, making it more memorable.
+        - Salary & Career Outcome: Goal: Compare/Inform. Method: Chart.js Bar Chart & Stat Card. Interaction: Animation & tooltips. Justification: The bar chart provides a powerful visual representation of salary potential, making the data more impactful than text alone.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF7;
+            color: #4A4A4A;
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #D97706;
+            border-bottom-color: #D97706;
+        }
+        .tab-button {
+            transition: all 0.3s;
+        }
+        .tab-button.active {
+            background-color: #D97706;
+            color: #FFFFFF;
+        }
+        .stat-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 640px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="home" class="relative">
+        <nav id="navbar" class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex-shrink-0">
+                        <a href="#home" class="text-xl font-bold text-amber-600">Kisa's Journey</a>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="#journey" class="nav-link px-3 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent">The Journey</a>
+                            <a href="#toolkit" class="nav-link px-3 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent">The Toolkit</a>
+                            <a href="#story" class="nav-link px-3 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent">The Story</a>
+                            <a href="#outcome" class="nav-link px-3 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent">The Outcome</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="text-center py-20 lg:py-28 px-4">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">My Journey as a Google Certified <span class="text-amber-600">Data Analyst</span></h1>
+            <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-500">By Kisa Fatima • August 29, 2025</p>
+            <p class="mt-6 max-w-3xl mx-auto text-xl text-gray-600">From a Computer Science student curious about the 'why' behind data, to a certified analyst skilled in telling stories with numbers. This is an interactive summary of my journey.</p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <section id="journey" class="py-16 md:py-24">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">The Journey: From CS to Data</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">This section explores my motivation for starting this path. My Computer Science studies taught me the 'how' of technology, but I wanted to understand the 'why' hidden in data. The Google Data Analytics Certificate was the perfect bridge between these two worlds.</p>
+            </div>
+            <div class="mt-12 grid gap-8 md:grid-cols-3">
+                <div class="stat-card bg-white p-8 rounded-xl shadow-md border border-gray-200/50">
+                    <h3 class="text-lg font-semibold text-amber-600">Accessible to All</h3>
+                    <p class="mt-2 text-gray-600">The program is designed for beginners with no prior experience required, making it a perfect entry point into the world of data.</p>
+                </div>
+                <div class="stat-card bg-white p-8 rounded-xl shadow-md border border-gray-200/50">
+                    <h3 class="text-lg font-semibold text-amber-600">Flexible & Affordable</h3>
+                    <p class="mt-2 text-gray-600">At just <span class="font-bold text-gray-800">$49/month</span> via Coursera, and completable in <span class="font-bold text-gray-800">3-6 months</span> (approx. 240 hours), it fit perfectly alongside my university studies.</p>
+                </div>
+                <div class="stat-card bg-white p-8 rounded-xl shadow-md border border-gray-200/50">
+                    <h3 class="text-lg font-semibold text-amber-600">Structured Learning</h3>
+                    <p class="mt-2 text-gray-600">The certificate provides a clear, structured path from foundational concepts to practical, job-ready skills.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="toolkit" class="py-16 md:py-24 bg-amber-50/50 rounded-2xl">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">The Toolkit: Skills for Success</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">This section details the core technologies and skills I acquired. The certificate provides a comprehensive toolkit for any aspiring data analyst. Click on each tool to learn more about how it was covered in the program.</p>
+            </div>
+            <div class="mt-12 max-w-3xl mx-auto">
+                <div class="flex justify-center space-x-2 md:space-x-4 p-1 bg-white rounded-full shadow-inner">
+                    <button class="tab-button active w-full py-2 px-4 rounded-full text-sm md:text-base font-semibold" data-target="sql">SQL</button>
+                    <button class="tab-button w-full py-2 px-4 rounded-full text-sm md:text-base font-semibold text-gray-600" data-target="r-tableau">R & Tableau</button>
+                    <button class="tab-button w-full py-2 px-4 rounded-full text-sm md:text-base font-semibold text-gray-600" data-target="ai">AI Assistant</button>
+                </div>
+                <div class="mt-8 p-6 bg-white rounded-lg shadow-md min-h-[180px]">
+                    <div id="sql" class="tab-content">
+                        <h3 class="text-xl font-bold text-gray-800">SQL: The Language of Data</h3>
+                        <p class="mt-2 text-gray-600">I learned that SQL is the main language for working with data. The certificate taught me how to query huge datasets, find specific information, and combine data from different sources. This skill is crucial for getting the most up-to-date information for any analysis.</p>
+                    </div>
+                    <div id="r-tableau" class="tab-content hidden">
+                        <h3 class="text-xl font-bold text-gray-800">R & Tableau: Analysis and Visualization</h3>
+                        <p class="mt-2 text-gray-600">R is a powerful programming language for statistical analysis and creating charts. I learned to use it to clean data and perform calculations. When it was time to present my findings, Tableau's easy, drag-and-drop interface helped me create interactive dashboards and turn my data into a visual story anyone could understand.</p>
+                    </div>
+                    <div id="ai" class="tab-content hidden">
+                        <h3 class="text-xl font-bold text-gray-800">AI as a Productivity Tool</h3>
+                        <p class="mt-2 text-gray-600">The course focused on how AI can help with daily tasks. I learned that AI can assist with tedious jobs like cleaning data, writing complex formulas, and even brainstorming ideas for charts. It's like having a smart assistant that makes you more efficient and productive.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="story" class="py-16 md:py-24">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">The Story: Beyond the Numbers</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">The most valuable lesson was learning to tell stories with data. This section illustrates the process of transforming raw data into a compelling narrative that drives decisions. A good data story is what makes a great analyst.</p>
+            </div>
+            <div class="mt-12 flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+                <div class="p-4 bg-white rounded-lg shadow-md w-48">
+                    <p class="text-4xl">📊</p>
+                    <p class="font-semibold mt-2">Raw Data</p>
+                </div>
+                <div class="text-2xl text-amber-500 font-bold">&rarr;</div>
+                <div class="p-4 bg-white rounded-lg shadow-md w-48">
+                    <p class="text-4xl">⚙️</p>
+                    <p class="font-semibold mt-2">Analysis</p>
+                </div>
+                <div class="text-2xl text-amber-500 font-bold">&rarr;</div>
+                <div class="p-4 bg-white rounded-lg shadow-md w-48">
+                    <p class="text-4xl">📈</p>
+                    <p class="font-semibold mt-2">Visualization</p>
+                </div>
+                <div class="text-2xl text-amber-500 font-bold">&rarr;</div>
+                <div class="p-4 bg-amber-600 text-white rounded-lg shadow-lg w-48">
+                    <p class="text-4xl">💡</p>
+                    <p class="font-semibold mt-2">Insightful Story</p>
+                </div>
+            </div>
+            <div class="mt-10 max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
+                <p class="text-center text-gray-600 italic">"Adding a human touch to data makes it easier for people who aren't technical to understand what's going on. A well-told data story can help an organization make better and more confident decisions."</p>
+            </div>
+        </section>
+
+        <section id="outcome" class="py-16 md:py-24">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">The Outcome: A New Career Path</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">So, what was the result of this journey? This final section presents the tangible career outcomes and opportunities that the Google Data Analytics Certificate unlocked, demonstrating the high demand for these skills in today's job market.</p>
+            </div>
+            <div class="mt-12 grid md:grid-cols-2 gap-8 items-center">
+                <div class="stat-card bg-white p-8 rounded-xl shadow-lg border border-gray-200/50 text-center">
+                    <p class="text-6xl font-extrabold text-amber-600">75%</p>
+                    <p class="mt-2 text-xl font-semibold text-gray-800">Positive Career Outcome</p>
+                    <p class="mt-2 text-gray-600">Reported by graduates within six months, including new jobs, promotions, or raises.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200/50">
+                    <h3 class="text-center text-xl font-semibold text-gray-800 mb-4">High Demand, High Reward</h3>
+                    <div class="chart-container">
+                        <canvas id="salaryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 mt-24">
+        <div class="max-w-5xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-white">
+            <p>&copy; 2025 Kisa Fatima. This interactive page summarizes my personal journey.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.dataset.target;
+
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.classList.add('text-gray-600');
+                    });
+                    button.classList.add('active');
+                    button.classList.remove('text-gray-600');
+
+                    tabContents.forEach(content => {
+                        if (content.id === targetId) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 80) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            const salaryCtx = document.getElementById('salaryChart');
+            if (salaryCtx) {
+                new Chart(salaryCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Median Entry-Level Salary (USD)'],
+                        datasets: [{
+                            label: 'Salary in USD',
+                            data: [95000],
+                            backgroundColor: ['rgba(217, 119, 6, 0.7)'],
+                            borderColor: ['rgba(217, 119, 6, 1)'],
+                            borderWidth: 1,
+                            borderRadius: 5,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value, index, values) {
+                                        return '$' + value.toLocaleString();
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    title: function(tooltipItems) {
+                                        const item = tooltipItems[0];
+                                        let label = item.chart.data.labels[item.dataIndex];
+                                        if (Array.isArray(label)) {
+                                          return label.join(' ');
+                                        } else {
+                                          return label;
+                                        }
+                                    },
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
