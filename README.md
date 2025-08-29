@@ -84,21 +84,73 @@ The site uses a custom SVG logo for crisp display on all backgrounds. The logo i
 ## License
 © 2025 Virkat. All rights reserved.
 
-## Adding a New Blog Post
-Use the provided template and JSON listing to publish new posts consistently.
+## Adding a New Blog Post (Markdown preferred)
+Use Markdown files for the fastest authoring workflow. The blog page converts Markdown to HTML automatically and wraps it with title, author/date, hero image, share buttons, and reading time.
+
+### 1) Prepare assets (optional)
+- Save your hero image to `assets/images/` (e.g., `assets/images/blog3.jpg`). Recommended size: 1200×630 (landscape), JPG or PNG.
+
+### 2) Create the Markdown file
+- Create `posts/<your-post-slug>.md` (use a short, hyphenated slug, e.g., `data-cleaning-checklist.md`).
+- Start with content, not a top-level `# Title` (the page title is taken from `blogs.json`).
+- Example Markdown:
+```
+Intro paragraph that sets the context.
+
+## Section heading
+Explain your topic. Use lists and emphasis:
+- **Bold term:** quick definition
+- _Italic note_ for nuance
+
+> Optional quote to add depth.
+
+Include images when useful:
+![Alt text](assets/images/blog3.jpg)
+```
+
+### 3) Add the post to `blogs.json`
+Add a new object to the array with your metadata and the `.md` file path.
+```
+{
+   "id": "data-cleaning-checklist",
+   "title": "A Clean Data Checklist",
+   "image": "assets/images/blog3.jpg",
+   "description": "A practical checklist to keep your datasets analysis-ready.",
+   "author": "Your Name",
+   "date": "September 05, 2025",
+   "file": "posts/data-cleaning-checklist.md"
+}
+```
+- id: unique, lowercase, hyphenated. Used for deep links: `blogs.html#data-cleaning-checklist`.
+- image: shown on the card and at the top of the post.
+- file: points to your Markdown file in `posts/`.
+
+### 4) Preview
+- Open `blogs.html` and hard refresh (Ctrl+F5) to bypass cache.
+- You should see the new card. Click “Read More” to view inline.
+- Deep link works: `blogs.html#data-cleaning-checklist`.
+
+### Notes
+- Reading time is automatic based on content length.
+- Share buttons are injected automatically and use a stable deep link.
+- Markdown supported: headings, lists, bold/italic, links, images, code blocks (```), quotes.
+
+### Troubleshooting
+- Post doesn’t appear: ensure `blogs.json` is valid JSON (trailing commas) and the `file` path exists.
+- “Read More” does nothing: hard refresh `blogs.html` (Ctrl+F5). Check browser console for any fetch errors.
+- Images not showing: confirm the path (e.g., `assets/images/...`) and that the file is committed.
+- Styling oddities (e.g., literal asterisks showing): hard refresh to load the latest script; the converter supports **bold** and _italic_.
+
+---
+
+## Alternative: HTML post template
+If you prefer writing raw HTML, duplicate the template and point `blogs.json` to the `.html` file.
 
 1) Duplicate the template
 - Copy `posts/blog-post-template.html` to `posts/<your-post-file>.html`.
-- Update:
-   - `<title>` tag
-   - `.section-header > h2`
-   - `.meta` author and date
-   - Optional hero image `src` and `alt`
-   - Post content within `.blog-post-content`
-   - The `.share-buttons` `data-share-url` to your live URL (e.g., `https://www.virkat.org/posts/<your-post-file>.html`).
+- Update the `<title>`, the `.section-header > h2`, the `.meta` author and date, the optional hero image, and the content within `.blog-post-content`.
 
-2) Add the post to the list
-- Edit `blogs.json` and add an object:
+2) Add to `blogs.json`
 ```
 {
    "id": "unique-slug",
@@ -111,14 +163,14 @@ Use the provided template and JSON listing to publish new posts consistently.
 }
 ```
 
-3) Test locally
-- Open `blogs.html`. The post should appear in the list.
-- Click “Read More” to load inline. The back button returns to the list.
+3) Preview as above (open `blogs.html`, “Read More”, deep link check).
 
-Notes
-- Layout: Posts should follow `blog-post-1.html` structure. The template matches this layout.
-- Reading time: Auto-calculated and displayed via `<span class="reading-time"></span>`.
-- Share buttons: Any `<div class="share-buttons">` is auto-rendered by `assets/js/script.js`. Prefer setting `data-share-url` for accuracy; if omitted, the current URL is used.
+---
+
+## Deep links and Markdown posts
+- Link directly to a post via `blogs.html#<id>` (the `id` from `blogs.json`).
+- Posts listed with `.md` files are converted client-side and wrapped with consistent blog UI.
+- To improve UX, the reader shows a loading spinner and prefetches Markdown on hover.
 
 ## Deep links and Markdown posts
 - Blog cards support deep links. You can link directly to a post using `blogs.html#<id>`, where `<id>` is the `id` field from `blogs.json` (e.g., `blogs.html#understanding-data-cleaning`).
