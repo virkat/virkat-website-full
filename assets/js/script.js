@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add cache-busting to image src attributes inside an HTML string
   function addCacheBustToImages(html) {
     if (!html) return html;
-    return html.replace(/src="(assets\/images\/[^"\?]+)(\?[^"']*)?"/g, (m, p1) => `src="${withCacheBust(p1)}"`);
+  return html.replace(/src="((?:assets\/images|posts)\/[^"\?]+)(\?[^"']*)?"/g, (m, p1) => `src="${withCacheBust(p1)}"`);
   }
 
   // Minimal Markdown to HTML converter (subset)
@@ -116,8 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Italic (simple)
   md = md.replace(/\*([^*]+)\*/g, '<em>$1</em>');
   md = md.replace(/_([^_]+)_/g, '<em>$1</em>');
-    // Images ![alt](src)
-    md = md.replace(/!\[([^\]]*)\]\(([^\)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />');
+  // Images ![alt](src)
+  md = md.replace(/!\[([^\]]*)\]\(([^\)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" decoding="async" fetchpriority="low" />');
     // Links [text](url)
     md = md.replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
     // Headings ####, ###, ##, #
@@ -239,6 +239,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isMarkdown) {
               const md = fetchedText != null ? fetchedText : await response.text();
               let articleHtml = markdownToHtml(md);
+              // Resolve relative image paths (like image.png) to the post directory
+              const baseDir = blogFile.replace(/[^\/]+$/, '');
+              articleHtml = articleHtml.replace(/src="(?!https?:|\/|assets\/images\/|posts\/)([^"]+)"/g, (m, p1) => `src="${baseDir}${p1}"`);
               // Ensure inline images from assets/images get cache-busted
               articleHtml = addCacheBustToImages(articleHtml);
               const hero = blogImage ? `<img src="${blogImage}" alt="${blogTitle}" class="blog-image" loading="lazy" />` : '';

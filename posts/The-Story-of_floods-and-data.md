@@ -13,13 +13,13 @@ But then, clever people started to think: "What if we could understand these flo
 Imagine a group of smart people in a special room. They're not just looking out the window; they're listening to the whispers of Data.
 
 * **Old Rain Stories:** Data remembers all the times it rained before, how much, and what happened. It looks at river levels from many years ago.
-  ![alt text](image.png)
+  ![alt text](posts/image.png)
 * **Weather Clues:** It listens to today's weather forecasts, knowing how much rain is coming.
-  ![alt text](image-1.png)
+  ![alt text](posts/image-1.png)
 * **River Sentinels:** Tiny helpers, like little spies, are placed in rivers. They send constant messages about how high the water is getting.
-  ![alt text](image-2.png)
+  ![alt text](posts/image-2.png)
 * **Eyes from Space:** Even satellites high above look down, showing how wet the ground is and if rivers are starting to swell.
-  ![alt text](image-3.png)
+  ![alt text](posts/image-3.png)
 
 By putting all these clues together, Data can whisper: "A big flood might be coming to Punjab soon! Get ready!" This gives people time to prepare.
 
