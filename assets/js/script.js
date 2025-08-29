@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
               const md = fetchedText != null ? fetchedText : await response.text();
               const articleHtml = markdownToHtml(md);
               const hero = blogImage ? `<img src="${blogImage}" alt="${blogTitle}" class="blog-image" loading="lazy" />` : '';
-              contentToLoad = `
+        contentToLoad = `
                 <div class="blog-post-content">
                   <div class="section-header">
                     <h2>${blogTitle}</h2>
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   </div>
                   ${hero}
                   <div>${articleHtml}</div>
-                  <div class="share-buttons" data-share-url="${window.location.origin}/blogs.html"></div>
+          <div class="share-buttons compact" data-share-url="${window.location.origin}/blogs.html"></div>
                 </div>`;
               } else {
                 const html = await response.text();
@@ -244,6 +244,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
               // Render share buttons inside the loaded content
               dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
+                // Use compact variant for dynamically rendered posts
+                el.classList.add('compact');
                 const deepLink = blogId ? `${window.location.origin}/blogs.html#${encodeURIComponent(blogId)}`
                                         : (window.location.origin + '/' + blogFile.replace(/^\.\/?/, ''));
                 const effectiveUrl = el.dataset.shareUrl || deepLink;
