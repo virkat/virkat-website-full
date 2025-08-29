@@ -97,8 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Auto highlight current page
   const current = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-link').forEach(a => {
-    const href = a.getAttribute('href');
-    if (href === current || (current === 'index.html' && href.startsWith('#'))) {
+    const href = a.getAttribute('href').split('/').pop();
+    if (href === current) {
       a.classList.add('active');
     }
   });

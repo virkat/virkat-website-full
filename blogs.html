@@ -1,4 +1,3 @@
-  <script defer src="assets/js/script.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,77 +60,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blogs — Virkat</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
   <script defer src="assets/js/script.js"></script>
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-  <div class="logo">
-    <img src="assets/images/logo.svg" alt="Virkat Logo" />
-  </div>
-  <button id="darkModeToggle" class="btn dark-toggle-btn" aria-label="Toggle dark mode">🌙</button>
-  <div class="hamburger" aria-label="Open navigation" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <ul class="nav-links">
-    <li><a href="index.html" class="nav-link">Home</a></li>
-    <li><a href="team.html" class="nav-link">Team</a></li>
-    <li><a href="blogs.html" class="nav-link">Blogs</a></li>
-    <li><a href="services.html" class="nav-link">Services</a></li>
-    <li><a href="projects.html" class="nav-link">Projects</a></li>
-    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-  </ul>
-  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-    </nav>
+  <header class="navbar">
+    <div class="container">
+      <div class="logo">
+        <img src="assets/images/logo.svg" alt="Virkat Logo" />
+      </div>
+      <nav>
+        <div class="hamburger" aria-label="Open navigation" tabindex="0">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="team.html" class="nav-link">Team</a></li>
+          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <button id="darkModeToggle" class="btn dark-toggle-btn" aria-label="Toggle dark mode">🌙</button>
+    </div>
   </header>
 
-  <section class="blogs reveal">
-  <h2>Our Blogs</h2>
-  <div class="section-divider"></div>
-
-    <!-- Post 1 -->
-    <div id="post-1" class="blog-card">
-      <div class="blog-header">
-        <h3>Understanding Data Cleaning</h3>
-        <span class="blog-meta">By Asad Raza Virk • <span class="tags">#Data #Cleaning</span></span>
-        <button class="read-more">Read More</button>
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Blogs</h2>
+          <p>Insights on data, analytics, and reporting from our team of experts.</p>
+        </div>
+        <div class="card-grid">
+          <div class="card">
+            <img src="assets/images/blog1.jpg" alt="Data Cleaning" class="blog-image" />
+            <h3>Understanding Data Cleaning</h3>
+            <p class="meta">By Asad Raza Virk • Aug 1, 2025</p>
+            <p>Data cleaning is the first and most crucial step in any data analysis project. In this post, we explore the tools and techniques for ensuring your data is reliable and accurate.</p>
+            <a href="#post-1" class="btn read-more">Read More</a>
+          </div>
+          <div class="card">
+            <img src="assets/images/blog2.png" alt="Kisa Fatima Google Data Analyst" class="blog-image" />
+            <h3>My Journey as a Google Certified Data Analyst</h3>
+            <p class="meta">By Kisa Fatima • Aug 10, 2025</p>
+            <p>Kisa shares her personal journey of becoming a Google Certified Data Analyst, from her initial curiosity to transforming her career with new skills.</p>
+            <a href="#post-2" class="btn read-more">Read More</a>
+          </div>
+        </div>
       </div>
-      <div class="blog-content">
+    </section>
+
+    <section class="section" id="post-1">
+      <div class="container">
+        <div class="section-header">
+          <h2>Understanding Data Cleaning</h2>
+          <p class="meta">By Asad Raza Virk • Aug 1, 2025</p>
+        </div>
         <img src="assets/images/blog1.jpg" alt="Data Cleaning" class="blog-image" />
         <p>Data cleaning is the process of detecting and correcting (or removing) corrupt or inaccurate records. It is the first step in ensuring reliable analysis results.</p>
         <blockquote>“Without clean data, even the best models fail.”</blockquote>
         <p>Steps usually include handling missing values, correcting typos, and ensuring data consistency across sources. In this blog, we’ll explore tools and strategies for efficient data cleaning.</p>
+        <div class="share-buttons">
+          <span>Share:</span>
+          <a href="https://x.com/intent/tweet?url=https://www.virkat.org/blogs.html#post-1" target="_blank" rel="noopener" aria-label="Share on X"><img src="assets/images/x-icon.svg" alt="X" /></a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.virkat.org/blogs.html#post-1" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.virkat.org/blogs.html#post-1" target="_blank" rel="noopener" aria-label="Share on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
+          <a href="https://wa.me/?text=https://www.virkat.org/blogs.html%23post-1" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
+        </div>
       </div>
-      <div class="share-buttons">
-        <span>Share:</span>
-        <a href="https://x.com/intent/tweet?url=https://www.virkat.org/blogs.html#post-1" target="_blank" rel="noopener" aria-label="Share on X"><img src="assets/images/x-icon.svg" alt="X" /></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.virkat.org/blogs.html#post-1" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.virkat.org/blogs.html#post-1" target="_blank" rel="noopener" aria-label="Share on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-        <a href="https://wa.me/?text=https://www.virkat.org/blogs.html#post-1" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
-      </div>
-    </div>
+    </section>
 
-    <!-- Post 2 -->
-    <div id="post-2" class="blog-card">
-      <div class="blog-header">
-        <h3>🌟 My Journey as a Google Certified Data Analyst – By Kisa Fatima</h3>
-        <span class="blog-meta">By Kisa Fatima • <span class="tags">
-          #GoogleCertified #DataAnalyst #GoogleDataAnalytics #CareerGrowth #DataDriven #SQL #Tableau #DataVisualization #BusinessIntelligence #LearnDataAnalytics #KisaFatima
-        </span></span>
-        <div class="blog-seo-tags">
-          <strong>SEO Tags:</strong>
-          <span>google data analytics certification, google certified data analyst, data analyst career path, skills for data analysts, sql for beginners, r programming, data visualization tools, tableau dashboard, google data studio, business intelligence, career growth in data analytics, beginner to data analyst journey, kisa fatima data analyst</span>
+    <section class="section" id="post-2">
+      <div class="container">
+        <div class="section-header">
+          <h2>My Journey as a Google Certified Data Analyst</h2>
+          <p class="meta">By Kisa Fatima • Aug 10, 2025</p>
         </div>
-        <div class="blog-keywords">
-          <strong>Primary Keywords:</strong> Google Certified Data Analyst, Google Data Analytics Certification, Data Analyst career path, Skills for data analysts, How to become a data analyst<br />
-          <strong>Secondary Keywords:</strong> Data visualization tools (Tableau, Google Data Studio), SQL for data analysis, R programming for beginners, Data cleaning and organization, Business intelligence and analytics, Career in data analytics, Data-driven decision making
-        </div>
-        <button class="read-more">Read More</button>
-      </div>
-      <div class="blog-content">
-  <img src="assets/images/blog2.png" alt="Kisa Fatima Google Data Analyst" class="blog-image" />
+        <img src="assets/images/blog2.png" alt="Kisa Fatima Google Data Analyst" class="blog-image" />
         <p>When I first heard the phrase “data is the new oil,” I didn’t fully grasp its power. Today, as a Google Certified Data Analyst, I can say with confidence that data truly drives the world around us.</p>
         <p>I’m Kisa Fatima, and this is my personal journey of becoming a certified data analyst—how I started with curiosity, built in-demand data analytics skills, faced challenges, and transformed my career with the Google Data Analytics Certification.</p>
         <h4>🚀 Why I Chose the Google Data Analytics Certification</h4>
@@ -177,25 +186,26 @@
         <p>Looking back, I’m proud of how far I’ve come. From being curious about data to proudly calling myself a Google Certified Data Analyst, this journey has been life-changing.</p>
         <p>And this is only the beginning. With data analytics, I plan to continue growing, solving real-world problems, and inspiring others to embrace the power of data.</p>
         <p>👉 If you’re considering starting your own data analyst career path, my advice is simple: take the first step. Your journey might just transform your future the way mine did.</p>
+        <div class="share-buttons">
+          <span>Share:</span>
+          <a href="https://x.com/intent/tweet?url=https://www.virkat.org/blogs.html#post-2" target="_blank" rel="noopener" aria-label="Share on X"><img src="assets/images/x-icon.svg" alt="X" /></a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.virkat.org/blogs.html#post-2" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.virkat.org/blogs.html#post-2" target="_blank" rel="noopener" aria-label="Share on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
+          <a href="https://wa.me/?text=https://www.virkat.org/blogs.html%23post-2" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
+        </div>
       </div>
-      <div class="share-buttons">
-        <span>Share:</span>
-        <a href="https://x.com/intent/tweet?url=https://www.virkat.org/blogs.html#post-2" target="_blank" rel="noopener" aria-label="Share on X"><img src="assets/images/x-icon.svg" alt="X" /></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.virkat.org/blogs.html#post-2" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.virkat.org/blogs.html#post-2" target="_blank" rel="noopener" aria-label="Share on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-        <a href="https://wa.me/?text=https://www.virkat.org/blogs.html#post-2" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Virkat. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="https://x.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on X (Twitter)"><img src="assets/images/x-icon.svg" alt="X" /></a>
+        <a href="https://www.linkedin.com/company/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
+        <a href="https://www.facebook.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
+        <a href="https://wa.me/00923009613520" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
       </div>
-    </div>
-
-  </section>
-
-  <footer>
-    <p>© 2025 Virkat. All rights reserved.</p>
-    <div class="footer-socials">
-      <a href="https://x.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on X (Twitter)"><img src="assets/images/x-icon.svg" alt="X" /></a>
-      <a href="https://www.linkedin.com/company/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-      <a href="https://www.facebook.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-      <a href="https://wa.me/your-number" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
     </div>
   </footer>
 </body>

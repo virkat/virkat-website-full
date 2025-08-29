@@ -1,4 +1,3 @@
-  <script defer src="assets/js/script.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,152 +76,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services — Virkat</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
   <script defer src="assets/js/script.js"></script>
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-  <div class="logo">
-    <img src="assets/images/logo.svg" alt="Virkat Logo" />
-  </div>
-  <button id="darkModeToggle" class="btn dark-toggle-btn" aria-label="Toggle dark mode">🌙</button>
-  <div class="hamburger" aria-label="Open navigation" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <ul class="nav-links">
-    <li><a href="index.html" class="nav-link">Home</a></li>
-    <li><a href="team.html" class="nav-link">Team</a></li>
-    <li><a href="blogs.html" class="nav-link">Blogs</a></li>
-    <li><a href="services.html" class="nav-link">Services</a></li>
-    <li><a href="projects.html" class="nav-link">Projects</a></li>
-    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-  </ul>
-  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-    </nav>
+  <header class="navbar">
+    <div class="container">
+      <div class="logo">
+        <img src="assets/images/logo.svg" alt="Virkat Logo" />
+      </div>
+      <nav>
+        <div class="hamburger" aria-label="Open navigation" tabindex="0">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="team.html" class="nav-link">Team</a></li>
+          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <button id="darkModeToggle" class="btn dark-toggle-btn" aria-label="Toggle dark mode">🌙</button>
+    </div>
   </header>
 
-  <section class="services-page reveal">
-  <h1>Our Services</h1>
-  <div class="section-divider"></div>
-  <p>We help organizations turn data into decisions.</p>
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Services</h2>
+          <p>We help organizations turn data into decisions.</p>
+        </div>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Data Analysis & Visualization</h3>
+            <p>We inspect, cleanse, transform, and model data to discover useful information and support your decision-making. We create clear, interactive dashboards and reports in tools like Tableau to help you understand your data at a glance. We summarize the main characteristics of your data sets using statistical graphics and other data visualization methods. We apply statistical techniques to interpret, visualize, and infer from data, including hypothesis testing, A/B testing, and regression analysis.</p>
+            <a href="projects.html#project-foodgrain" class="btn">View Related Projects</a>
+          </div>
+          <div class="card">
+            <h3>Data Science & Machine Learning</h3>
+            <p>We use scientific methods, algorithms, and systems to extract knowledge and insights from your data. We build and deploy machine learning models to automate processes and make predictions. We use statistical techniques to predict future outcomes and trends. We help you understand the relationships between different variables in your data.</p>
+            <a href="projects.html#project-forecast" class="btn">View Related Projects</a>
+          </div>
+          <div class="card">
+            <h3>Data Management & Automation</h3>
+            <p>We detect and correct or remove corrupt or inaccurate records from your data sets, ensuring data quality and reliability. We use SQL and other languages to retrieve and manipulate data from your databases. We build automated workflows to convert and validate reports across PDF, Word, and HTML, reducing manual effort and errors. We use Python and R to automate repetitive data tasks, saving you time and money.</p>
+            <a href="projects.html#project-docs" class="btn">View Related Projects</a>
+          </div>
+          <div class="card">
+            <h3>Consulting & Training</h3>
+            <p>We help you develop a data strategy that aligns with your business goals. We advise on the ethical implications of collecting and using data. We offer training in data analysis, visualization, and reporting best practices. We help you communicate your data story effectively to any audience.</p>
+            <a href="projects.html#project-training" class="btn">View Related Projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <div class="service-grid">
-      <div class="service-item">
-        <div class="icon">📊</div>
-        <h3>Data Visualization</h3>
-        <p>Graphic representation of data for insight and communication.</p>
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Virkat. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="https://x.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on X (Twitter)"><img src="assets/images/x-icon.svg" alt="X" /></a>
+        <a href="https://www.linkedin.com/company/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
+        <a href="https://www.facebook.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
+        <a href="https://wa.me/00923009613520" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
       </div>
-      <div class="service-item">
-        <div class="icon">🧮</div>
-        <h3>Calculations</h3>
-        <p>Deliberate processes that transform inputs into results.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">📈</div>
-        <h3>Data Analysis</h3>
-        <p>Inspecting, cleansing, transforming, and modeling data to discover useful information and support decision-making.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">📊</div>
-        <h3>Data Analytics</h3>
-        <p>Applying analytical techniques to extract insights from data.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">🧼</div>
-        <h3>Data Cleansing</h3>
-        <p>Detecting and correcting or removing corrupt or inaccurate records from data sets.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">⚖️</div>
-        <h3>Data Ethics</h3>
-        <p>Systemizing, defending, and recommending concepts of right and wrong conduct in relation to data, especially personal data.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">🔬</div>
-        <h3>Data Science</h3>
-        <p>Using scientific methods, algorithms, and systems to extract knowledge and insights from data.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">�</div>
-        <h3>Database Queries</h3>
-        <p>Using statements (often SQL) to retrieve data from databases.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">🔎</div>
-        <h3>Exploratory Data Analysis</h3>
-        <p>Summarizing main characteristics of data sets using statistical graphics and visualization.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">🎤</div>
-        <h3>Giving Presentations</h3>
-        <p>Conveying information effectively from speaker to audience.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">📓</div>
-        <h3>Jupyter Notebook</h3>
-        <p>Web-based interactive computational environment for creating notebook documents.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">�</div>
-        <h3>Machine Learning (ML)</h3>
-        <p>Study of algorithms that improve automatically through experience and data.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">🔮</div>
-        <h3>Predictive Modeling</h3>
-        <p>Using statistics to predict outcomes.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">🧩</div>
-        <h3>Problem Solving</h3>
-        <p>Using methods to find solutions to difficulties.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">🐍</div>
-        <h3>Python</h3>
-        <p>Interpreted high-level general-purpose programming language.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">�</div>
-        <h3>R</h3>
-        <p>Programming language for statistical computing and graphics.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">📉</div>
-        <h3>Regression Analysis</h3>
-        <p>Statistical processes for estimating relationships between variables.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">📑</div>
-        <h3>Spreadsheets</h3>
-        <p>Computer applications for computation, organization, and analysis of data in tabular form.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">📊</div>
-        <h3>Statistical Analysis</h3>
-        <p>Application of statistical techniques to interpret, visualize, and infer from data.</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">📈</div>
-        <h3>Tableau</h3>
-        <p>Interactive data visualization software.</p>
-      </div>
-    </div>
-
-    <div class="center">
-      <a class="btn btn-primary" href="mailto:info@virkat.org?subject=Services%20Inquiry%20(Virkat)&body=Hi%20Virkat%2C%0A%0AService%20needed:%0ATimeline:%0ABudget:%0A">Request a Quote</a>
-    </div>
-  </section>
-
-  <footer>
-    <p>© 2025 Virkat. All rights reserved.</p>
-    <div class="footer-socials">
-      <a href="https://x.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on X (Twitter)"><img src="assets/images/x-icon.svg" alt="X" /></a>
-      <a href="https://www.linkedin.com/company/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-      <a href="https://www.facebook.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-      <a href="https://wa.me/your-number" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
     </div>
   </footer>
 </body>
