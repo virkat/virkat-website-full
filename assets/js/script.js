@@ -146,8 +146,24 @@ document.addEventListener('DOMContentLoaded', () => {
           blogPostsContainer.appendChild(blogCard);
         });
 
+        // Simple in-memory cache for prefetched posts
+        const postCache = new Map(); // key: file path, value: string content
+
+        // Prefetch on hover for instant open (Markdown only)
+        blogPostsContainer.addEventListener('mouseover', (e) => {
+          const btn = e.target.closest && e.target.closest('.read-more-btn');
+          if (!btn) return;
+          const blogFile = btn.dataset.blogFile;
+          if (!blogFile || !blogFile.toLowerCase().endsWith('.md')) return;
+          if (postCache.has(blogFile)) return;
+          // Best-effort fetch; ignore errors
+          fetch(blogFile).then(r => r.ok ? r.text() : Promise.reject()).then(txt => {
+            postCache.set(blogFile, txt);
+          }).catch(() => {});
+        });
+
         // Event delegation for Read More buttons (more robust)
-        blogPostsContainer.addEventListener('click', async (e) => {
+  blogPostsContainer.addEventListener('click', async (e) => {
           const btn = e.target.closest && e.target.closest('.read-more-btn');
           if (!btn) return;
           e.preventDefault();
@@ -158,15 +174,26 @@ document.addEventListener('DOMContentLoaded', () => {
           const blogImage = btn.dataset.blogImage || '';
           const blogId = btn.dataset.blogId || '';
 
+          // Show a temporary spinner in the full post container
+          fullBlogPostContainer.innerHTML = '<div class="container"><div class="spinner" aria-label="Loading"></div></div>';
+          fullBlogPostContainer.style.display = 'block';
+
           try {
-            const response = await fetch(blogFile);
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status} for ${blogFile}`);
+            let fetchedText = null;
+            if (postCache.has(blogFile)) {
+              fetchedText = postCache.get(blogFile);
+            }
+            let response = null;
+            if (!fetchedText) {
+              response = await fetch(blogFile);
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status} for ${blogFile}`);
+              }
             }
             const isMarkdown = blogFile.toLowerCase().endsWith('.md');
             let contentToLoad = '';
             if (isMarkdown) {
-              const md = await response.text();
+              const md = fetchedText != null ? fetchedText : await response.text();
               const articleHtml = markdownToHtml(md);
               const hero = blogImage ? `<img src="${blogImage}" alt="${blogTitle}" class="blog-image" loading="lazy" />` : '';
               contentToLoad = `
@@ -243,6 +270,13 @@ document.addEventListener('DOMContentLoaded', () => {
           } catch (error) {
             console.error('Error fetching blog post:', error);
             showToast('Error loading post. Please check your connection and try again.');
+          } finally {
+            // Spinner will be replaced by content if success; hide container if still only spinner
+            const hasContent = !!fullBlogPostContainer.querySelector('.blog-post-content');
+            if (!hasContent) {
+              fullBlogPostContainer.style.display = 'none';
+              fullBlogPostContainer.innerHTML = '';
+            }
           }
         });
         // If there's a hash like #<id>, auto-open that post

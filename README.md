@@ -119,3 +119,8 @@ Notes
 - Layout: Posts should follow `blog-post-1.html` structure. The template matches this layout.
 - Reading time: Auto-calculated and displayed via `<span class="reading-time"></span>`.
 - Share buttons: Any `<div class="share-buttons">` is auto-rendered by `assets/js/script.js`. Prefer setting `data-share-url` for accuracy; if omitted, the current URL is used.
+
+## Deep links and Markdown posts
+- Blog cards support deep links. You can link directly to a post using `blogs.html#<id>`, where `<id>` is the `id` field from `blogs.json` (e.g., `blogs.html#understanding-data-cleaning`).
+- The blog reader supports Markdown files (`.md`) listed in `blogs.json`. When a Markdown file is used, the loader converts it to HTML and wraps it with the standard post header, meta, hero image, and share buttons.
+- For performance, posts are prefetched on hover and a small spinner is shown while loading.
