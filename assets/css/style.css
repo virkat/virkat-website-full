@@ -91,6 +91,12 @@ body.dark-mode .navbar {
   align-items: center;
 }
 
+.navbar nav {
+  flex-grow: 1; /* Allow the nav to grow and take up space */
+  display: flex;
+  justify-content: flex-end; /* Align nav content to the right */
+}
+
 .logo img {
   height: 35px;
 }
