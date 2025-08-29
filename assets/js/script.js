@@ -126,104 +126,104 @@ document.addEventListener('DOMContentLoaded', () => {
           blogPostsContainer.appendChild(blogCard);
         });
 
-        // Add event listeners to dynamically created "Read More" buttons
-    document.querySelectorAll('.read-more-btn').forEach(button => {
-          button.addEventListener('click', async function(e) {
-            e.preventDefault();
-            const blogFile = this.dataset.blogFile;
-            const blogTitle = this.dataset.blogTitle;
-            const blogAuthor = this.dataset.blogAuthor || 'Virkat Team';
-            const blogDate = this.dataset.blogDate || '';
-            const blogImage = this.dataset.blogImage || '';
-      const blogId = this.dataset.blogId || '';
+        // Event delegation for Read More buttons (more robust)
+        blogPostsContainer.addEventListener('click', async (e) => {
+          const btn = e.target.closest && e.target.closest('.read-more-btn');
+          if (!btn) return;
+          e.preventDefault();
+          const blogFile = btn.dataset.blogFile;
+          const blogTitle = btn.dataset.blogTitle;
+          const blogAuthor = btn.dataset.blogAuthor || 'Virkat Team';
+          const blogDate = btn.dataset.blogDate || '';
+          const blogImage = btn.dataset.blogImage || '';
+          const blogId = btn.dataset.blogId || '';
 
-            try {
-              const response = await fetch(blogFile);
-              if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status} for ${blogFile}`);
-              }
-              const isMarkdown = blogFile.toLowerCase().endsWith('.md');
-              let contentToLoad = '';
-              if (isMarkdown) {
-                const md = await response.text();
-                const articleHtml = markdownToHtml(md);
-                const hero = blogImage ? `<img src="${blogImage}" alt="${blogTitle}" class="blog-image" loading="lazy" />` : '';
-                contentToLoad = `
-                  <div class="blog-post-content">
-                    <div class="section-header">
-                      <h2>${blogTitle}</h2>
-                      <p class="meta">By ${blogAuthor} • ${blogDate} • <span class="reading-time"></span> min read</p>
-                    </div>
-                    ${hero}
-                    <div>${articleHtml}</div>
-                    <div class="share-buttons" data-share-url="${window.location.origin}/blogs.html"></div>
-                  </div>`;
-              } else {
-                const html = await response.text();
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = html;
-                const contentNode = tempDiv.querySelector('.blog-post-content') || tempDiv.querySelector('body');
-                contentToLoad = contentNode ? contentNode.innerHTML : '';
-              }
+          try {
+            const response = await fetch(blogFile);
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status} for ${blogFile}`);
+            }
+            const isMarkdown = blogFile.toLowerCase().endsWith('.md');
+            let contentToLoad = '';
+            if (isMarkdown) {
+              const md = await response.text();
+              const articleHtml = markdownToHtml(md);
+              const hero = blogImage ? `<img src="${blogImage}" alt="${blogTitle}" class="blog-image" loading="lazy" />` : '';
+              contentToLoad = `
+                <div class="blog-post-content">
+                  <div class="section-header">
+                    <h2>${blogTitle}</h2>
+                    <p class="meta">By ${blogAuthor} • ${blogDate} • <span class="reading-time"></span> min read</p>
+                  </div>
+                  ${hero}
+                  <div>${articleHtml}</div>
+                  <div class="share-buttons" data-share-url="${window.location.origin}/blogs.html"></div>
+                </div>`;
+            } else {
+              const html = await response.text();
+              const tempDiv = document.createElement('div');
+              tempDiv.innerHTML = html;
+              const contentNode = tempDiv.querySelector('.blog-post-content') || tempDiv.querySelector('body');
+              contentToLoad = contentNode ? contentNode.innerHTML : '';
+            }
 
             if (contentToLoad) {
-                // Add a back button for better UX
-                const backBtn = `<div class="container" style="margin-top:20px;margin-bottom:10px"><button class="btn btn-secondary" id="backToList">← Back to all posts</button></div>`;
-                fullBlogPostContainer.innerHTML = backBtn + contentToLoad;
-                fullBlogPostContainer.style.display = 'block';
+              // Add a back button for better UX
+              const backBtn = `<div class="container" style="margin-top:20px;margin-bottom:10px"><button class="btn btn-secondary" id="backToList">← Back to all posts</button></div>`;
+              fullBlogPostContainer.innerHTML = backBtn + contentToLoad;
+              fullBlogPostContainer.style.display = 'block';
 
-                // Hide the main blog listing section
-                const listSection = document.querySelector('section .card-grid');
-                const listHeader = document.querySelector('section .section-header');
-                if (listSection) listSection.style.display = 'none';
-                if (listHeader) listHeader.style.display = 'none';
+              // Hide the main blog listing section (header + grid) more reliably
+              const listingSection = blogPostsContainer.closest('section');
+              const listGrid = blogPostsContainer;
+              const listHeader = listingSection ? listingSection.querySelector('.section-header') : null;
+              if (listGrid) listGrid.style.display = 'none';
+              if (listHeader) listHeader.style.display = 'none';
 
-                // Compute and populate reading time for the loaded content
-                const dynamicContent = fullBlogPostContainer.querySelector('.blog-post-content') || fullBlogPostContainer;
-                const readingTimeEl = dynamicContent.querySelector('.reading-time');
-                if (dynamicContent && readingTimeEl) {
-                  const text = dynamicContent.innerText || dynamicContent.textContent || '';
-                  const minutes = calculateReadingTime(text);
-                  readingTimeEl.textContent = minutes;
-                }
-
-                // Render share buttons inside the loaded content
-                dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
-                  // Prefer a stable deep link using blogs.html#<id> when available
-                  const deepLink = blogId ? `${window.location.origin}/blogs.html#${encodeURIComponent(blogId)}`
-                                          : (window.location.origin + '/' + blogFile.replace(/^\.\/?/, ''));
-                  const effectiveUrl = el.dataset.shareUrl || deepLink;
-                  renderShareButtons(el, effectiveUrl);
-                });
-
-                // Back button handler
-                const backButton = document.getElementById('backToList');
-                if (backButton) {
-                  backButton.addEventListener('click', () => {
-                    fullBlogPostContainer.style.display = 'none';
-                    if (listSection) listSection.style.display = '';
-                    if (listHeader) listHeader.style.display = '';
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  });
-                }
-
-                // Scroll to the loaded content
-                fullBlogPostContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              } else {
-                console.error('Blog post content not found in fetched HTML.');
+              // Compute and populate reading time for the loaded content
+              const dynamicContent = fullBlogPostContainer.querySelector('.blog-post-content') || fullBlogPostContainer;
+              const readingTimeEl = dynamicContent.querySelector('.reading-time');
+              if (dynamicContent && readingTimeEl) {
+                const text = dynamicContent.innerText || dynamicContent.textContent || '';
+                const minutes = calculateReadingTime(text);
+                readingTimeEl.textContent = minutes;
               }
-            } catch (error) {
-              console.error('Error fetching blog post:', error);
+
+              // Render share buttons inside the loaded content
+              dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
+                const deepLink = blogId ? `${window.location.origin}/blogs.html#${encodeURIComponent(blogId)}`
+                                        : (window.location.origin + '/' + blogFile.replace(/^\.\/?/, ''));
+                const effectiveUrl = el.dataset.shareUrl || deepLink;
+                renderShareButtons(el, effectiveUrl);
+              });
+
+              // Back button handler
+              const backButton = document.getElementById('backToList');
+              if (backButton) {
+                backButton.addEventListener('click', () => {
+                  fullBlogPostContainer.style.display = 'none';
+                  if (listGrid) listGrid.style.display = '';
+                  if (listHeader) listHeader.style.display = '';
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+              }
+
+              // Scroll to the loaded content
+              fullBlogPostContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+              console.error('Blog post content not found in fetched HTML.');
             }
-          });
+          } catch (error) {
+            console.error('Error fetching blog post:', error);
+          }
         });
         // If there's a hash like #<id>, auto-open that post
         const hash = (window.location.hash || '').replace(/^#/, '');
         if (hash) {
-          const btn = document.querySelector(`.read-more-btn[data-blog-id="${CSS.escape(hash)}"]`);
-          if (btn) {
-            btn.click();
-          }
+          // Use a safe selector without CSS.escape dependency
+          const buttons = Array.from(document.querySelectorAll('.read-more-btn'));
+          const btn = buttons.find(b => (b.dataset.blogId || '') === hash);
+          if (btn) btn.click();
         }
       })
       .catch(error => console.error('Error fetching blogs.json:', error));
