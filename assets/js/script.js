@@ -17,28 +17,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Function to calculate reading time
+  function calculateReadingTime(text) {
+    const wordsPerMinute = 200; // Average reading speed
+    const wordCount = text.trim().split(/\s+/).length;
+    const readingTimeMinutes = Math.ceil(wordCount / wordsPerMinute);
+    return readingTimeMinutes;
+  }
+
   // Blog "Read More" functionality
-  document.querySelectorAll('.blog-card .btn').forEach(button => {
-    button.addEventListener('click', function(e) {
+  document.querySelectorAll('.read-more-btn').forEach(button => {
+    button.addEventListener('click', async function(e) {
       e.preventDefault();
-      const targetId = this.getAttribute('href').substring(1);
-      const targetSection = document.getElementById(targetId);
+      const blogUrl = this.getAttribute('href');
+      const blogPostContainer = document.getElementById('blog-post-container');
 
-      if (targetSection) {
-        // Hide all other blog content sections
-        document.querySelectorAll('.section[id^="post-"]').forEach(section => {
-          if (section.id !== targetId) {
-            section.style.display = 'none';
+      try {
+        const response = await fetch(blogUrl);
+        const html = await response.text();
+
+        // Create a temporary div to parse the fetched HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+
+        // Extract the content from the blog-post-content div
+        const contentToLoad = tempDiv.querySelector('.blog-post-content');
+
+        if (contentToLoad) {
+          // Clear previous content and append new content
+          blogPostContainer.innerHTML = '';
+          blogPostContainer.appendChild(contentToLoad);
+          blogPostContainer.style.display = 'block'; // Show the container
+
+          // Calculate and display reading time
+          const blogText = contentToLoad.innerText;
+          const readingTime = calculateReadingTime(blogText);
+          const readingTimeSpan = blogPostContainer.querySelector('.reading-time');
+          if (readingTimeSpan) {
+            readingTimeSpan.textContent = readingTime;
           }
-        });
 
-        // Toggle visibility of the target blog content section
-        if (targetSection.style.display === 'block') {
-          targetSection.style.display = 'none';
+          // Scroll to the loaded content
+          blogPostContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
-          targetSection.style.display = 'block';
-          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          console.error('Blog post content not found in fetched HTML.');
         }
+      } catch (error) {
+        console.error('Error fetching blog post:', error);
       }
     });
   });
