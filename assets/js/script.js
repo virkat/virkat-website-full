@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
           console.log('Creating card for blog:', blog.title);
           const blogCard = document.createElement('div');
           blogCard.classList.add('card', 'blog-card');
-          blogCard.innerHTML = `
+                    blogCard.innerHTML = `
             <img src="${blog.image}" alt="${blog.title}" class="blog-image" />
             <h3>${blog.title}</h3>
             <p class="meta">By ${blog.author || 'Virkat Team'} • ${blog.date || 'New Post'}</p>
