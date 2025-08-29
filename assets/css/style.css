@@ -262,3 +262,71 @@ a:hover {
   border-radius: var(--radius) var(--radius) 0 0;
   margin-bottom: 20px;
 }
+
+/* Blog Post Content Styling */
+.blog-post-content {
+  max-width: 800px; /* Limit width for readability */
+  margin: 0 auto; /* Center the content */
+  padding: 20px; /* Add some padding */
+  line-height: 1.8; /* Improve line spacing for readability */
+  font-size: 1.1rem; /* Slightly larger base font size */
+}
+
+.blog-post-content h2 {
+  font-size: 2.5rem; /* Larger heading for main blog title */
+  margin-top: 40px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.blog-post-content h3 {
+  font-size: 2rem; /* Subheadings */
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.blog-post-content p {
+  margin-bottom: 1.5em; /* More space between paragraphs */
+}
+
+.blog-post-content ul,
+.blog-post-content ol {
+  margin-bottom: 1.5em;
+  padding-left: 25px;
+}
+
+.blog-post-content li {
+  margin-bottom: 0.5em;
+}
+
+.blog-post-content blockquote {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 20px;
+  margin: 2em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.blog-post-content img {
+  max-width: 100%; /* Ensure images are responsive */
+  height: auto;
+  display: block; /* Remove extra space below image */
+  margin: 2em auto; /* Center images and add vertical space */
+  border-radius: var(--radius);
+}
+
+/* Responsive adjustments for blog content */
+@media (max-width: 768px) {
+  .blog-post-content {
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  .blog-post-content h2 {
+    font-size: 2rem;
+  }
+
+  .blog-post-content h3 {
+    font-size: 1.6rem;
+  }
+}
