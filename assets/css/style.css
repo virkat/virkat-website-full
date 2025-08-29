@@ -281,6 +281,11 @@ a:hover {
   margin: 0 auto 20px;
 }
 
+/* Ensure Asad's face isn't cropped at the top */
+.team-member img.asad-photo {
+  object-position: top center;
+}
+
 /* Blog Page Specific Styles */
 .blog-image {
   width: 100%;
