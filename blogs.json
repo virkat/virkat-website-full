@@ -17,4 +17,13 @@
   "date": "August 29, 2025",
   "file": "posts/blog-post-2.md"
   }
+  {
+  "id": "flood-data-story",
+  "title": "The Story of Data and the Mighty Floods in Punjab",
+  "image": "assets/images/flood-data-story.jpg",
+  "description": "A powerful story about how data is helping communities in Punjab, Pakistan, predict, prepare for, and respond to devastating floods.",
+  "author": "Asad Raza Virk",
+  "date": "August 30, 2025",
+  "file": "posts/The-Story-of_floods-and-data.md"
+}
 ]
