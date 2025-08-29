@@ -146,6 +146,11 @@ a:hover {
   padding: 80px 0;
 }
 
+/* Utilities */
+.centered {
+  text-align: center;
+}
+
 .section-header {
   text-align: center;
   margin-bottom: 60px;
