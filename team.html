@@ -1,88 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Structured Data: Team Members & Breadcrumbs -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.virkat.org/"},
-      {"@type": "ListItem", "position": 2, "name": "Team", "item": "https://www.virkat.org/team.html"}
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Asad Raza Virk",
-    "jobTitle": "Data Scientist",
-    "worksFor": {"@type": "Organization", "name": "Virkat"},
-    "email": "info@virkat.org",
-    "image": "https://www.virkat.org/assets/images/asad.jpg",
-    "sameAs": "https://www.linkedin.com/in/asad-raza-virk/"
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Kisa Fatima",
-    "jobTitle": "Data Analyst",
-    "worksFor": {"@type": "Organization", "name": "Virkat"},
-    "email": "info@virkat.org",
-    "image": "https://www.virkat.org/assets/images/kisa.jpg",
-    "sameAs": "https://www.linkedin.com/in/kisa-fatima-virk/"
-  }
-  </script>
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Meet the Virkat team: Google-certified experts in data analysis, reporting, and automation for government and business." />
-  <meta name="keywords" content="team, data, analytics, reporting, consulting, Punjab, government, automation, statistics, R, Python, Quarto" />
-  <meta name="author" content="Asad Raza Virk, Kisa Fatima" />
-  <meta name="robots" content="index, follow" />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Our Team — Virkat" />
-  <meta property="og:description" content="Meet the Google-certified experts behind Virkat: data analysis, reporting, and automation for government and business." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.virkat.org/team.html" />
-  <meta property="og:image" content="https://www.virkat.org/assets/images/banner.jpg" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Our Team — Virkat" />
-  <meta name="twitter:description" content="Meet the Google-certified experts behind Virkat: data analysis, reporting, and automation for government and business." />
-  <meta name="twitter:image" content="https://www.virkat.org/assets/images/banner.jpg" />
+  <!-- Meta Tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Our Team — Virkat</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta name="description" content="Meet the Virkat team: Google-certified experts in data analysis, reporting, and automation for government and business." />
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Scripts -->
   <script defer src="assets/js/script.js"></script>
 </head>
 <body>
-  <header class="navbar">
+  <header class="header">
     <div class="container">
-      <div class="logo">
+      <a href="index.html" class="logo">
         <img src="assets/images/logo.svg" alt="Virkat Logo" />
-      </div>
-      <nav>
-        <div class="hamburger" aria-label="Open navigation" tabindex="0">
+      </a>
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+          <li><a href="team.html" class="nav-link active">Team</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="hamburger">
           <span></span>
           <span></span>
           <span></span>
         </div>
-        <ul class="nav-links">
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="team.html" class="nav-link">Team</a></li>
-          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
-          <li><a href="services.html" class="nav-link">Services</a></li>
-          <li><a href="projects.html" class="nav-link">Projects</a></li>
-          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-        </ul>
       </nav>
-      <button id="darkModeToggle" class="btn dark-toggle-btn" aria-label="Toggle dark mode">🌙</button>
     </div>
   </header>
 
@@ -95,23 +48,23 @@
         </div>
         <div class="card-grid">
           <div class="card team-member">
-            <img src="assets/images/asad.jpg" alt="Asad Raza Virk" class="team-photo" />
+            <img src="assets/images/asad.jpg" alt="Asad Raza Virk" />
             <h3>Asad Raza Virk</h3>
             <p class="role">Google Certified Data Scientist</p>
             <p>Asad is a Google-certified Data Scientist with over 25 years of experience in data analysis, reporting, and food security. He is an expert in R, Python, and SQL, and is passionate about using data to solve complex problems.</p>
             <div class="team-member-links">
               <a href="https://www.linkedin.com/in/asad-raza-virk" class="btn" target="_blank" rel="noopener">LinkedIn</a>
-              <a href="assets/resumes/Asad-Raza-Virk-Resume.pdf" class="btn" download>Resume</a>
+              <a href="assets/resumes/Asad-Raza-Virk-Resume.pdf" class="btn btn-secondary" download>Resume</a>
             </div>
           </div>
           <div class="card team-member">
-            <img src="assets/images/kisa.jpg" alt="Kisa Fatima" class="team-photo" />
+            <img src="assets/images/kisa.jpg" alt="Kisa Fatima" />
             <h3>Kisa Fatima</h3>
             <p class="role">Google Certified Data Analyst</p>
             <p>Kisa is a Google-certified Data Analyst with a passion for storytelling with data. She is skilled in R, SQL, and Tableau, and is currently pursuing a Bachelor of Science in Computer Science.</p>
             <div class="team-member-links">
               <a href="https://www.linkedin.com/in/kisa-fatima-virk" class="btn" target="_blank" rel="noopener">LinkedIn</a>
-              <a href="assets/resumes/Kisa-Fatima-Resume.pdf" class="btn" download>Resume</a>
+              <a href="assets/resumes/Kisa-Fatima-Resume.pdf" class="btn btn-secondary" download>Resume</a>
             </div>
           </div>
         </div>
@@ -121,12 +74,12 @@
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 Virkat. All rights reserved.</p>
+      <p>&copy; 2025 Virkat. All Rights Reserved.</p>
       <div class="footer-socials">
-        <a href="https://x.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on X (Twitter)"><img src="assets/images/x-icon.svg" alt="X" /></a>
-        <a href="https://www.linkedin.com/company/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-        <a href="https://www.facebook.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-        <a href="https://wa.me/00923009613520" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
+        <a href="https://x.com/virkat"><img src="assets/images/x-icon.svg" alt="X"></a>
+        <a href="https://linkedin.com/company/virkat"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn"></a>
+        <a href="https://facebook.com/virkat"><img src="assets/images/facebook-icon.svg" alt="Facebook"></a>
+        <a href="https://wa.me/00923009613520"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp"></a>
       </div>
     </div>
   </footer>

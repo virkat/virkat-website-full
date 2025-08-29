@@ -1,90 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Structured Data: Blog Articles -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Understanding Data Cleaning",
-    "author": {"@type": "Person", "name": "Asad Raza Virk"},
-    "datePublished": "2025-08-01",
-    "image": "https://www.virkat.org/assets/images/blog1.jpg",
-    "publisher": {"@type": "Organization", "name": "Virkat", "logo": {"@type": "ImageObject", "url": "https://www.virkat.org/assets/images/logo.svg"}},
-    "description": "Data cleaning is the process of detecting and correcting (or removing) corrupt or inaccurate records. It is the first step in ensuring reliable analysis results."
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Kisa Fatima: Journey as a Google Certified Data Analyst",
-    "author": {"@type": "Person", "name": "Kisa Fatima"},
-    "datePublished": "2025-08-10",
-    "image": "https://www.virkat.org/assets/images/blog2.jpg",
-    "publisher": {"@type": "Organization", "name": "Virkat", "logo": {"@type": "ImageObject", "url": "https://www.virkat.org/assets/images/logo.svg"}},
-    "description": "My journey in data analytics started with a passion for numbers and storytelling. Becoming a Google Certified Data Analyst was a milestone that opened doors to real-world projects."
-  }
-  </script>
-  <!-- Structured Data: Breadcrumbs -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.virkat.org/"},
-      {"@type": "ListItem", "position": 2, "name": "Blogs", "item": "https://www.virkat.org/blogs.html"}
-    ]
-  }
-  </script>
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Virkat Blogs: Insights on data cleaning, analytics careers, and reporting best practices from Google-certified experts." />
-  <meta name="keywords" content="blogs, data, analytics, reporting, consulting, Punjab, government, automation, statistics, R, Python, Quarto" />
-  <meta name="author" content="Asad Raza Virk, Kisa Fatima" />
-  <meta name="robots" content="index, follow" />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Blogs — Virkat" />
-  <meta property="og:description" content="Insights on data cleaning, analytics careers, and reporting best practices from Google-certified experts." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.virkat.org/blogs.html" />
-  <meta property="og:image" content="https://www.virkat.org/assets/images/banner.jpg" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@virkat" />
-  <meta name="twitter:title" content="Blogs — Virkat" />
-  <meta name="twitter:description" content="Insights on data cleaning, analytics careers, and reporting best practices from Google-certified experts." />
-  <meta name="twitter:image" content="https://www.virkat.org/assets/images/banner.jpg" />
+  <!-- Meta Tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blogs — Virkat</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta name="description" content="Virkat Blogs: Insights on data cleaning, analytics careers, and reporting best practices from Google-certified experts." />
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Scripts -->
   <script defer src="assets/js/script.js"></script>
 </head>
 <body>
-  <header class="navbar">
+  <header class="header">
     <div class="container">
-      <div class="logo">
+      <a href="index.html" class="logo">
         <img src="assets/images/logo.svg" alt="Virkat Logo" />
-      </div>
-      <nav>
-        <div class="hamburger" aria-label="Open navigation" tabindex="0">
+      </a>
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="blogs.html" class="nav-link active">Blogs</a></li>
+          <li><a href="team.html" class="nav-link">Team</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="hamburger">
           <span></span>
           <span></span>
           <span></span>
         </div>
-        <ul class="nav-links">
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="team.html" class="nav-link">Team</a></li>
-          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
-          <li><a href="services.html" class="nav-link">Services</a></li>
-          <li><a href="projects.html" class="nav-link">Projects</a></li>
-          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-        </ul>
       </nav>
-      <button id="darkModeToggle" class="btn dark-toggle-btn" aria-label="Toggle dark mode">🌙</button>
     </div>
   </header>
 
@@ -92,23 +43,21 @@
     <section class="section">
       <div class="container">
         <div class="section-header">
-          <h2>Our Blogs</h2>
-          <p>Insights on data, analytics, and reporting from our team of experts.</p>
+          <h2>Our Blog</h2>
+          <p>Insights, tutorials, and stories from our team of data experts.</p>
         </div>
         <div class="card-grid">
           <div class="card">
-            <img src="assets/images/blog1.jpg" alt="Data Cleaning" class="blog-image" />
+            <img src="assets/images/blog1.jpg" alt="Data Cleaning" />
             <h3>Understanding Data Cleaning</h3>
-            <p class="meta">By Asad Raza Virk • Aug 1, 2025</p>
             <p>Data cleaning is the first and most crucial step in any data analysis project. In this post, we explore the tools and techniques for ensuring your data is reliable and accurate.</p>
-            <a href="#post-1" class="btn read-more">Read More</a>
+            <a href="#post-1" class="btn">Read More</a>
           </div>
           <div class="card">
-            <img src="assets/images/blog2.png" alt="Kisa Fatima Google Data Analyst" class="blog-image" />
+            <img src="assets/images/blog2.png" alt="Kisa Fatima Google Data Analyst" />
             <h3>My Journey as a Google Certified Data Analyst</h3>
-            <p class="meta">By Kisa Fatima • Aug 10, 2025</p>
             <p>Kisa shares her personal journey of becoming a Google Certified Data Analyst, from her initial curiosity to transforming her career with new skills.</p>
-            <a href="#post-2" class="btn read-more">Read More</a>
+            <a href="#post-2" class="btn">Read More</a>
           </div>
         </div>
       </div>
@@ -118,19 +67,10 @@
       <div class="container">
         <div class="section-header">
           <h2>Understanding Data Cleaning</h2>
-          <p class="meta">By Asad Raza Virk • Aug 1, 2025</p>
+          <p class="meta">By Asad Raza Virk • August 1, 2025</p>
         </div>
-        <img src="assets/images/blog1.jpg" alt="Data Cleaning" class="blog-image" />
-        <p>Data cleaning is the process of detecting and correcting (or removing) corrupt or inaccurate records. It is the first step in ensuring reliable analysis results.</p>
+        <p>Data cleaning is the process of detecting and correcting (or removing) corrupt or inaccurate records. It is the first step in ensuring reliable analysis results. Steps usually include handling missing values, correcting typos, and ensuring data consistency across sources. In this blog, we’ll explore tools and strategies for efficient data cleaning.</p>
         <blockquote>“Without clean data, even the best models fail.”</blockquote>
-        <p>Steps usually include handling missing values, correcting typos, and ensuring data consistency across sources. In this blog, we’ll explore tools and strategies for efficient data cleaning.</p>
-        <div class="share-buttons">
-          <span>Share:</span>
-          <a href="https://x.com/intent/tweet?url=https://www.virkat.org/blogs.html#post-1" target="_blank" rel="noopener" aria-label="Share on X"><img src="assets/images/x-icon.svg" alt="X" /></a>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.virkat.org/blogs.html#post-1" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.virkat.org/blogs.html#post-1" target="_blank" rel="noopener" aria-label="Share on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-          <a href="https://wa.me/?text=https://www.virkat.org/blogs.html%23post-1" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
-        </div>
       </div>
     </section>
 
@@ -138,73 +78,21 @@
       <div class="container">
         <div class="section-header">
           <h2>My Journey as a Google Certified Data Analyst</h2>
-          <p class="meta">By Kisa Fatima • Aug 10, 2025</p>
+          <p class="meta">By Kisa Fatima • August 10, 2025</p>
         </div>
-        <img src="assets/images/blog2.png" alt="Kisa Fatima Google Data Analyst" class="blog-image" />
-        <p>When I first heard the phrase “data is the new oil,” I didn’t fully grasp its power. Today, as a Google Certified Data Analyst, I can say with confidence that data truly drives the world around us.</p>
-        <p>I’m Kisa Fatima, and this is my personal journey of becoming a certified data analyst—how I started with curiosity, built in-demand data analytics skills, faced challenges, and transformed my career with the Google Data Analytics Certification.</p>
-        <h4>🚀 Why I Chose the Google Data Analytics Certification</h4>
-        <p>Like many learners, I wanted a career path in data analytics that was both future-proof and meaningful. The Google Data Analytics Professional Certificate stood out because it:</p>
-        <ul>
-          <li>Is an industry-recognized certification valued by employers worldwide.</li>
-          <li>Teaches both technical tools and real-world applications.</li>
-          <li>Welcomes beginners, even without a technical background.</li>
-        </ul>
-        <p>For me, becoming a data analyst wasn’t just about numbers—it was about helping businesses make data-driven decisions and turning raw data into insights that create impact.</p>
-        <h4>📚 My Learning Experience</h4>
-        <p>The certification provided a structured roadmap with hands-on practice. Some of the key skills for data analysts I learned include:</p>
-        <ul>
-          <li><strong>Spreadsheets (Excel & Google Sheets):</strong> Cleaning and organizing messy data.</li>
-          <li><strong>SQL for Data Analysis:</strong> Writing queries to manage and analyze databases.</li>
-          <li><strong>Data Visualization Tools (Tableau & Google Data Studio):</strong> Building dashboards to tell stories with data.</li>
-          <li><strong>R Programming:</strong> Performing advanced analysis and statistical modeling.</li>
-          <li><strong>Analytical Thinking:</strong> Developing a problem-solving mindset for real-world business cases.</li>
-        </ul>
-        <p>Each project I completed gave me confidence and a portfolio of work to showcase on LinkedIn and GitHub.</p>
-        <h4>🌐 Challenges I Overcame</h4>
-        <p>The journey wasn’t always easy. I had to balance self-paced learning with personal responsibilities. Sometimes, writing SQL queries or designing clear dashboards felt overwhelming.</p>
-        <p>But I kept reminding myself that every expert was once a beginner. With consistency, practice, and resilience, I turned challenges into stepping stones.</p>
-        <h4>💼 How Becoming a Google Certified Data Analyst Changed My Career</h4>
-        <p>Earning this certification became a turning point in my professional life. It provided:</p>
-        <ul>
-          <li>✅ <strong>Credibility</strong> – A globally recognized certificate from Google.</li>
-          <li>✅ <strong>Portfolio Projects</strong> – Real-world case studies to showcase my skills.</li>
-          <li>✅ <strong>Confidence</strong> – To apply for jobs in analytics and business intelligence.</li>
-          <li>✅ <strong>Opportunities</strong> – Access to roles in data analytics, research, and consulting.</li>
-        </ul>
-        <p>Now, I don’t just look at numbers—I interpret data, create dashboards, and help businesses make smart, data-driven decisions.</p>
-        <h4>✨ Inspiring Others to Join Data Analytics</h4>
-        <p>My story proves that you don’t need a traditional tech background to enter the field of analytics. If you’re motivated, the Google Data Analytics Certification can help you develop job-ready skills employers are looking for.</p>
-        <p>Whether you are:</p>
-        <ul>
-          <li>A student exploring career options,</li>
-          <li>A professional looking for a career change, or</li>
-          <li>An entrepreneur wanting to use data for growth,</li>
-        </ul>
-        <p>this certification can open doors for you—just as it did for me.</p>
-        <h4>🌟 Final Thoughts</h4>
-        <p>Looking back, I’m proud of how far I’ve come. From being curious about data to proudly calling myself a Google Certified Data Analyst, this journey has been life-changing.</p>
-        <p>And this is only the beginning. With data analytics, I plan to continue growing, solving real-world problems, and inspiring others to embrace the power of data.</p>
-        <p>👉 If you’re considering starting your own data analyst career path, my advice is simple: take the first step. Your journey might just transform your future the way mine did.</p>
-        <div class="share-buttons">
-          <span>Share:</span>
-          <a href="https://x.com/intent/tweet?url=https://www.virkat.org/blogs.html#post-2" target="_blank" rel="noopener" aria-label="Share on X"><img src="assets/images/x-icon.svg" alt="X" /></a>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.virkat.org/blogs.html#post-2" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.virkat.org/blogs.html#post-2" target="_blank" rel="noopener" aria-label="Share on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-          <a href="https://wa.me/?text=https://www.virkat.org/blogs.html%23post-2" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
-        </div>
+        <p>When I first heard the phrase “data is the new oil,” I didn’t fully grasp its power. Today, as a Google Certified Data Analyst, I can say with confidence that data truly drives the world around us...</p>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 Virkat. All rights reserved.</p>
+      <p>&copy; 2025 Virkat. All Rights Reserved.</p>
       <div class="footer-socials">
-        <a href="https://x.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on X (Twitter)"><img src="assets/images/x-icon.svg" alt="X" /></a>
-        <a href="https://www.linkedin.com/company/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-        <a href="https://www.facebook.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-        <a href="https://wa.me/00923009613520" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
+        <a href="https://x.com/virkat"><img src="assets/images/x-icon.svg" alt="X"></a>
+        <a href="https://linkedin.com/company/virkat"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn"></a>
+        <a href="https://facebook.com/virkat"><img src="assets/images/facebook-icon.svg" alt="Facebook"></a>
+        <a href="https://wa.me/00923009613520"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp"></a>
       </div>
     </div>
   </footer>

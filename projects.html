@@ -1,65 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Structured Data: Breadcrumbs -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.virkat.org/"},
-      {"@type": "ListItem", "position": 2, "name": "Projects", "item": "https://www.virkat.org/projects.html"}
-    ]
-  }
-  </script>
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Virkat Projects: Real-world case studies in data analysis, reporting automation, and training for government and business." />
-  <meta name="keywords" content="projects, portfolio, case studies, data, analytics, reporting, consulting, Punjab, government, automation, statistics, R, Python, Quarto" />
-  <meta name="author" content="Asad Raza Virk, Kisa Fatima" />
-  <meta name="robots" content="index, follow" />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Projects & Case Studies — Virkat" />
-  <meta property="og:description" content="Real-world case studies in data analysis, reporting automation, and training for government and business." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.virkat.org/projects.html" />
-  <meta property="og:image" content="https://www.virkat.org/assets/images/banner.jpg" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@virkat" />
-  <meta name="twitter:title" content="Projects & Case Studies — Virkat" />
-  <meta name="twitter:description" content="Real-world case studies in data analysis, reporting automation, and training for government and business." />
-  <meta name="twitter:image" content="https://www.virkat.org/assets/images/banner.jpg" />
+  <!-- Meta Tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects & Case Studies — Virkat</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <title>Our Projects — Virkat</title>
+  <meta name="description" content="Explore Virkat's portfolio of data analysis, reporting automation, and training projects for government and business." />
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Scripts -->
   <script defer src="assets/js/script.js"></script>
 </head>
 <body>
-  <header class="navbar">
+  <header class="header">
     <div class="container">
-      <div class="logo">
+      <a href="index.html" class="logo">
         <img src="assets/images/logo.svg" alt="Virkat Logo" />
-      </div>
-      <nav>
-        <div class="hamburger" aria-label="Open navigation" tabindex="0">
+      </a>
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="projects.html" class="nav-link active">Projects</a></li>
+          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+          <li><a href="team.html" class="nav-link">Team</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="hamburger">
           <span></span>
           <span></span>
           <span></span>
         </div>
-        <ul class="nav-links">
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="team.html" class="nav-link">Team</a></li>
-          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
-          <li><a href="services.html" class="nav-link">Services</a></li>
-          <li><a href="projects.html" class="nav-link">Projects</a></li>
-          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-        </ul>
       </nav>
-      <button id="darkModeToggle" class="btn dark-toggle-btn" aria-label="Toggle dark mode">🌙</button>
     </div>
   </header>
 
@@ -67,104 +43,39 @@
     <section class="section">
       <div class="container">
         <div class="section-header">
-          <h2>Projects & Case Studies</h2>
-          <p>A selection of our work for government and business clients.</p>
+          <h2>Our Projects</h2>
+          <p>A showcase of our work and capabilities.</p>
         </div>
         <div class="card-grid">
           <div class="card" id="project-foodgrain">
-            <img src="https://source.unsplash.com/600x220/?grain,warehouse" alt="Foodgrain Reporting" class="portfolio-img" />
+            <img src="https://source.unsplash.com/600x220/?grain,warehouse" alt="Foodgrain Reporting" />
             <h3>Automated Foodgrain Reporting System</h3>
-            <p class="meta">Punjab Food Department</p>
-            <p>Designed and implemented a robust data pipeline for real-time foodgrain procurement, storage, and distribution analytics, improving transparency and efficiency across 100+ centers.</p>
-            <ul>
-              <li>Automated data collection and validation from multiple sources</li>
-              <li>Interactive dashboards for real-time monitoring</li>
-              <li>Reduced manual errors and improved reporting speed</li>
-            </ul>
-            <a class="btn btn-primary" href="assets/resumes/Asad-Raza-Virk-Resume.pdf" download>Download PDF</a>
-            <div class="share-buttons">
-              <span>Share:</span>
-              <a href="https://x.com/intent/tweet?url=https://www.virkat.org/projects.html#project-foodgrain" target="_blank" rel="noopener" aria-label="Share on X"><img src="assets/images/x-icon.svg" alt="X" /></a>
-              <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.virkat.org/projects.html#project-foodgrain" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.virkat.org/projects.html#project-foodgrain" target="_blank" rel="noopener" aria-label="Share on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-              <a href="https://wa.me/?text=https://www.virkat.org/projects.html#project-foodgrain" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
-            </div>
+            <p><strong>Client:</strong> Punjab Food Department</p>
+            <p>We designed and implemented a robust data pipeline for real-time foodgrain procurement, storage, and distribution analytics, improving transparency and efficiency across 100+ centers.</p>
           </div>
           <div class="card" id="project-quality">
-            <img src="https://source.unsplash.com/600x220/?dashboard,analytics" alt="Quality Control Dashboard" class="portfolio-img" />
+            <img src="https://source.unsplash.com/600x220/?dashboard,analytics" alt="Quality Control Dashboard" />
             <h3>Statistical Quality Control Dashboard</h3>
-            <p class="meta">Government Sector</p>
-            <p>Developed interactive dashboards in R and Python for monitoring quality, compliance, and risk in public sector supply chains, enabling data-driven decision-making.</p>
-            <ul>
-              <li>Custom visualizations for key quality metrics</li>
-              <li>Automated alerts for compliance issues</li>
-              <li>Empowered management with actionable insights</li>
-            </ul>
-            <a class="btn btn-primary" href="assets/resumes/Asad-Raza-Virk-Resume.pdf" download>Download PDF</a>
-            <div class="share-buttons">
-              <span>Share:</span>
-              <a href="https://x.com/intent/tweet?url=https://www.virkat.org/projects.html#project-quality" target="_blank" rel="noopener" aria-label="Share on X"><img src="assets/images/x-icon.svg" alt="X" /></a>
-              <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.virkat.org/projects.html#project-quality" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.virkat.org/projects.html#project-quality" target="_blank" rel="noopener" aria-label="Share on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-              <a href="https://wa.me/?text=https://www.virkat.org/projects.html#project-quality" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
-            </div>
+            <p><strong>Client:</strong> Government Sector</p>
+            <p>We developed interactive dashboards in R and Python for monitoring quality, compliance, and risk in public sector supply chains, enabling data-driven decision-making.</p>
           </div>
           <div class="card" id="project-docs">
-            <img src="https://source.unsplash.com/600x220/?documents,automation" alt="Document Conversion" class="portfolio-img" />
+            <img src="https://source.unsplash.com/600x220/?documents,automation" alt="Document Conversion" />
             <h3>Automated Document Conversion Suite</h3>
-            <p class="meta">Consulting Project</p>
-            <p>Built automated workflows to convert and validate reports across PDF, Word, and HTML, reducing manual effort and errors for clients in education and government.</p>
-            <ul>
-              <li>Batch conversion and validation tools</li>
-              <li>Consistent formatting and error reduction</li>
-              <li>Time savings for administrative teams</li>
-            </ul>
-            <a class="btn btn-primary" href="assets/resumes/Asad-Raza-Virk-Resume.pdf" download>Download PDF</a>
-            <div class="share-buttons">
-              <span>Share:</span>
-              <a href="https://x.com/intent/tweet?url=https://www.virkat.org/projects.html#project-docs" target="_blank" rel="noopener" aria-label="Share on X"><img src="assets/images/x-icon.svg" alt="X" /></a>
-              <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.virkat.org/projects.html#project-docs" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.virkat.org/projects.html#project-docs" target="_blank" rel="noopener" aria-label="Share on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-              <a href="https://wa.me/?text=https://www.virkat.org/projects.html#project-docs" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
-            </div>
+            <p><strong>Client:</strong> Consulting Project</p>
+            <p>We built automated workflows to convert and validate reports across PDF, Word, and HTML, reducing manual effort and errors for clients in education and government.</p>
           </div>
           <div class="card" id="project-forecast">
-            <img src="https://source.unsplash.com/600x220/?forecast,data" alt="Wheat Stock Forecasting" class="portfolio-img" />
+            <img src="https://source.unsplash.com/600x220/?forecast,data" alt="Wheat Stock Forecasting" />
             <h3>Wheat Stock Forecasting Model</h3>
-            <p class="meta">Punjab Food Department</p>
-            <p>Developed a predictive model for wheat stock levels using time series analysis, helping optimize procurement and storage decisions.</p>
-            <ul>
-              <li>Integrated historical and real-time data</li>
-              <li>Scenario analysis for supply chain planning</li>
-              <li>Improved food security and cost efficiency</li>
-            </ul>
-            <a class="btn btn-primary" href="assets/resumes/Asad-Raza-Virk-Resume.pdf" download>Download PDF</a>
-            <div class="share-buttons">
-              <span>Share:</span>
-              <a href="https://x.com/intent/tweet?url=https://www.virkat.org/projects.html#project-forecast" target="_blank" rel="noopener" aria-label="Share on X"><img src="assets/images/x-icon.svg" alt="X" /></a>
-              <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.virkat.org/projects.html#project-forecast" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.virkat.org/projects.html#project-forecast" target="_blank" rel="noopener" aria-label="Share on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-              <a href="https://wa.me/?text=https://www.virkat.org/projects.html#project-forecast" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
-            </div>
+            <p><strong>Client:</strong> Punjab Food Department</p>
+            <p>We developed a predictive model for wheat stock levels using time series analysis, helping optimize procurement and storage decisions.</p>
           </div>
           <div class="card" id="project-training">
-            <img src="https://source.unsplash.com/600x220/?training,workshop" alt="Data Literacy Training" class="portfolio-img" />
+            <img src="https://source.unsplash.com/600x220/?training,workshop" alt="Data Literacy Training" />
             <h3>Data Literacy Training Program</h3>
-            <p class="meta">Public Sector</p>
-            <p>Designed and delivered a training program to upskill government staff in data analysis, visualization, and reporting best practices.</p>
-            <ul>
-              <li>Hands-on workshops and online modules</li>
-              <li>Practical projects using real datasets</li>
-              <li>Boosted data-driven culture in the organization</li>
-            </ul>
-            <a class="btn btn-primary" href="assets/resumes/Kisa-Fatima-Resume.pdf" download>Download PDF</a>
-            <div class="share-buttons">
-              <span>Share:</span>
-              <a href="https://x.com/intent/tweet?url=https://www.virkat.org/projects.html#project-training" target="_blank" rel="noopener" aria-label="Share on X"><img src="assets/images/x-icon.svg" alt="X" /></a>
-              <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.virkat.org/projects.html#project-training" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.virkat.org/projects.html#project-training" target="_blank" rel="noopener" aria-label="Share on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-              <a href="https://wa.me/?text=https://www.virkat.org/projects.html%23project-training" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
-            </div>
+            <p><strong>Client:</strong> Public Sector</p>
+            <p>We designed and delivered a training program to upskill government staff in data analysis, visualization, and reporting best practices.</p>
           </div>
         </div>
       </div>
@@ -173,12 +84,12 @@
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 Virkat. All rights reserved.</p>
+      <p>&copy; 2025 Virkat. All Rights Reserved.</p>
       <div class="footer-socials">
-        <a href="https://x.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on X (Twitter)"><img src="assets/images/x-icon.svg" alt="X" /></a>
-        <a href="https://www.linkedin.com/company/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-        <a href="https://www.facebook.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-        <a href="https://wa.me/00923009613520" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
+        <a href="https://x.com/virkat"><img src="assets/images/x-icon.svg" alt="X"></a>
+        <a href="https://linkedin.com/company/virkat"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn"></a>
+        <a href="https://facebook.com/virkat"><img src="assets/images/facebook-icon.svg" alt="Facebook"></a>
+        <a href="https://wa.me/00923009613520"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp"></a>
       </div>
     </div>
   </footer>

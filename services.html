@@ -1,106 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Structured Data: Services -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Data Analysis",
-    "provider": {"@type": "Organization", "name": "Virkat"},
-    "areaServed": "Pakistan",
-    "description": "Descriptive, diagnostic, and prescriptive analytics to answer the why and the what-next."
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Statistical Analysis",
-    "provider": {"@type": "Organization", "name": "Virkat"},
-    "areaServed": "Pakistan",
-    "description": "Hypothesis testing, A/B tests, regression, time series, experimental design."
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Data Cleaning",
-    "provider": {"@type": "Organization", "name": "Virkat"},
-    "areaServed": "Pakistan",
-    "description": "Schema validation, deduplication, missing data handling, standardization."
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Document Conversion",
-    "provider": {"@type": "Organization", "name": "Virkat"},
-    "areaServed": "Pakistan",
-    "description": "Automated reporting pipelines into PDF, Word, and web dashboards."
-  }
-  </script>
-  <!-- Structured Data: Breadcrumbs -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.virkat.org/"},
-      {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.virkat.org/services.html"}
-    ]
-  }
-  </script>
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Virkat Services: Data analysis, statistical modeling, reporting automation, and document conversion for government and business." />
-  <meta name="keywords" content="services, data, analytics, reporting, consulting, Punjab, government, automation, statistics, R, Python, Quarto" />
-  <meta name="author" content="Asad Raza Virk, Kisa Fatima" />
-  <meta name="robots" content="index, follow" />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Services — Virkat" />
-  <meta property="og:description" content="Explore Virkat's services: data analysis, reporting automation, and more for government and business." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.virkat.org/services.html" />
-  <meta property="og:image" content="https://www.virkat.org/assets/images/banner.jpg" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@virkat" />
-  <meta name="twitter:title" content="Services — Virkat" />
-  <meta name="twitter:description" content="Explore Virkat's services: data analysis, reporting automation, and more for government and business." />
-  <meta name="twitter:image" content="https://www.virkat.org/assets/images/banner.jpg" />
+  <!-- Meta Tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services — Virkat</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <title>Our Services — Virkat</title>
+  <meta name="description" content="Explore Virkat's services: data analysis, reporting automation, and more for government and business." />
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Scripts -->
   <script defer src="assets/js/script.js"></script>
 </head>
 <body>
-  <header class="navbar">
+  <header class="header">
     <div class="container">
-      <div class="logo">
+      <a href="index.html" class="logo">
         <img src="assets/images/logo.svg" alt="Virkat Logo" />
-      </div>
-      <nav>
-        <div class="hamburger" aria-label="Open navigation" tabindex="0">
+      </a>
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="services.html" class="nav-link active">Services</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+          <li><a href="team.html" class="nav-link">Team</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="hamburger">
           <span></span>
           <span></span>
           <span></span>
         </div>
-        <ul class="nav-links">
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="team.html" class="nav-link">Team</a></li>
-          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
-          <li><a href="services.html" class="nav-link">Services</a></li>
-          <li><a href="projects.html" class="nav-link">Projects</a></li>
-          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-        </ul>
       </nav>
-      <button id="darkModeToggle" class="btn dark-toggle-btn" aria-label="Toggle dark mode">🌙</button>
     </div>
   </header>
 
@@ -109,28 +44,24 @@
       <div class="container">
         <div class="section-header">
           <h2>Our Services</h2>
-          <p>We help organizations turn data into decisions.</p>
+          <p>We offer a comprehensive range of data services to meet your needs.</p>
         </div>
         <div class="card-grid">
           <div class="card">
             <h3>Data Analysis & Visualization</h3>
-            <p>We inspect, cleanse, transform, and model data to discover useful information and support your decision-making. We create clear, interactive dashboards and reports in tools like Tableau to help you understand your data at a glance. We summarize the main characteristics of your data sets using statistical graphics and other data visualization methods. We apply statistical techniques to interpret, visualize, and infer from data, including hypothesis testing, A/B testing, and regression analysis.</p>
-            <a href="projects.html#project-foodgrain" class="btn">View Related Projects</a>
+            <p>We turn your data into actionable insights through advanced analysis and compelling visualizations. From initial data exploration to creating interactive dashboards, we help you understand the story your data is telling.</p>
           </div>
           <div class="card">
             <h3>Data Science & Machine Learning</h3>
-            <p>We use scientific methods, algorithms, and systems to extract knowledge and insights from your data. We build and deploy machine learning models to automate processes and make predictions. We use statistical techniques to predict future outcomes and trends. We help you understand the relationships between different variables in your data.</p>
-            <a href="projects.html#project-forecast" class="btn">View Related Projects</a>
+            <p>Leverage the power of predictive analytics and machine learning to forecast trends, automate processes, and make smarter decisions. We build and deploy custom models tailored to your specific business needs.</p>
           </div>
           <div class="card">
             <h3>Data Management & Automation</h3>
-            <p>We detect and correct or remove corrupt or inaccurate records from your data sets, ensuring data quality and reliability. We use SQL and other languages to retrieve and manipulate data from your databases. We build automated workflows to convert and validate reports across PDF, Word, and HTML, reducing manual effort and errors. We use Python and R to automate repetitive data tasks, saving you time and money.</p>
-            <a href="projects.html#project-docs" class="btn">View Related Projects</a>
+            <p>We ensure the quality and reliability of your data through robust data management and automation solutions. From data cleaning and validation to building automated reporting pipelines, we streamline your data workflows.</p>
           </div>
           <div class="card">
             <h3>Consulting & Training</h3>
-            <p>We help you develop a data strategy that aligns with your business goals. We advise on the ethical implications of collecting and using data. We offer training in data analysis, visualization, and reporting best practices. We help you communicate your data story effectively to any audience.</p>
-            <a href="projects.html#project-training" class="btn">View Related Projects</a>
+            <p>We provide expert consulting and training to help you build a data-driven culture within your organization. We offer guidance on data strategy, ethics, and best practices to empower your team.</p>
           </div>
         </div>
       </div>
@@ -139,12 +70,12 @@
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 Virkat. All rights reserved.</p>
+      <p>&copy; 2025 Virkat. All Rights Reserved.</p>
       <div class="footer-socials">
-        <a href="https://x.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on X (Twitter)"><img src="assets/images/x-icon.svg" alt="X" /></a>
-        <a href="https://www.linkedin.com/company/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-        <a href="https://www.facebook.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-        <a href="https://wa.me/00923009613520" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
+        <a href="https://x.com/virkat"><img src="assets/images/x-icon.svg" alt="X"></a>
+        <a href="https://linkedin.com/company/virkat"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn"></a>
+        <a href="https://facebook.com/virkat"><img src="assets/images/facebook-icon.svg" alt="Facebook"></a>
+        <a href="https://wa.me/00923009613520"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp"></a>
       </div>
     </div>
   </footer>

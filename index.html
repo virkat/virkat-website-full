@@ -1,183 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Structured Data: Organization & Website -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Virkat",
-    "url": "https://www.virkat.org/",
-    "logo": "https://www.virkat.org/assets/images/logo.svg",
-    "sameAs": [
-      "https://www.linkedin.com/in/asadrazavirk/"
-    ],
-    "contactPoint": [{
-      "@type": "ContactPoint",
-      "email": "info@virkat.org",
-      "contactType": "customer support"
-    }],
-    "founder": [
-      {
-        "@type": "Person",
-        "name": "Asad Raza Virk",
-        "jobTitle": "Data Scientist"
-      },
-      {
-        "@type": "Person",
-        "name": "Kisa Fatima",
-        "jobTitle": "Data Analyst"
-      }
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "url": "https://www.virkat.org/",
-    "name": "Virkat",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://www.virkat.org/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Virkat: Data & Analytics consultancy. Google-certified experts in data analysis, reporting, and automation for government and business." />
-  <meta name="keywords" content="data, analytics, reporting, consulting, Punjab, government, automation, statistics, R, Python, Quarto, foodgrain, dashboard" />
-  <meta name="author" content="Asad Raza Virk, Kisa Fatima" />
-  <meta name="robots" content="index, follow" />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Virkat — Data & Analytics" />
-  <meta property="og:description" content="Google-certified experts in data analysis, reporting, and automation for government and business." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.virkat.org/" />
-  <meta property="og:image" content="https://www.virkat.org/assets/images/banner.jpg" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@virkat" />
-  <meta name="twitter:title" content="Virkat — Data & Analytics" />
-  <meta name="twitter:description" content="Google-certified experts in data analysis, reporting, and automation for government and business." />
-  <meta name="twitter:image" content="https://www.virkat.org/assets/images/banner.jpg" />
+  <!-- Meta Tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Virkat — Data & Analytics</title>
+  <meta name="description" content="Virkat: Data & Analytics consultancy. Google-certified experts in data analysis, reporting, and automation for government and business." />
+  <meta name="keywords" content="data, analytics, reporting, consulting, Punjab, government, automation, statistics, R, Python, Quarto, foodgrain, dashboard" />
+  <meta name="author" content="Asad Raza Virk, Kisa Fatima" />
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Scripts -->
   <script defer src="assets/js/script.js"></script>
 </head>
 <body>
-  <header class="navbar">
+  <header class="header">
     <div class="container">
-      <div class="logo">
+      <a href="index.html" class="logo">
         <img src="assets/images/logo.svg" alt="Virkat Logo" />
-      </div>
-      <nav>
-        <div class="hamburger" aria-label="Open navigation" tabindex="0">
+      </a>
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+          <li><a href="team.html" class="nav-link">Team</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="hamburger">
           <span></span>
           <span></span>
           <span></span>
         </div>
-        <ul class="nav-links">
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="team.html" class="nav-link">Team</a></li>
-          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
-          <li><a href="services.html" class="nav-link">Services</a></li>
-          <li><a href="projects.html" class="nav-link">Projects</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
       </nav>
-      <button id="darkModeToggle" class="btn dark-toggle-btn" aria-label="Toggle dark mode">🌙</button>
     </div>
   </header>
 
   <main>
     <section class="hero">
       <div class="container">
-        <h1>Data that Drives Decisions</h1>
-        <p>We are a data & analytics consultancy helping businesses and governments make better decisions with their data.</p>
-        <a href="services.html" class="btn">Explore Our Services</a>
+        <h1>Data-Driven Insights, Actionable Results</h1>
+        <p>We help businesses and organizations unlock the power of their data.</p>
+        <a href="services.html" class="btn">Our Services</a>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
         <div class="section-header">
-          <h2>Why Virkat?</h2>
-          <p>We bring a unique blend of technical expertise and real-world experience.</p>
+          <h2>Your Trusted Partner in Data</h2>
+          <p>With a unique blend of technical expertise and real-world experience, we deliver solutions that drive growth and efficiency.</p>
         </div>
         <div class="card-grid">
           <div class="card">
             <h3>Google Certified Experts</h3>
-            <p>Our team holds certifications in Data Analytics and Data Science from Google, ensuring you get the best in the industry.</p>
+            <p>Our team's certifications from Google in Data Analytics and Data Science are a testament to our commitment to excellence.</p>
           </div>
           <div class="card">
             <h3>End-to-End Reporting</h3>
-            <p>We provide automated reporting solutions in PDF, Word, and interactive dashboards using R, Python, and Quarto.</p>
+            <p>From raw data to polished reports, we provide automated solutions using R, Python, and Quarto for seamless reporting.</p>
           </div>
           <div class="card">
             <h3>Clean, Reliable Data</h3>
-            <p>We specialize in data cleaning, validation, and creating reproducible workflows to ensure the quality and reliability of your data.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section-header">
-          <h2>Our Services</h2>
-          <p>We offer a wide range of services to help you get the most out of your data.</p>
-        </div>
-        <div class="card-grid">
-          <div class="card">
-            <h3>Data Analysis & Visualization</h3>
-            <p>Unlock insights and tell compelling stories with your data through our expert analysis and visualization services.</p>
-            <a href="services.html" class="btn">Learn More</a>
-          </div>
-          <div class="card">
-            <h3>Data Science & Machine Learning</h3>
-            <p>Leverage the power of predictive modeling and machine learning to forecast trends and automate processes.</p>
-            <a href="services.html" class="btn">Learn More</a>
-          </div>
-          <div class="card">
-            <h3>Data Management & Automation</h3>
-            <p>Ensure data quality and streamline your workflows with our data management and automation solutions.</p>
-            <a href="services.html" class="btn">Learn More</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-header">
-          <h2>Our Projects</h2>
-          <p>We have a proven track record of delivering results for our clients.</p>
-        </div>
-        <div class="card-grid">
-          <div class="card">
-            <img src="https://source.unsplash.com/400x180/?grain,warehouse" alt="Foodgrain Reporting" class="portfolio-img" />
-            <h3>Automated Foodgrain Reporting</h3>
-            <p>Developed a real-time reporting system for the Punjab Food Department, improving transparency and efficiency.</p>
-            <a href="projects.html#project-foodgrain" class="btn">View Project</a>
-          </div>
-          <div class="card">
-            <img src="https://source.unsplash.com/400x180/?dashboard,analytics" alt="Quality Control Dashboard" class="portfolio-img" />
-            <h3>Statistical Quality Control Dashboard</h3>
-            <p>Created interactive dashboards to monitor quality and risk in public sector supply chains.</p>
-            <a href="projects.html#project-quality" class="btn">View Project</a>
-          </div>
-          <div class="card">
-            <img src="https://source.unsplash.com/400x180/?documents,automation" alt="Document Conversion" class="portfolio-img" />
-            <h3>Automated Document Conversion</h3>
-            <p>Built a suite of tools to automate the conversion and validation of reports, saving time and reducing errors.</p>
-            <a href="projects.html#project-docs" class="btn">View Project</a>
+            <p>We specialize in data cleaning, validation, and creating reproducible workflows to ensure the quality and integrity of your data.</p>
           </div>
         </div>
       </div>
@@ -186,11 +76,11 @@
     <section class="section" id="contact">
       <div class="container">
         <div class="section-header">
-          <h2>Contact Us</h2>
-          <p>We'd love to hear from you. Get in touch with us to discuss your project.</p>
+          <h2>Get in Touch</h2>
+          <p>Have a project in mind? We'd love to hear from you.</p>
         </div>
-        <div class="center">
-          <a href="mailto:info@virkat.org" class="btn">Email Us</a>
+        <div style="text-align: center;">
+          <a href="mailto:info@virkat.org" class="btn">Contact Us</a>
         </div>
       </div>
     </section>
@@ -198,12 +88,12 @@
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 Virkat. All rights reserved.</p>
+      <p>&copy; 2025 Virkat. All Rights Reserved.</p>
       <div class="footer-socials">
-        <a href="https://x.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on X (Twitter)"><img src="assets/images/x-icon.svg" alt="X" /></a>
-        <a href="https://www.linkedin.com/company/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on LinkedIn"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn" /></a>
-        <a href="https://www.facebook.com/virkat" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on Facebook"><img src="assets/images/facebook-icon.svg" alt="Facebook" /></a>
-        <a href="https://wa.me/00923009613520" class="social-link" target="_blank" rel="noopener" aria-label="Virkat on WhatsApp"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp" /></a>
+        <a href="https://x.com/virkat"><img src="assets/images/x-icon.svg" alt="X"></a>
+        <a href="https://linkedin.com/company/virkat"><img src="assets/images/linkedin-icon.svg" alt="LinkedIn"></a>
+        <a href="https://facebook.com/virkat"><img src="assets/images/facebook-icon.svg" alt="Facebook"></a>
+        <a href="https://wa.me/00923009613520"><img src="assets/images/whatsapp-icon.svg" alt="WhatsApp"></a>
       </div>
     </div>
   </footer>
