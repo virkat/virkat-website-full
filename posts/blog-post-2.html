@@ -10,10 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Warm Neutrals with Amber Accent -->
-    <!-- Application Structure Plan: A thematic, single-page dashboard structure was chosen over a linear blog format to improve usability and engagement. The user can navigate non-linearly via a sticky navigation bar to sections that answer specific questions: 'The Journey' (Why start?), 'The Toolkit' (What skills?), 'The Story' (What's the core concept?), and 'The Outcome' (What's the career impact?). This task-oriented design allows prospective students or career-changers to quickly find relevant information. Interactive elements like tabs for skills and a chart for salary data make information discovery an active, rather than passive, experience. -->
+    <!-- Application Structure Plan: A thematic, single-page dashboard structure was chosen over a linear blog format to improve usability and engagement. The user can navigate non-linearly via a sticky navigation bar to sections that answer specific questions: 'The Why' (motivation & certification details), 'The Toolkit' (What skills?), 'The Core Skill' (the storytelling concept), 'The Challenges' (obstacles and resilience), and 'The Outcome' (career impact). This task-oriented design allows prospective students or career-changers to quickly find relevant information. Interactive elements like tabs for skills and a chart for salary data make information discovery an active, rather than passive, experience. -->
     <!-- Visualization & Content Choices: 
         - Key Stats (Cost, Duration): Goal: Inform. Method: HTML/CSS stat cards. Interaction: Hover effects. Justification: Provides quick, scannable key metrics for decision-making.
-        - Skills (SQL, R, Tableau): Goal: Organize. Method: Interactive JS Tabs. Interaction: Click to reveal content. Justification: Breaks down the skill list into digestible, user-controlled segments, preventing a wall of text.
+        - Skills (SQL, R, Tableau, etc.): Goal: Organize. Method: Interactive JS Tabs. Interaction: Click to reveal content. Justification: Breaks down the skill list into digestible, user-controlled segments, preventing a wall of text.
         - Data Storytelling Concept: Goal: Explain. Method: HTML/CSS process flow diagram. Interaction: Static visual. Justification: Visually simplifies an abstract concept, making it more memorable.
         - Salary & Career Outcome: Goal: Compare/Inform. Method: Chart.js Bar Chart & Stat Card. Interaction: Animation & tooltips. Justification: The bar chart provides a powerful visual representation of salary potential, making the data more impactful than text alone.
     -->
@@ -72,9 +72,10 @@
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
-                            <a href="#journey" class="nav-link px-3 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent">The Journey</a>
+                            <a href="#the-why" class="nav-link px-3 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent">The Why</a>
                             <a href="#toolkit" class="nav-link px-3 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent">The Toolkit</a>
                             <a href="#story" class="nav-link px-3 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent">The Story</a>
+                            <a href="#challenges" class="nav-link px-3 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent">Challenges</a>
                             <a href="#outcome" class="nav-link px-3 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent">The Outcome</a>
                         </div>
                     </div>
@@ -85,29 +86,29 @@
         <div class="text-center py-20 lg:py-28 px-4">
             <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">My Journey as a Google Certified <span class="text-amber-600">Data Analyst</span></h1>
             <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-500">By Kisa Fatima • August 29, 2025</p>
-            <p class="mt-6 max-w-3xl mx-auto text-xl text-gray-600">From a Computer Science student curious about the 'why' behind data, to a certified analyst skilled in telling stories with numbers. This is an interactive summary of my journey.</p>
+            <p class="mt-6 max-w-3xl mx-auto text-xl text-gray-600">When I first heard the phrase “data is the new oil,” I didn’t fully grasp its power. Today, as a Google Certified Data Analyst, I can say with confidence that data truly drives the world around us. This is my story of starting with curiosity, building in-demand skills, and transforming my career with the Google Data Analytics Certification.</p>
         </div>
     </header>
 
     <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <section id="journey" class="py-16 md:py-24">
+        <section id="the-why" class="py-16 md:py-24">
             <div class="text-center">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">The Journey: From CS to Data</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">This section explores my motivation for starting this path. My Computer Science studies taught me the 'how' of technology, but I wanted to understand the 'why' hidden in data. The Google Data Analytics Certificate was the perfect bridge between these two worlds.</p>
+                <h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">The Why: Choosing the Certification</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">This section explores my motivation for starting this path. Like many learners, I wanted a career that was both future-proof and meaningful. The Google Data Analytics Professional Certificate stood out for several key reasons.</p>
             </div>
             <div class="mt-12 grid gap-8 md:grid-cols-3">
                 <div class="stat-card bg-white p-8 rounded-xl shadow-md border border-gray-200/50">
-                    <h3 class="text-lg font-semibold text-amber-600">Accessible to All</h3>
-                    <p class="mt-2 text-gray-600">The program is designed for beginners with no prior experience required, making it a perfect entry point into the world of data.</p>
+                    <h3 class="text-lg font-semibold text-amber-600">Industry-Recognized</h3>
+                    <p class="mt-2 text-gray-600">It is a valuable, globally recognized certification that is highly valued by employers worldwide.</p>
                 </div>
                 <div class="stat-card bg-white p-8 rounded-xl shadow-md border border-gray-200/50">
-                    <h3 class="text-lg font-semibold text-amber-600">Flexible & Affordable</h3>
-                    <p class="mt-2 text-gray-600">At just <span class="font-bold text-gray-800">$49/month</span> via Coursera, and completable in <span class="font-bold text-gray-800">3-6 months</span> (approx. 240 hours), it fit perfectly alongside my university studies.</p>
+                    <h3 class="text-lg font-semibold text-amber-600">Practical & Hands-On</h3>
+                    <p class="mt-2 text-gray-600">The program teaches both technical tools and their real-world applications in business.</p>
                 </div>
                 <div class="stat-card bg-white p-8 rounded-xl shadow-md border border-gray-200/50">
-                    <h3 class="text-lg font-semibold text-amber-600">Structured Learning</h3>
-                    <p class="mt-2 text-gray-600">The certificate provides a clear, structured path from foundational concepts to practical, job-ready skills.</p>
+                    <h3 class="text-lg font-semibold text-amber-600">Welcomes Beginners</h3>
+                    <p class="mt-2 text-gray-600">It is designed to be accessible, welcoming learners even without a technical background.</p>
                 </div>
             </div>
         </section>
@@ -115,26 +116,31 @@
         <section id="toolkit" class="py-16 md:py-24 bg-amber-50/50 rounded-2xl">
             <div class="text-center">
                 <h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">The Toolkit: Skills for Success</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">This section details the core technologies and skills I acquired. The certificate provides a comprehensive toolkit for any aspiring data analyst. Click on each tool to learn more about how it was covered in the program.</p>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">This section details the core technologies and skills I acquired. The certification provided a structured roadmap with plenty of hands-on practice. Click on each tool to learn more.</p>
             </div>
             <div class="mt-12 max-w-3xl mx-auto">
-                <div class="flex justify-center space-x-2 md:space-x-4 p-1 bg-white rounded-full shadow-inner">
-                    <button class="tab-button active w-full py-2 px-4 rounded-full text-sm md:text-base font-semibold" data-target="sql">SQL</button>
-                    <button class="tab-button w-full py-2 px-4 rounded-full text-sm md:text-base font-semibold text-gray-600" data-target="r-tableau">R & Tableau</button>
-                    <button class="tab-button w-full py-2 px-4 rounded-full text-sm md:text-base font-semibold text-gray-600" data-target="ai">AI Assistant</button>
+                <div class="flex justify-center flex-wrap space-x-2 md:space-x-4 p-1 bg-white rounded-full shadow-inner">
+                    <button class="tab-button active flex-1 py-2 px-4 rounded-full text-sm md:text-base font-semibold" data-target="spreadsheets">Spreadsheets</button>
+                    <button class="tab-button flex-1 py-2 px-4 rounded-full text-sm md:text-base font-semibold text-gray-600" data-target="sql">SQL</button>
+                    <button class="tab-button flex-1 py-2 px-4 rounded-full text-sm md:text-base font-semibold text-gray-600" data-target="r-tableau">R & Tableau</button>
+                    <button class="tab-button flex-1 py-2 px-4 rounded-full text-sm md:text-base font-semibold text-gray-600" data-target="ai-thinking">Thinking & AI</button>
                 </div>
                 <div class="mt-8 p-6 bg-white rounded-lg shadow-md min-h-[180px]">
-                    <div id="sql" class="tab-content">
-                        <h3 class="text-xl font-bold text-gray-800">SQL: The Language of Data</h3>
-                        <p class="mt-2 text-gray-600">I learned that SQL is the main language for working with data. The certificate taught me how to query huge datasets, find specific information, and combine data from different sources. This skill is crucial for getting the most up-to-date information for any analysis.</p>
+                    <div id="spreadsheets" class="tab-content">
+                        <h3 class="text-xl font-bold text-gray-800">Spreadsheets (Excel & Google Sheets)</h3>
+                        <p class="mt-2 text-gray-600">I started with the fundamentals: cleaning and organizing messy data. The course provided practical exercises in spreadsheets to get me comfortable with manipulating data efficiently.</p>
+                    </div>
+                    <div id="sql" class="tab-content hidden">
+                        <h3 class="text-xl font-bold text-gray-800">SQL for Data Analysis</h3>
+                        <p class="mt-2 text-gray-600">I learned that SQL is the main language for working with data. The certificate taught me how to write queries to manage and analyze huge databases. The thrill of finding exactly what I needed in a sea of information was like solving a puzzle.</p>
                     </div>
                     <div id="r-tableau" class="tab-content hidden">
-                        <h3 class="text-xl font-bold text-gray-800">R & Tableau: Analysis and Visualization</h3>
-                        <p class="mt-2 text-gray-600">R is a powerful programming language for statistical analysis and creating charts. I learned to use it to clean data and perform calculations. When it was time to present my findings, Tableau's easy, drag-and-drop interface helped me create interactive dashboards and turn my data into a visual story anyone could understand.</p>
+                        <h3 class="text-xl font-bold text-gray-800">R Programming & Data Visualization</h3>
+                        <p class="mt-2 text-gray-600">I then dove into R for advanced analysis and statistical modeling. It gave me the power to clean messy data and perform complex calculations. Then, using tools like Tableau and Google Data Studio, I learned to build dashboards and create charts that told powerful stories.</p>
                     </div>
-                    <div id="ai" class="tab-content hidden">
-                        <h3 class="text-xl font-bold text-gray-800">AI as a Productivity Tool</h3>
-                        <p class="mt-2 text-gray-600">The course focused on how AI can help with daily tasks. I learned that AI can assist with tedious jobs like cleaning data, writing complex formulas, and even brainstorming ideas for charts. It's like having a smart assistant that makes you more efficient and productive.</p>
+                    <div id="ai-thinking" class="tab-content hidden">
+                        <h3 class="text-xl font-bold text-gray-800">Analytical Thinking & AI</h3>
+                        <p class="mt-2 text-gray-600">Beyond the tools, the certification taught me how to develop a problem-solving mindset for real-world business cases. It also focused on how AI can assist with tedious jobs like cleaning data, writing complex formulas, and even brainstorming ideas for charts, boosting efficiency.</p>
                     </div>
                 </div>
             </div>
@@ -142,8 +148,8 @@
 
         <section id="story" class="py-16 md:py-24">
             <div class="text-center">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">The Story: Beyond the Numbers</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">The most valuable lesson was learning to tell stories with data. This section illustrates the process of transforming raw data into a compelling narrative that drives decisions. A good data story is what makes a great analyst.</p>
+                <h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">The Core Skill: Data Storytelling</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">The most valuable lesson was learning to tell stories with data. This section illustrates the process of transforming raw data into a compelling narrative that drives decisions.</p>
             </div>
             <div class="mt-12 flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
                 <div class="p-4 bg-white rounded-lg shadow-md w-48">
@@ -171,10 +177,27 @@
             </div>
         </section>
 
+        <section id="challenges" class="py-16 md:py-24 bg-gray-100/50 rounded-2xl">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Navigating the Bumps in the Road</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">This section details the challenges I faced during my learning journey. It wasn't always easy, but with consistency and resilience, I turned those challenges into stepping stones.</p>
+            </div>
+            <div class="mt-12 max-w-2xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200/50">
+                    <h3 class="text-xl font-bold text-gray-800">Balancing Life & Learning</h3>
+                    <p class="mt-2 text-gray-600">I had to balance self-paced learning with personal responsibilities, which required discipline and time management.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200/50">
+                    <h3 class="text-xl font-bold text-gray-800">Overcoming the Overwhelm</h3>
+                    <p class="mt-2 text-gray-600">Sometimes, writing complex SQL queries or designing clear dashboards felt overwhelming, but I learned that every expert was once a beginner.</p>
+                </div>
+            </div>
+        </section>
+
         <section id="outcome" class="py-16 md:py-24">
             <div class="text-center">
                 <h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">The Outcome: A New Career Path</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">So, what was the result of this journey? This final section presents the tangible career outcomes and opportunities that the Google Data Analytics Certificate unlocked, demonstrating the high demand for these skills in today's job market.</p>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">So, what was the result of this journey? This final section presents the tangible career outcomes and opportunities that the Google Data Analytics Certificate unlocked.</p>
             </div>
             <div class="mt-12 grid md:grid-cols-2 gap-8 items-center">
                 <div class="stat-card bg-white p-8 rounded-xl shadow-lg border border-gray-200/50 text-center">
@@ -200,7 +223,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
 
@@ -306,6 +328,5 @@
             }
         });
     </script>
-
 </body>
 </html>
