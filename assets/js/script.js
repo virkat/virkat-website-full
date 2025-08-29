@@ -41,14 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderShareButtons(container, url) {
     if (!container) return;
     const shareUrl = url || container.dataset.shareUrl || window.location.href;
+    const shareTitle = container.dataset.shareTitle || document.title || 'Virkat Blog';
     // Use root-relative paths so they work from any page
     const iconBase = 'assets/images';
+    const tweetText = `${shareTitle}`;
+    const waText = `${shareTitle} — ${shareUrl}`;
     container.innerHTML = `
       <span>Share:</span>
-      <a href="https://x.com/intent/tweet?url=${encodeURIComponent(shareUrl)}" target="_blank" rel="noopener" aria-label="Share on X"><img src="/${iconBase}/x-icon.svg" alt="X" /></a>
+      <a href="https://x.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareUrl)}" target="_blank" rel="noopener" aria-label="Share on X"><img src="/${iconBase}/x-icon.svg" alt="X" /></a>
       <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><img src="/${iconBase}/linkedin-icon.svg" alt="LinkedIn" /></a>
       <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}" target="_blank" rel="noopener" aria-label="Share on Facebook"><img src="/${iconBase}/facebook-icon.svg" alt="Facebook" /></a>
-      <a href="https://wa.me/?text=${encodeURIComponent(shareUrl)}" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><img src="/${iconBase}/whatsapp-icon.svg" alt="WhatsApp" /></a>
+      <a href="https://wa.me/?text=${encodeURIComponent(waText)}" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><img src="/${iconBase}/whatsapp-icon.svg" alt="WhatsApp" /></a>
     `;
   }
 
@@ -239,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   </div>
                   ${hero}
                   <div>${articleHtml}</div>
-          <div class="share-buttons compact" data-share-url="${window.location.origin}/blogs.html"></div>
+          <div class="share-buttons compact"></div>
                 </div>`;
               } else {
                 const html = await response.text();
@@ -299,9 +302,11 @@ document.addEventListener('DOMContentLoaded', () => {
               dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
                 // Use compact variant for dynamically rendered posts
                 el.classList.add('compact');
-                const deepLink = blogId ? `${window.location.origin}/blogs.html#${encodeURIComponent(blogId)}`
-                                        : (window.location.origin + '/' + blogFile.replace(/^\.\/?/, ''));
-                const effectiveUrl = el.dataset.shareUrl || deepLink;
+                // Prefer static share pages with Open Graph tags so platforms can render title/image
+                const sharePage = blogId ? `${window.location.origin}/share/${encodeURIComponent(blogId)}.html`
+                                         : `${window.location.origin}/blogs.html`;
+                const effectiveUrl = sharePage;
+                el.dataset.shareTitle = blogTitle;
                 renderShareButtons(el, effectiveUrl);
               });
 

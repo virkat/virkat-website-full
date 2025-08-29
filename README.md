@@ -64,7 +64,7 @@ virkat-website-full/
 - Mobile-first design for excellent usability on all devices
 - Accessible navigation, color contrast, and keyboard support
 ## Social Sharing
-Share buttons are available on all blog posts and project/case study cards. Visitors can share content directly to X (Twitter), LinkedIn, Facebook, and WhatsApp.
+Share buttons are available on all blog posts and project/case study cards. Visitors can share content directly to X (Twitter), LinkedIn, Facebook, and WhatsApp. Blog shares now include the post title text and use per-post share URLs with Open Graph tags so platforms show the correct title and hero image in the preview.
 
 ## Badges
 Team member badges (e.g., Google Data Analytics) are displayed using image files. Ensure badge images are present in `assets/images/` and referenced with the correct filename in the HTML.
@@ -132,7 +132,7 @@ Add a new object to the array with your metadata and the `.md` file path.
 
 ### Notes
 - Reading time is automatic based on content length.
-- Share buttons are injected automatically and use a stable deep link.
+- Share buttons are injected automatically and use a per-post share URL (`/share/<id>.html`) for rich previews on social platforms.
 - Markdown supported: headings, lists, bold/italic, links, images, code blocks (```), quotes.
 
 ### Troubleshooting
@@ -171,6 +171,19 @@ If you prefer writing raw HTML, duplicate the template and point `blogs.json` to
 - Link directly to a post via `blogs.html#<id>` (the `id` from `blogs.json`).
 - Posts listed with `.md` files are converted client-side and wrapped with consistent blog UI.
 - To improve UX, the reader shows a loading spinner and prefetches Markdown on hover.
+
+## Social share pages (Open Graph)
+To ensure social platforms display the correct title and image, static share pages are generated in `/share`. For each blog `id` in `blogs.json`, create `/share/<id>.html` (you can copy `/share/TEMPLATE.html`) and fill in:
+- `<title>` and `og:title`
+- `meta description` and `og:description`
+- `og:image` and `twitter:image` (absolute URL to `https://www.virkat.org/assets/images/...`)
+- `canonical` and redirect target to `/blogs.html#<id>`
+
+Existing examples:
+- `/share/understanding-data-cleaning.html`
+- `/share/kisa-journey.html`
+
+The share buttons will automatically point to `/share/<id>.html` so previews render with title and hero image.
 
 ## Deep links and Markdown posts
 - Blog cards support deep links. You can link directly to a post using `blogs.html#<id>`, where `<id>` is the `id` field from `blogs.json` (e.g., `blogs.html#understanding-data-cleaning`).
