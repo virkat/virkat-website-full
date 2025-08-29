@@ -219,6 +219,13 @@ a:hover {
   font-size: 1.3rem;
 }
 
+/* Visually disable placeholder social links */
+.footer-socials a[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none; /* safety; JS also prevents default */
+}
+
 /* Mobile Styles */
 @media (max-width: 768px) {
   .nav-links {

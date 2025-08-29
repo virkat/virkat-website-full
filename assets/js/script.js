@@ -77,6 +77,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Intercept disabled social links (placeholder) and show notice
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a[aria-disabled="true"]');
+    if (!a) return;
+    e.preventDefault();
+    showToast('WhatsApp contact temporarily unavailable.');
+  });
+
   // Cache-bust helper for static assets like images (unique per page load)
   const __cb = Date.now().toString();
   function withCacheBust(url) {
