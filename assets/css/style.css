@@ -399,3 +399,11 @@ a:hover {
   display: none;
 }
 .share-buttons.compact { gap: 8px; }
+
+/* Mobile: stack share buttons vertically */
+@media (max-width: 768px) {
+  .share-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
