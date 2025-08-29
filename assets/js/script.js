@@ -55,6 +55,43 @@ document.addEventListener('DOMContentLoaded', () => {
   // Render any share-buttons on regular page load
   document.querySelectorAll('.share-buttons').forEach(el => renderShareButtons(el));
 
+  // Minimal Markdown to HTML converter (subset)
+  function markdownToHtml(md) {
+    if (!md) return '';
+    // Escape HTML
+    md = md.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    // Code blocks ```
+    md = md.replace(/```([\s\S]*?)```/g, (m, p1) => `<pre><code>${p1.replace(/\n/g, '\n')}</code></pre>`);
+    // Inline code `code`
+    md = md.replace(/`([^`]+)`/g, '<code>$1</code>');
+    // Images ![alt](src)
+    md = md.replace(/!\[([^\]]*)\]\(([^\)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />');
+    // Links [text](url)
+    md = md.replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    // Headings ####, ###, ##, #
+    md = md.replace(/^######\s?(.+)$/gm, '<h6>$1</h6>')
+           .replace(/^#####\s?(.+)$/gm, '<h5>$1</h5>')
+           .replace(/^####\s?(.+)$/gm, '<h4>$1</h4>')
+           .replace(/^###\s?(.+)$/gm, '<h3>$1</h3>')
+           .replace(/^##\s?(.+)$/gm, '<h2>$1</h2>')
+           .replace(/^#\s?(.+)$/gm, '<h1>$1</h1>');
+    // Blockquotes
+    md = md.replace(/^>\s?(.+)$/gm, '<blockquote>$1</blockquote>');
+    // Unordered lists
+    md = md.replace(/^(?:- |\* )(.*(?:\n(?:- |\* ).*)*)/gm, (match) => {
+      const items = match.split(/\n/).map(l => l.replace(/^(- |\* )/, '').trim()).filter(Boolean);
+      return `<ul>${items.map(i => `<li>${i}</li>`).join('')}</ul>`;
+    });
+    // Ordered lists
+    md = md.replace(/^(?:\d+\. )(.*(?:\n(?:\d+\. ).*)*)/gm, (match) => {
+      const items = match.split(/\n/).map(l => l.replace(/^\d+\. /, '').trim()).filter(Boolean);
+      return `<ol>${items.map(i => `<li>${i}</li>`).join('')}</ol>`;
+    });
+    // Paragraphs: wrap lines separated by blank lines
+    const blocks = md.split(/\n{2,}/).map(b => b.trim()).filter(Boolean);
+    return blocks.map(b => (/^<h\d|^<ul|^<ol|^<pre|^<blockquote|^<img|^<p|^<code|^<hr/.test(b) ? b : `<p>${b.replace(/\n/g, '<br>')}</p>`)).join('\n');
+  }
+
   // Dynamic Blog Post Loading
   const blogPostsContainer = document.getElementById('blog-posts-container');
   const fullBlogPostContainer = document.getElementById('blog-post-container');
@@ -71,36 +108,65 @@ document.addEventListener('DOMContentLoaded', () => {
   blogs.forEach(blog => {
           const blogCard = document.createElement('div');
           blogCard.classList.add('card', 'blog-card');
-          blogCard.innerHTML = `
+       blogCard.innerHTML = `
             <img src="${blog.image}" alt="${blog.title}" class="blog-image" loading="lazy" />
             <h3>${blog.title}</h3>
             <p class="meta">By ${blog.author || 'Virkat Team'} • ${blog.date || 'New Post'}</p>
             <p>${blog.description}</p>
-            <a href="${blog.file}" class="btn read-more-btn" data-blog-file="${blog.file}">Read More</a>
+        <a href="${blog.file}" class="btn read-more-btn"
+          data-blog-file="${blog.file}"
+          data-blog-title="${blog.title}"
+          data-blog-author="${blog.author || 'Virkat Team'}"
+          data-blog-date="${blog.date || ''}"
+          data-blog-image="${blog.image || ''}"
+          data-blog-id="${blog.id || ''}">
+          Read More
+        </a>
           `;
           blogPostsContainer.appendChild(blogCard);
         });
 
         // Add event listeners to dynamically created "Read More" buttons
-        document.querySelectorAll('.read-more-btn').forEach(button => {
+    document.querySelectorAll('.read-more-btn').forEach(button => {
           button.addEventListener('click', async function(e) {
             e.preventDefault();
             const blogFile = this.dataset.blogFile;
+            const blogTitle = this.dataset.blogTitle;
+            const blogAuthor = this.dataset.blogAuthor || 'Virkat Team';
+            const blogDate = this.dataset.blogDate || '';
+            const blogImage = this.dataset.blogImage || '';
+      const blogId = this.dataset.blogId || '';
 
             try {
               const response = await fetch(blogFile);
               if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status} for ${blogFile}`);
               }
-              const html = await response.text();
-              const tempDiv = document.createElement('div');
-              tempDiv.innerHTML = html;
+              const isMarkdown = blogFile.toLowerCase().endsWith('.md');
+              let contentToLoad = '';
+              if (isMarkdown) {
+                const md = await response.text();
+                const articleHtml = markdownToHtml(md);
+                const hero = blogImage ? `<img src="${blogImage}" alt="${blogTitle}" class="blog-image" loading="lazy" />` : '';
+                contentToLoad = `
+                  <div class="blog-post-content">
+                    <div class="section-header">
+                      <h2>${blogTitle}</h2>
+                      <p class="meta">By ${blogAuthor} • ${blogDate} • <span class="reading-time"></span> min read</p>
+                    </div>
+                    ${hero}
+                    <div>${articleHtml}</div>
+                    <div class="share-buttons" data-share-url="${window.location.origin}/blogs.html"></div>
+                  </div>`;
+              } else {
+                const html = await response.text();
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+                const contentNode = tempDiv.querySelector('.blog-post-content') || tempDiv.querySelector('body');
+                contentToLoad = contentNode ? contentNode.innerHTML : '';
+              }
 
-              // Prefer .blog-post-content when present; fallback to body
-              const contentNode = tempDiv.querySelector('.blog-post-content') || tempDiv.querySelector('body');
-              const contentToLoad = contentNode ? contentNode.innerHTML : '';
-
-              if (contentToLoad) {
+            if (contentToLoad) {
                 // Add a back button for better UX
                 const backBtn = `<div class="container" style="margin-top:20px;margin-bottom:10px"><button class="btn btn-secondary" id="backToList">← Back to all posts</button></div>`;
                 fullBlogPostContainer.innerHTML = backBtn + contentToLoad;
@@ -123,8 +189,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Render share buttons inside the loaded content
                 dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
-                  // If not provided, try to infer URL from the blog file path
-                  const effectiveUrl = el.dataset.shareUrl || (window.location.origin + '/' + blogFile.replace(/^\.\/?/, ''));
+                  // Prefer a stable deep link using blogs.html#<id> when available
+                  const deepLink = blogId ? `${window.location.origin}/blogs.html#${encodeURIComponent(blogId)}`
+                                          : (window.location.origin + '/' + blogFile.replace(/^\.\/?/, ''));
+                  const effectiveUrl = el.dataset.shareUrl || deepLink;
                   renderShareButtons(el, effectiveUrl);
                 });
 
@@ -149,6 +217,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           });
         });
+        // If there's a hash like #<id>, auto-open that post
+        const hash = (window.location.hash || '').replace(/^#/, '');
+        if (hash) {
+          const btn = document.querySelector(`.read-more-btn[data-blog-id="${CSS.escape(hash)}"]`);
+          if (btn) {
+            btn.click();
+          }
+        }
       })
       .catch(error => console.error('Error fetching blogs.json:', error));
   }

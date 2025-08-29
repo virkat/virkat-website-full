@@ -6,15 +6,15 @@
     "description": "Data cleaning is the first and most crucial step in any data analysis project. In this post, we explore the tools and techniques for ensuring your data is reliable and accurate.",
     "author": "Asad Raza Virk",
     "date": "August 22, 2025",
-    "file": "posts/blog-post-1.html"
+  "file": "posts/blog-post-1.md"
   },
   {
     "id": "kisa-journey",
   "title": "Kisa’s Journey to Becoming a Google Certified Data Analyst",
-    "image": "assets/images/blog2.png",
+  "image": "assets/images/blog2.jpg",
   "description": "Kisa’s personal journey from curiosity to certification—overcoming challenges, embracing learning, and finding confidence as a Google Certified Data Analyst.",
     "author": "Kisa Fatima",
   "date": "August 29, 2025",
-    "file": "posts/blog-post-2.html"
+  "file": "posts/blog-post-2.md"
   }
 ]
