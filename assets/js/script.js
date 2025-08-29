@@ -74,6 +74,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Cache-bust helper for static assets like images
+  function withCacheBust(url) {
+    if (!url) return url;
+    const v = 'v=20250830';
+    return url + (url.includes('?') ? '&' : '?') + v;
+  }
+
   // Minimal Markdown to HTML converter (subset)
   function markdownToHtml(md) {
     if (!md) return '';
@@ -135,8 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
   blogs.forEach(blog => {
           const blogCard = document.createElement('div');
           blogCard.classList.add('card', 'blog-card');
+      const cardImg = withCacheBust(blog.image);
+      const heroImg = withCacheBust(blog.image || '');
        blogCard.innerHTML = `
-            <img src="${blog.image}" alt="${blog.title}" class="blog-image" loading="lazy" />
+            <img src="${cardImg}" alt="${blog.title}" class="blog-image" loading="lazy" />
             <h3>${blog.title}</h3>
             <p class="meta">By ${blog.author || 'Virkat Team'} • ${blog.date || 'New Post'}</p>
             <p>${blog.description}</p>
@@ -145,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
           data-blog-title="${blog.title}"
           data-blog-author="${blog.author || 'Virkat Team'}"
           data-blog-date="${blog.date || ''}"
-          data-blog-image="${blog.image || ''}"
+          data-blog-image="${heroImg}"
           data-blog-id="${blog.id || ''}">
           Read More
         </a>
