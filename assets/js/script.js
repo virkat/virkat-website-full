@@ -55,6 +55,25 @@ document.addEventListener('DOMContentLoaded', () => {
   // Render any share-buttons on regular page load
   document.querySelectorAll('.share-buttons').forEach(el => renderShareButtons(el));
 
+  // Tiny toast utility for user-friendly errors
+  function showToast(message, timeout = 2800) {
+    try {
+      let t = document.querySelector('.toast');
+      if (!t) {
+        t = document.createElement('div');
+        t.className = 'toast';
+        document.body.appendChild(t);
+      }
+      t.textContent = message;
+      t.classList.add('show');
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(() => t.classList.remove('show'), timeout);
+    } catch (_) {
+      // Fallback
+      alert(message);
+    }
+  }
+
   // Minimal Markdown to HTML converter (subset)
   function markdownToHtml(md) {
     if (!md) return '';
@@ -97,7 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const fullBlogPostContainer = document.getElementById('blog-post-container');
 
   if (blogPostsContainer && fullBlogPostContainer) {
-    fetch('blogs.json')
+    // Cache-bust blogs.json so updates (like switching to .md) are picked up
+    fetch('blogs.json?v=20250830')
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -159,13 +179,19 @@ document.addEventListener('DOMContentLoaded', () => {
                   <div>${articleHtml}</div>
                   <div class="share-buttons" data-share-url="${window.location.origin}/blogs.html"></div>
                 </div>`;
-            } else {
-              const html = await response.text();
-              const tempDiv = document.createElement('div');
-              tempDiv.innerHTML = html;
-              const contentNode = tempDiv.querySelector('.blog-post-content') || tempDiv.querySelector('body');
-              contentToLoad = contentNode ? contentNode.innerHTML : '';
-            }
+              } else {
+                const html = await response.text();
+                // Parse full HTML documents robustly
+                try {
+                  const parser = new DOMParser();
+                  const doc = parser.parseFromString(html, 'text/html');
+                  const contentNode = doc.querySelector('.blog-post-content') || doc.body || doc.documentElement;
+                  contentToLoad = contentNode ? contentNode.innerHTML : html;
+                } catch (_) {
+                  // Fallback to raw HTML if parsing fails
+                  contentToLoad = html || '';
+                }
+              }
 
             if (contentToLoad) {
               // Add a back button for better UX
@@ -212,9 +238,11 @@ document.addEventListener('DOMContentLoaded', () => {
               fullBlogPostContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else {
               console.error('Blog post content not found in fetched HTML.');
+              showToast('Sorry, couldn\'t load that post. Please try again.');
             }
           } catch (error) {
             console.error('Error fetching blog post:', error);
+            showToast('Error loading post. Please check your connection and try again.');
           }
         });
         // If there's a hash like #<id>, auto-open that post
