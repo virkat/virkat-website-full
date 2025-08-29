@@ -71,6 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
               const response = await fetch(blogFile);
+              console.log('Blog post fetch response:', response);
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status} for ${blogFile}`);
+              }
               const html = await response.text();
               console.log('Fetched blog post HTML:', html.substring(0, 200) + '...'); // Log first 200 chars
 
