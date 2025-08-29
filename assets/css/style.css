@@ -372,12 +372,13 @@ a:hover {
   to { transform: rotate(360deg); }
 }
 
-/* Share buttons: vertical alignment */
+/* Share buttons: horizontal alignment */
 .share-buttons {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
   gap: 10px;
+  flex-wrap: wrap; /* avoid overflow on small screens */
 }
 .share-buttons span {
   font-weight: 600;
@@ -397,6 +398,4 @@ a:hover {
 .share-buttons.compact span {
   display: none;
 }
-.share-buttons.compact {
-  gap: 8px;
-}
+.share-buttons.compact { gap: 8px; }
