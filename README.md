@@ -83,3 +83,39 @@ The site uses a custom SVG logo for crisp display on all backgrounds. The logo i
 
 ## License
 © 2025 Virkat. All rights reserved.
+
+## Adding a New Blog Post
+Use the provided template and JSON listing to publish new posts consistently.
+
+1) Duplicate the template
+- Copy `posts/blog-post-template.html` to `posts/<your-post-file>.html`.
+- Update:
+   - `<title>` tag
+   - `.section-header > h2`
+   - `.meta` author and date
+   - Optional hero image `src` and `alt`
+   - Post content within `.blog-post-content`
+   - The `.share-buttons` `data-share-url` to your live URL (e.g., `https://www.virkat.org/posts/<your-post-file>.html`).
+
+2) Add the post to the list
+- Edit `blogs.json` and add an object:
+```
+{
+   "id": "unique-slug",
+   "title": "Post Title",
+   "image": "assets/images/your-image.jpg",
+   "description": "One or two sentence summary for the card.",
+   "author": "Your Name",
+   "date": "Month DD, YYYY",
+   "file": "posts/<your-post-file>.html"
+}
+```
+
+3) Test locally
+- Open `blogs.html`. The post should appear in the list.
+- Click “Read More” to load inline. The back button returns to the list.
+
+Notes
+- Layout: Posts should follow `blog-post-1.html` structure. The template matches this layout.
+- Reading time: Auto-calculated and displayed via `<span class="reading-time"></span>`.
+- Share buttons: Any `<div class="share-buttons">` is auto-rendered by `assets/js/script.js`. Prefer setting `data-share-url` for accuracy; if omitted, the current URL is used.

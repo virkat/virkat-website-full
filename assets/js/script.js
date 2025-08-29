@@ -28,6 +28,33 @@ document.addEventListener('DOMContentLoaded', () => {
     return readingTimeMinutes;
   }
 
+  // Populate reading time for direct-loaded posts
+  const directPostContent = document.querySelector('.blog-post-content');
+  if (directPostContent) {
+    const text = directPostContent.innerText || directPostContent.textContent || '';
+    const minutes = calculateReadingTime(text);
+    const rt = document.querySelector('.blog-post-content .reading-time');
+    if (rt) rt.textContent = minutes;
+  }
+
+  // Reusable share buttons utility
+  function renderShareButtons(container, url) {
+    if (!container) return;
+    const shareUrl = url || container.dataset.shareUrl || window.location.href;
+    // Use root-relative paths so they work from any page
+    const iconBase = 'assets/images';
+    container.innerHTML = `
+      <span>Share:</span>
+      <a href="https://x.com/intent/tweet?url=${encodeURIComponent(shareUrl)}" target="_blank" rel="noopener" aria-label="Share on X"><img src="/${iconBase}/x-icon.svg" alt="X" /></a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><img src="/${iconBase}/linkedin-icon.svg" alt="LinkedIn" /></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}" target="_blank" rel="noopener" aria-label="Share on Facebook"><img src="/${iconBase}/facebook-icon.svg" alt="Facebook" /></a>
+      <a href="https://wa.me/?text=${encodeURIComponent(shareUrl)}" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><img src="/${iconBase}/whatsapp-icon.svg" alt="WhatsApp" /></a>
+    `;
+  }
+
+  // Render any share-buttons on regular page load
+  document.querySelectorAll('.share-buttons').forEach(el => renderShareButtons(el));
+
   // Dynamic Blog Post Loading
   const blogPostsContainer = document.getElementById('blog-posts-container');
   const fullBlogPostContainer = document.getElementById('blog-post-container');
@@ -49,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <h3>${blog.title}</h3>
             <p class="meta">By ${blog.author || 'Virkat Team'} • ${blog.date || 'New Post'}</p>
             <p>${blog.description}</p>
-            <a href="#" class="btn read-more-btn" data-blog-file="${blog.file}">Read More</a>
+            <a href="${blog.file}" class="btn read-more-btn" data-blog-file="${blog.file}">Read More</a>
           `;
           blogPostsContainer.appendChild(blogCard);
         });
@@ -84,6 +111,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 const listHeader = document.querySelector('section .section-header');
                 if (listSection) listSection.style.display = 'none';
                 if (listHeader) listHeader.style.display = 'none';
+
+                // Compute and populate reading time for the loaded content
+                const dynamicContent = fullBlogPostContainer.querySelector('.blog-post-content') || fullBlogPostContainer;
+                const readingTimeEl = dynamicContent.querySelector('.reading-time');
+                if (dynamicContent && readingTimeEl) {
+                  const text = dynamicContent.innerText || dynamicContent.textContent || '';
+                  const minutes = calculateReadingTime(text);
+                  readingTimeEl.textContent = minutes;
+                }
+
+                // Render share buttons inside the loaded content
+                dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
+                  // If not provided, try to infer URL from the blog file path
+                  const effectiveUrl = el.dataset.shareUrl || (window.location.origin + '/' + blogFile.replace(/^\.\/?/, ''));
+                  renderShareButtons(el, effectiveUrl);
+                });
 
                 // Back button handler
                 const backButton = document.getElementById('backToList');
