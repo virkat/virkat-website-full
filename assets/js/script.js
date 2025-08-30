@@ -152,13 +152,20 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!a) return;
       const href = a.getAttribute('href');
       if (!href) return;
-      if (navLinks.classList.contains('open')) {
-        // Prevent default and force navigation synchronously; allow page unload to close drawer
-        e.preventDefault();
-        try { window.location.assign(href); } catch (_) { window.location.href = href; }
+      e.preventDefault();
+      // Close the drawer immediately (if open) to remove overlays/scroll lock
+      if (navLinks.classList.contains('open')) closeMenu();
+      if (href.startsWith('#')) {
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+        // If anchor not on this page, fall back to normal navigation
       }
+      try { window.location.assign(href); } catch (_) { window.location.href = href; }
     }
-    navLinks.addEventListener('click', handleNavActivate, { passive: false });
+  navLinks.addEventListener('click', handleNavActivate, { passive: false });
 
     // Swipe-to-close (right swipe)
     let touchStartX = null, touchStartY = null;

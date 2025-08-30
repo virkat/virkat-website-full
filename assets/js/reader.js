@@ -78,10 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if(!a) return;
       const href = a.getAttribute('href');
       if (!href) return;
-      if (navLinks.classList.contains('open')) {
-        e.preventDefault();
-        try { window.location.assign(href); } catch(_) { window.location.href = href; }
+      e.preventDefault();
+      if (navLinks.classList.contains('open')) close();
+      if (href.startsWith('#')){
+        const target = document.querySelector(href);
+        if (target) { target.scrollIntoView({behavior:'smooth'}); return; }
       }
+      try { window.location.assign(href); } catch(_) { window.location.href = href; }
     }
     navLinks.addEventListener('click', handleNavActivate, { passive: false });
   // Swipe-to-close (right swipe)
