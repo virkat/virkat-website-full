@@ -34,5 +34,14 @@
   "author": "Kisa Fatima",
   "date": "August 30, 2025",
   "file": "posts/feed-back-form.md"
+},
+{
+  "id": "diving-deep-into-cpp",
+  "title": "Diving Deep into C++: Understanding Data Types and Input",
+  "image": "posts/data_types.jpg",
+  "description": "This post explains the fundamental building blocks of C++: data types and how to handle user input. Understanding these concepts is essential for writing effective and efficient C++ programs.",
+  "author": "Kisa Fatima",
+  "date": "August 30, 2025",
+  "file": "posts/data_types.md"
 }
 ]
