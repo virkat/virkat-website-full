@@ -294,7 +294,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             let response = null;
             if (!fetchedText) {
-              response = await fetch(blogFile);
+              const mdUrl = blogFile.toLowerCase().endsWith('.md') ? `${blogFile}?v=${__cb}` : blogFile;
+              response = await fetch(mdUrl);
               if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status} for ${blogFile}`);
               }

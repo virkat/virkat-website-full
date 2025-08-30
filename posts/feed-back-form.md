@@ -36,4 +36,4 @@ Ultimately, my summer camp feedback form isn't just a lab assignment; it's a pra
 
 **You can view the code and project structure for this feedback form on my GitHub repository.**
 
-[PR A-Summer Day Camp Feedback Form.pdf] (https://github.com/kisafatimavirk/Application-of-Information-and-Communication-Technologies/blob/main/PR%20A-Summer%20Day%20Camp%20Feedback%20Form.pdf)
+[PR A-Summer Day Camp Feedback Form.pdf](https://github.com/kisafatimavirk/Application-of-Information-and-Communication-Technologies/blob/main/PR%20A-Summer%20Day%20Camp%20Feedback%20Form.pdf)
