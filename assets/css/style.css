@@ -286,9 +286,9 @@ button[aria-disabled="true"],
   .nav-links {
     position: fixed;
     top: 0;
-    right: 0;
+    right: -280px; /* Start off-screen */
+    width: 280px;
     height: 100vh;
-  width: 100vw; /* cover full screen to avoid side overlap */
     background-color: var(--surface-color);
     display: flex;
     flex-direction: column;
@@ -297,16 +297,15 @@ button[aria-disabled="true"],
     z-index: 1001; /* above backdrop */
     box-sizing: border-box;
     overflow-y: auto;
-    transform: translateX(100%);
-    opacity: 0;
+    transform: translateX(0); /* Corrected transform */
+    opacity: 1; /* Corrected opacity */
     pointer-events: none;
-    transition: transform var(--transition), opacity var(--transition);
+    transition: transform var(--transition);
     gap: 16px;
   }
 
   .nav-links.open {
-    transform: translateX(0);
-    opacity: 1;
+    transform: translateX(-280px); /* Slide in */
     pointer-events: auto;
   }
 
