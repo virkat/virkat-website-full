@@ -41,14 +41,18 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.addEventListener('click', (e) => {
       const link = e.target.closest && e.target.closest('a.nav-link');
       if (!link) return;
-      const href = link.getAttribute('href');
-      if (href) {
+        const href = link.getAttribute('href');
+        if (!href) { closeMenu(); return; }
         e.preventDefault();
         closeMenu();
-        setTimeout(() => { window.location.assign(href); }, 120);
-      } else {
-        closeMenu();
-      }
+        // Defer navigation slightly so the drawer/backdrop can close cleanly
+        setTimeout(() => {
+          if (href.startsWith('#')) {
+            window.location.hash = href;
+          } else {
+            window.location.assign(href);
+          }
+        }, 120);
     });
 
     // Close on outside click
