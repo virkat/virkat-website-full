@@ -41,18 +41,27 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.addEventListener('click', (e) => {
       const link = e.target.closest && e.target.closest('a.nav-link');
       if (!link) return;
-        const href = link.getAttribute('href');
-        if (!href) { closeMenu(); return; }
-        e.preventDefault();
-        closeMenu();
-        // Defer navigation slightly so the drawer/backdrop can close cleanly
-        setTimeout(() => {
-          if (href.startsWith('#')) {
-            window.location.hash = href;
+      const href = link.getAttribute('href');
+      if (!href) { closeMenu(); return; }
+      const absoluteUrl = link.href; // resolves ../ and relative paths reliably
+      e.preventDefault();
+      closeMenu();
+      // Defer navigation slightly so the drawer/backdrop can close cleanly
+      setTimeout(() => {
+        if (href.startsWith('#')) {
+          const id = href.replace(/^#/, '');
+          const el = document.getElementById(id);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           } else {
-            window.location.assign(href);
+            // If target isn't on this page, fall back to default hash behavior
+            window.location.hash = id;
           }
-        }, 120);
+        } else {
+          // Use href to navigate; more reliable on some mobile browsers
+          window.location.href = absoluteUrl;
+        }
+      }, 220);
     });
 
     // Close on outside click
