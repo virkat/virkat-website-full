@@ -13,12 +13,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelector('.nav-links');
   
   if (hamburger && navLinks) {
+    // Ensure elements have proper accessibility attributes
+    if (!navLinks.id) navLinks.id = 'primary-navigation';
+    hamburger.setAttribute('role', 'button');
+    hamburger.setAttribute('tabindex', '0');
+    hamburger.setAttribute('aria-controls', navLinks.id);
+    hamburger.setAttribute('aria-expanded', 'false');
+    if (!hamburger.getAttribute('aria-label')) {
+      hamburger.setAttribute('aria-label', 'Open menu');
+    }
     // Create backdrop if it doesn't exist
     let backdrop = document.querySelector('.mobile-backdrop');
     if (!backdrop) {
       backdrop = document.createElement('div');
       backdrop.className = 'mobile-backdrop';
       document.body.appendChild(backdrop);
+    }
+
+    // Prevent background interaction when the drawer is open
+    const pageMain = document.querySelector('main');
+    const pageFooter = document.querySelector('footer');
+    function setPageInert(on){
+      [pageMain, pageFooter].forEach(el => {
+        if (!el) return;
+        try {
+          if (on) {
+            el.setAttribute('inert', '');
+            el.setAttribute('aria-hidden', 'true');
+          } else {
+            el.removeAttribute('inert');
+            el.removeAttribute('aria-hidden');
+          }
+        } catch(_){}
+      });
     }
 
     // Focus management helpers
@@ -69,6 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('no-scroll');
       backdrop.classList.remove('show');
       hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.setAttribute('aria-label', 'Open menu');
+  setPageInert(false);
       document.removeEventListener('keydown', trapFocus, true);
       // Restore focus
       setTimeout(() => {
@@ -87,6 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('no-scroll');
       backdrop.classList.add('show');
       hamburger.setAttribute('aria-expanded', 'true');
+  hamburger.setAttribute('aria-label', 'Close menu');
+  setPageInert(true);
       previouslyFocusedEl = document.activeElement;
       // Defer focusing to ensure layout is updated
       setTimeout(() => {
@@ -107,6 +138,13 @@ document.addEventListener('DOMContentLoaded', () => {
         openMenu();
       }
     });
+    // Keyboard support for hamburger (Enter/Space)
+    hamburger.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (navLinks.classList.contains('open')) closeMenu(); else openMenu();
+      }
+    });
 
     // Handle navigation link taps/clicks: close drawer if open, let browser navigate normally
     function handleNavActivate(e) {
@@ -119,6 +157,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     navLinks.addEventListener('click', handleNavActivate, { passive: true });
     navLinks.addEventListener('touchend', handleNavActivate, { passive: true });
+
+    // Swipe-to-close (right swipe)
+    let touchStartX = null, touchStartY = null;
+    navLinks.addEventListener('touchstart', function(e){
+      const t = e.changedTouches && e.changedTouches[0];
+      if (!t) return;
+      touchStartX = t.clientX; touchStartY = t.clientY;
+    }, { passive: true });
+    navLinks.addEventListener('touchmove', function(e){
+      // passive: true, do not prevent scrolling
+    }, { passive: true });
+    navLinks.addEventListener('touchend', function(e){
+      const t = e.changedTouches && e.changedTouches[0];
+      if (!t || touchStartX == null) return;
+      const dx = t.clientX - touchStartX;
+      const dy = Math.abs(t.clientY - touchStartY);
+      if (dx > 50 && dy < 30 && navLinks.classList.contains('open')) {
+        closeMenu();
+      }
+      touchStartX = touchStartY = null;
+    }, { passive: true });
 
     // Close menu when clicking backdrop
     backdrop.addEventListener('click', closeMenu);

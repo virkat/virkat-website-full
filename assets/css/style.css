@@ -97,6 +97,8 @@ a:hover {
   cursor: pointer;
   width: 32px;
   height: 24px;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .hamburger span {
@@ -310,11 +312,13 @@ button[aria-disabled="true"],
 
   .hamburger {
     display: block;
+  touch-action: manipulation; /* improve tap responsiveness */
   }
 
   /* Comfortable touch targets */
   .nav-links li { margin: 8px 0; }
   .nav-links .nav-link { padding: 12px 4px; display: block; -webkit-tap-highlight-color: rgba(0,0,0,0.08); }
+  .nav-links .nav-link:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 2px; border-radius: 6px; }
 
   .hero h1 {
     font-size: 2.8rem;
@@ -339,6 +343,9 @@ button[aria-disabled="true"],
   opacity: 1;
   pointer-events: auto;
 }
+
+/* Performance hint for smoother drawer animation */
+.nav-links { will-change: transform; }
 
 /* Team Page Specific Styles */
 .team-member img {
