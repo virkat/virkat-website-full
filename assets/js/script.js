@@ -37,20 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
       backdrop.classList.toggle('show', isOpen);
     });
 
-    // Close menu when a nav link is tapped/clicked and then navigate
-    navLinks.addEventListener('click', (e) => {
-      const link = e.target.closest('a.nav-link');
-      if (link) {
-        const href = link.getAttribute('href');
-        if (href) {
-          e.preventDefault();
-          closeMenu();
-          requestAnimationFrame(() => {
-            window.location.href = href;
-          });
-        }
-      }
-    });
+    
 
     // Close on outside click
     document.addEventListener('click', (e) => {
