@@ -245,8 +245,121 @@ document.addEventListener('DOMContentLoaded', () => {
             return db - da;
           });
         } catch (_) {}
+        // Helper to open a blog post directly (used for hash deep-link)
+        async function openBlog(meta) {
+          if (!meta) return;
+          const blogFile = meta.file;
+          const blogTitle = meta.title;
+          const blogAuthor = meta.author || 'Virkat Team';
+          const blogDate = meta.date || '';
+          const blogImage = withCacheBust(meta.image || '');
+          const blogId = meta.id || '';
 
-  blogs.forEach(blog => {
+          // Spinner and show container early
+          fullBlogPostContainer.innerHTML = '<div class="container"><div class="spinner" aria-label="Loading"></div></div>';
+          fullBlogPostContainer.style.display = 'block';
+
+          try {
+            let response = null;
+            const isMarkdown = blogFile.toLowerCase().endsWith('.md');
+            const mdUrl = isMarkdown ? `${blogFile}?v=${__cb}` : blogFile;
+            response = await fetch(mdUrl);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status} for ${blogFile}`);
+
+            let contentToLoad = '';
+            if (isMarkdown) {
+              const md = await response.text();
+              let articleHtml = markdownToHtml(md);
+              const baseDir = blogFile.replace(/[^\/]+$/, '');
+              articleHtml = articleHtml.replace(/src="(?!https?:|\/|assets\/images\/|posts\/)([^"]+)"/g, (m, p1) => `src="${baseDir}${p1}"`);
+              articleHtml = addCacheBustToImages(articleHtml);
+              const hero = blogImage ? `<img src="${blogImage}" alt="${blogTitle}" class="blog-image" loading="lazy" />` : '';
+              contentToLoad = `
+                <div class="blog-post-content">
+                  <div class="section-header">
+                    <h2>${blogTitle}</h2>
+                    <p class="meta">By ${blogAuthor} • ${blogDate} • <span class="reading-time"></span> min read</p>
+                  </div>
+                  ${hero}
+                  <div>${articleHtml}</div>
+                  <div class="share-buttons compact"></div>
+                </div>`;
+            } else {
+              const html = await response.text();
+              try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                doc.querySelectorAll('img').forEach(img => {
+                  try {
+                    const src = img.getAttribute('src') || '';
+                    if (src.startsWith('assets/images/') || src.includes('/assets/images/')) {
+                      img.setAttribute('src', withCacheBust(src));
+                    }
+                  } catch (_) {}
+                });
+                const contentNode = doc.querySelector('.blog-post-content') || doc.body || doc.documentElement;
+                contentToLoad = contentNode ? contentNode.innerHTML : html;
+              } catch (_) {
+                contentToLoad = addCacheBustToImages(html || '');
+              }
+            }
+
+            if (contentToLoad) {
+              const backBtn = `<div class="container" style="margin-top:20px;margin-bottom:10px"><button class="btn btn-secondary" id="backToList">← Back to all posts</button></div>`;
+              fullBlogPostContainer.innerHTML = backBtn + contentToLoad;
+              fullBlogPostContainer.style.display = 'block';
+
+              // Hide listing immediately
+              const listingSection = blogPostsContainer.closest('section');
+              const listGrid = blogPostsContainer;
+              const listHeader = listingSection ? listingSection.querySelector('.section-header') : null;
+              if (listGrid) listGrid.style.display = 'none';
+              if (listHeader) listHeader.style.display = 'none';
+
+              const dynamicContent = fullBlogPostContainer.querySelector('.blog-post-content') || fullBlogPostContainer;
+              const readingTimeEl = dynamicContent.querySelector('.reading-time');
+              if (dynamicContent && readingTimeEl) {
+                const text = dynamicContent.innerText || dynamicContent.textContent || '';
+                const minutes = calculateReadingTime(text);
+                readingTimeEl.textContent = minutes;
+              }
+
+              dynamicContent.querySelectorAll('img').forEach(img => {
+                img.addEventListener('error', () => {
+                  img.src = withCacheBust(FALLBACK_IMG);
+                }, { once: true });
+              });
+
+              dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
+                el.classList.add('compact');
+                const sharePage = blogId ? `${window.location.origin}/share/${encodeURIComponent(blogId)}.html` : `${window.location.origin}/blogs.html`;
+                renderShareButtons(el, sharePage);
+              });
+
+              fullBlogPostContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+              showToast('Sorry, couldn\'t load that post. Please try again.');
+            }
+          } catch (error) {
+            console.error('Error opening blog via hash:', error);
+            showToast('Error loading post. Please check your connection and try again.');
+            fullBlogPostContainer.style.display = 'none';
+            fullBlogPostContainer.innerHTML = '';
+          }
+        }
+
+        // If deep-linked via hash, open immediately before rendering cards
+        let openedByHash = false;
+        const initialHash = (window.location.hash || '').replace(/^#/, '');
+        if (initialHash) {
+          const match = blogs.find(b => (b.id || '') === initialHash);
+          if (match) {
+            openedByHash = true;
+            openBlog(match);
+          }
+        }
+
+        blogs.forEach(blog => {
           const blogCard = document.createElement('div');
           blogCard.classList.add('card', 'blog-card');
       const cardImg = withCacheBust(blog.image);
@@ -439,13 +552,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }
         });
-        // If there's a hash like #<id>, auto-open that post
-        const hash = (window.location.hash || '').replace(/^#/, '');
-        if (hash) {
-          // Use a safe selector without CSS.escape dependency
-          const buttons = Array.from(document.querySelectorAll('.read-more-btn'));
-          const btn = buttons.find(b => (b.dataset.blogId || '') === hash);
-          if (btn) btn.click();
+        // If not already opened by hash, support old behavior (no-op when opened)
+        if (!openedByHash) {
+          const hash = (window.location.hash || '').replace(/^#/, '');
+          if (hash) {
+            const buttons = Array.from(document.querySelectorAll('.read-more-btn'));
+            const btn = buttons.find(b => (b.dataset.blogId || '') === hash);
+            if (btn) btn.click();
+          }
         }
       })
       .catch(error => console.error('Error fetching blogs.json:', error));
