@@ -84,12 +84,19 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!navLinks.classList.contains('open')) return;
       const insideMenu = e.target.closest && (e.target.closest('.nav') || e.target.closest('.hamburger'));
       if (!insideMenu) {
-  closeMenu();
+        closeMenu();
       }
     });
 
-  // Close when tapping backdrop
-  backdrop.addEventListener('click', closeMenu);
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+
+    // Close when tapping backdrop
+    backdrop.addEventListener('click', closeMenu);
   }
 
   // Function to calculate reading time (can be adapted if needed)
