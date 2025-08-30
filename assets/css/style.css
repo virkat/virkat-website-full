@@ -87,6 +87,29 @@ a:hover {
 .hamburger {
   display: none;
   cursor: pointer;
+  width: 32px;
+  height: 24px;
+}
+
+.hamburger span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background-color: var(--text-color);
+  margin: 5px 0;
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+/* Animate into an “X” when active */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Hero Section */
@@ -253,6 +276,7 @@ a:hover {
     flex-direction: column;
     padding: 20px;
     box-shadow: 0 4px 20px var(--shadow-color);
+  z-index: 200;
   }
 
   .nav-links.open {
@@ -262,6 +286,10 @@ a:hover {
   .hamburger {
     display: block;
   }
+
+  /* Comfortable touch targets */
+  .nav-links li { margin: 6px 0; }
+  .nav-links .nav-link { padding: 10px 0; display: block; }
 
   .hero h1 {
     font-size: 2.8rem;

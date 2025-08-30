@@ -16,7 +16,37 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburger.setAttribute('aria-label', 'Toggle navigation');
     hamburger.addEventListener('click', () => {
       const isOpen = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('active', isOpen);
       hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Close menu when a nav link is clicked (mobile UX)
+    navLinks.addEventListener('click', (e) => {
+      const link = e.target.closest && e.target.closest('a.nav-link');
+      if (!link) return;
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!navLinks.classList.contains('open')) return;
+      const insideMenu = e.target.closest && (e.target.closest('.nav') || e.target.closest('.hamburger'));
+      if (!insideMenu) {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
     });
   }
 
