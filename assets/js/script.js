@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.addEventListener('click', (e) => {
       const link = e.target.closest('a.nav-link');
       if (link) {
-        closeMenu();
+        setTimeout(closeMenu, 100);
       }
     });
 
