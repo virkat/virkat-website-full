@@ -25,5 +25,14 @@
   "author": "Asad Raza Virk",
   "date": "August 30, 2025",
   "file": "posts/The-Story-of_floods-and-data.md"
+},
+{
+  "id": "summer-camp-feedback",
+  "title": "Why a Simple Feedback Form is a Powerful Tool",
+  "image": "posts/feed-back-form.jpg",
+  "description": "My first semester project taught me the importance of data collection and form design. This blog post explains how a simple feedback form can turn raw opinions into actionable insights.",
+  "author": "Kisa Fatima",
+  "date": "August 30, 2025",
+  "file": "posts/feed-back-form.md"
 }
 ]

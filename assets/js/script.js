@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sep = url.includes('?') ? '&' : '?';
     return `${url}${sep}v=${__cb}`;
   }
-  const FALLBACK_IMG = 'assets/images/banner.jpg';
+  const FALLBACK_IMG = 'assets/images/blog1.jpg';
 
   // Add cache-busting to image src attributes inside an HTML string
   function addCacheBustToImages(html) {
@@ -172,10 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Italic (simple)
   md = md.replace(/\*([^*]+)\*/g, '<em>$1</em>');
   md = md.replace(/_([^_]+)_/g, '<em>$1</em>');
-  // Images ![alt](src)
-  md = md.replace(/!\[([^\]]*)\]\(([^\)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" decoding="async" fetchpriority="low" />');
-    // Links [text](url)
-    md = md.replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  // Images ![alt](src) (allow optional space before parenthesis)
+  md = md.replace(/!\[([^\]]*)\]\s*\(([^\)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" decoding="async" fetchpriority="low" />');
+  // Links [text](url) (allow optional space before parenthesis)
+  md = md.replace(/\[([^\]]+)\]\s*\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
     // Headings ####, ###, ##, #
     md = md.replace(/^######\s?(.+)$/gm, '<h6>$1</h6>')
            .replace(/^#####\s?(.+)$/gm, '<h5>$1</h5>')
@@ -205,8 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const fullBlogPostContainer = document.getElementById('blog-post-container');
 
   if (blogPostsContainer && fullBlogPostContainer) {
-    // Cache-bust blogs.json so updates (like switching to .md) are picked up
-    fetch('blogs.json?v=20250830')
+  // Cache-bust blogs.json so updates are picked up immediately
+  fetch(`blogs.json?v=${__cb}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
