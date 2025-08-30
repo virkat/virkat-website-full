@@ -12,23 +12,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
   if (hamburger && navLinks) {
+    // Ensure a backdrop exists for slide-in drawer UX
+    let backdrop = document.querySelector('.mobile-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'mobile-backdrop';
+      document.body.appendChild(backdrop);
+    }
     hamburger.setAttribute('aria-expanded', 'false');
     hamburger.setAttribute('aria-label', 'Toggle navigation');
+    const closeMenu = () => {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('no-scroll');
+      backdrop.classList.remove('show');
+    };
+
     hamburger.addEventListener('click', () => {
       const isOpen = navLinks.classList.toggle('open');
       hamburger.classList.toggle('active', isOpen);
       hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       document.body.classList.toggle('no-scroll', isOpen);
+      backdrop.classList.toggle('show', isOpen);
     });
 
     // Close menu when a nav link is clicked (mobile UX)
     navLinks.addEventListener('click', (e) => {
       const link = e.target.closest && e.target.closest('a.nav-link');
       if (!link) return;
-  navLinks.classList.remove('open');
-  hamburger.classList.remove('active');
-  hamburger.setAttribute('aria-expanded', 'false');
-  document.body.classList.remove('no-scroll');
+  closeMenu();
     });
 
     // Close on outside click
@@ -36,22 +49,19 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!navLinks.classList.contains('open')) return;
       const insideMenu = e.target.closest && (e.target.closest('.nav') || e.target.closest('.hamburger'));
       if (!insideMenu) {
-  navLinks.classList.remove('open');
-  hamburger.classList.remove('active');
-  hamburger.setAttribute('aria-expanded', 'false');
-  document.body.classList.remove('no-scroll');
+  closeMenu();
       }
     });
 
     // Close on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navLinks.classList.contains('open')) {
-  navLinks.classList.remove('open');
-  hamburger.classList.remove('active');
-  hamburger.setAttribute('aria-expanded', 'false');
-  document.body.classList.remove('no-scroll');
+    closeMenu();
       }
     });
+
+  // Close when tapping backdrop
+  backdrop.addEventListener('click', closeMenu);
   }
 
   // Function to calculate reading time (can be adapted if needed)
