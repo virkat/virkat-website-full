@@ -153,13 +153,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const href = a.getAttribute('href');
       if (!href) return;
       if (navLinks.classList.contains('open')) {
-        // Navigate immediately to satisfy iOS gesture timing, then close drawer
+        // Prevent default and force navigation synchronously; allow page unload to close drawer
+        e.preventDefault();
         try { window.location.assign(href); } catch (_) { window.location.href = href; }
-        closeMenu();
       }
     }
-    navLinks.addEventListener('click', handleNavActivate, { passive: true });
-    navLinks.addEventListener('touchend', handleNavActivate, { passive: true });
+    navLinks.addEventListener('click', handleNavActivate, { passive: false });
 
     // Swipe-to-close (right swipe)
     let touchStartX = null, touchStartY = null;

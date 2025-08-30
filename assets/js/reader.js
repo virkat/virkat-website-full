@@ -79,12 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const href = a.getAttribute('href');
       if (!href) return;
       if (navLinks.classList.contains('open')) {
+        e.preventDefault();
         try { window.location.assign(href); } catch(_) { window.location.href = href; }
-        close();
       }
     }
-  navLinks.addEventListener('click', handleNavActivate, { passive: true });
-  navLinks.addEventListener('touchend', handleNavActivate, { passive: true });
+    navLinks.addEventListener('click', handleNavActivate, { passive: false });
   // Swipe-to-close (right swipe)
   let touchStartX=null, touchStartY=null;
   navLinks.addEventListener('touchstart', (e)=>{ const t=e.changedTouches&&e.changedTouches[0]; if(!t) return; touchStartX=t.clientX; touchStartY=t.clientY; }, { passive:true });
