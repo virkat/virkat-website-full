@@ -8,95 +8,98 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Hamburger menu toggle
+  // Mobile hamburger menu - simplified and bulletproof
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
+  
   if (hamburger && navLinks) {
-    // Ensure a backdrop exists for slide-in drawer UX
+    // Create backdrop if it doesn't exist
     let backdrop = document.querySelector('.mobile-backdrop');
     if (!backdrop) {
       backdrop = document.createElement('div');
       backdrop.className = 'mobile-backdrop';
       document.body.appendChild(backdrop);
     }
-    hamburger.setAttribute('aria-expanded', 'false');
-    hamburger.setAttribute('aria-label', 'Toggle navigation');
-    const closeMenu = () => {
+
+    // Simple function to close menu
+    function closeMenu() {
       navLinks.classList.remove('open');
       hamburger.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('no-scroll');
       backdrop.classList.remove('show');
-    };
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
 
-    hamburger.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('open');
-      hamburger.classList.toggle('active', isOpen);
-      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      document.body.classList.toggle('no-scroll', isOpen);
-      backdrop.classList.toggle('show', isOpen);
-    });
+    // Simple function to open menu
+    function openMenu() {
+      navLinks.classList.add('open');
+      hamburger.classList.add('active');
+      document.body.classList.add('no-scroll');
+      backdrop.classList.add('show');
+      hamburger.setAttribute('aria-expanded', 'true');
+    }
 
-    // Close menu when a nav link is tapped/clicked and then navigate
-    navLinks.addEventListener('click', (e) => {
-      // Robustly resolve the anchor even if the tap lands on a text node
-      let target = e.target;
-      if (target && target.nodeType === 3) { // TEXT_NODE
-        target = target.parentElement;
-      }
-      let link = null;
-      if (target && target.closest) {
-        link = target.closest('a.nav-link');
-      } else {
-        // Fallback manual climb
-        let el = target;
-        while (el && el !== navLinks) {
-          if (el.matches && el.matches('a.nav-link')) { link = el; break; }
-          el = el.parentElement;
-        }
-      }
-      if (!link) return;
-      const href = link.getAttribute('href');
-      if (!href) { closeMenu(); return; }
-      const absoluteUrl = link.href; // resolves ../ and relative paths reliably
+    // Toggle menu on hamburger click
+    hamburger.addEventListener('click', function(e) {
       e.preventDefault();
-      closeMenu();
-      // Defer navigation slightly so the drawer/backdrop can close cleanly
-      setTimeout(() => {
-        if (href.startsWith('#')) {
-          const id = href.replace(/^#/, '');
-          const el = document.getElementById(id);
-          if (el) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          } else {
-            // If target isn't on this page, fall back to default hash behavior
-            window.location.hash = id;
-          }
-        } else {
-          // Use href to navigate; more reliable on some mobile browsers
-          window.location.href = absoluteUrl;
-        }
-      }, 300);
-    });
-
-    // Close on outside click
-    document.addEventListener('click', (e) => {
-      if (!navLinks.classList.contains('open')) return;
-      const insideMenu = e.target.closest && (e.target.closest('.nav') || e.target.closest('.hamburger'));
-      if (!insideMenu) {
+      e.stopPropagation();
+      
+      if (navLinks.classList.contains('open')) {
         closeMenu();
+      } else {
+        openMenu();
       }
     });
 
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
+    // Handle navigation link clicks
+    navLinks.addEventListener('click', function(e) {
+      const clickedLink = e.target;
+      
+      // Check if clicked element is a navigation link
+      if (clickedLink && clickedLink.classList && clickedLink.classList.contains('nav-link')) {
+        const href = clickedLink.getAttribute('href');
+        
+        if (href) {
+          e.preventDefault();
+          closeMenu();
+          
+          // Navigate after menu closes
+          setTimeout(function() {
+            if (href.startsWith('#')) {
+              // Handle anchor links
+              const target = document.querySelector(href);
+              if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                window.location.href = href;
+              }
+            } else {
+              // Handle page links
+              window.location.href = href;
+            }
+          }, 100);
+        }
+      }
+    });
+
+    // Close menu when clicking backdrop
+    backdrop.addEventListener('click', closeMenu);
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (navLinks.classList.contains('open')) {
+        if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+          closeMenu();
+        }
+      }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && navLinks.classList.contains('open')) {
         closeMenu();
       }
     });
-
-    // Close when tapping backdrop
-    backdrop.addEventListener('click', closeMenu);
   }
 
   // Function to calculate reading time (can be adapted if needed)
