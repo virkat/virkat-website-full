@@ -21,6 +21,47 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.appendChild(backdrop);
     }
 
+    // Focus management helpers
+    const FOCUSABLE_SELECTOR = 'a[href]:not([tabindex="-1"]):not([aria-disabled="true"]), button:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])';
+    let previouslyFocusedEl = null;
+    function isVisible(el){
+      if (!el) return false;
+      const style = window.getComputedStyle(el);
+      return style.visibility !== 'hidden' && style.display !== 'none';
+    }
+    function focusFirstInMenu(){
+      const focusables = Array.from(navLinks.querySelectorAll(FOCUSABLE_SELECTOR)).filter(isVisible);
+      if (focusables.length > 0) {
+        focusables[0].focus();
+      } else {
+        navLinks.setAttribute('tabindex','-1');
+        navLinks.focus();
+      }
+    }
+    function trapFocus(e){
+      if (!navLinks.classList.contains('open')) return;
+      if (e.key !== 'Tab') return;
+      const focusables = Array.from(navLinks.querySelectorAll(FOCUSABLE_SELECTOR)).filter(isVisible);
+      if (focusables.length === 0) {
+        e.preventDefault();
+        navLinks.focus();
+        return;
+      }
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first || !navLinks.contains(document.activeElement)) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last || !navLinks.contains(document.activeElement)) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
     // Simple function to close menu
     function closeMenu() {
       navLinks.classList.remove('open');
@@ -28,6 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('no-scroll');
       backdrop.classList.remove('show');
       hamburger.setAttribute('aria-expanded', 'false');
+      document.removeEventListener('keydown', trapFocus, true);
+      // Restore focus
+      setTimeout(() => {
+        if (previouslyFocusedEl && previouslyFocusedEl.focus) {
+          previouslyFocusedEl.focus();
+        } else if (hamburger && hamburger.focus) {
+          hamburger.focus();
+        }
+      }, 0);
     }
 
     // Simple function to open menu
@@ -37,6 +87,13 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('no-scroll');
       backdrop.classList.add('show');
       hamburger.setAttribute('aria-expanded', 'true');
+      previouslyFocusedEl = document.activeElement;
+      // Defer focusing to ensure layout is updated
+      setTimeout(() => {
+        focusFirstInMenu();
+      }, 0);
+      // Trap focus within the drawer
+      document.addEventListener('keydown', trapFocus, true);
     }
 
     // Toggle menu on hamburger click
@@ -51,35 +108,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Handle navigation link clicks: only intercept when drawer is open (mobile)
-    navLinks.addEventListener('click', function(e) {
+    // Handle navigation link taps/clicks: close drawer if open, let browser navigate normally
+    function handleNavActivate(e) {
       const a = e.target.closest && e.target.closest('.nav-link');
       if (!a) return;
-      const href = a.getAttribute('href');
-      if (!href) return;
-      const isOpen = navLinks.classList.contains('open');
-      if (!isOpen) {
-        // Let normal navigation happen on desktop
-        return;
+      if (navLinks.classList.contains('open')) {
+        // Close the drawer but do not block default navigation
+        setTimeout(closeMenu, 0);
       }
-      e.preventDefault();
-      closeMenu();
-      // Navigate after menu closes
-      setTimeout(function() {
-        if (href.startsWith('#')) {
-          // Handle anchor links
-          const target = document.querySelector(href);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          } else {
-            window.location.href = href;
-          }
-        } else {
-          // Handle page links
-          window.location.href = href;
-        }
-      }, 100);
-    });
+    }
+    navLinks.addEventListener('click', handleNavActivate, { passive: true });
+    navLinks.addEventListener('touchend', handleNavActivate, { passive: true });
 
     // Close menu when clicking backdrop
     backdrop.addEventListener('click', closeMenu);

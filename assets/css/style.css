@@ -313,8 +313,8 @@ button[aria-disabled="true"],
   }
 
   /* Comfortable touch targets */
-  .nav-links li { margin: 6px 0; }
-  .nav-links .nav-link { padding: 10px 0; display: block; }
+  .nav-links li { margin: 8px 0; }
+  .nav-links .nav-link { padding: 12px 4px; display: block; -webkit-tap-highlight-color: rgba(0,0,0,0.08); }
 
   .hero h1 {
     font-size: 2.8rem;
