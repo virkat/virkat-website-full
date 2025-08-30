@@ -37,46 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
       backdrop.classList.toggle('show', isOpen);
     });
 
-    // Close menu when a nav link is tapped/clicked and then navigate
+    // Close menu when a nav link is tapped/clicked
     navLinks.addEventListener('click', (e) => {
-      // Robustly resolve the anchor even if the tap lands on a text node
-      let target = e.target;
-      if (target && target.nodeType === 3) { // TEXT_NODE
-        target = target.parentElement;
+      const link = e.target.closest('a.nav-link');
+      if (link) {
+        closeMenu();
       }
-      let link = null;
-      if (target && target.closest) {
-        link = target.closest('a.nav-link');
-      } else {
-        // Fallback manual climb
-        let el = target;
-        while (el && el !== navLinks) {
-          if (el.matches && el.matches('a.nav-link')) { link = el; break; }
-          el = el.parentElement;
-        }
-      }
-      if (!link) return;
-      const href = link.getAttribute('href');
-      if (!href) { closeMenu(); return; }
-      const absoluteUrl = link.href; // resolves ../ and relative paths reliably
-      e.preventDefault();
-      closeMenu();
-      // Defer navigation slightly so the drawer/backdrop can close cleanly
-      setTimeout(() => {
-        if (href.startsWith('#')) {
-          const id = href.replace(/^#/, '');
-          const el = document.getElementById(id);
-          if (el) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          } else {
-            // If target isn't on this page, fall back to default hash behavior
-            window.location.hash = id;
-          }
-        } else {
-          // Use href to navigate; more reliable on some mobile browsers
-          window.location.href = absoluteUrl;
-        }
-      }, 300);
     });
 
     // Close on outside click
