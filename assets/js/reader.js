@@ -76,8 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleNavActivate(e){
       const a=e.target.closest&&e.target.closest('.nav-link');
       if(!a) return;
+      const href = a.getAttribute('href');
+      if (!href) return;
       if (navLinks.classList.contains('open')) {
-        setTimeout(close, 0);
+        setTimeout(()=>{ close(); try{ window.location.href = href; }catch(_){} }, 0);
       }
     }
   navLinks.addEventListener('click', handleNavActivate, { passive: true });

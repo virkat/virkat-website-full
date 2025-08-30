@@ -150,9 +150,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleNavActivate(e) {
       const a = e.target.closest && e.target.closest('.nav-link');
       if (!a) return;
+      const href = a.getAttribute('href');
+      if (!href) return;
       if (navLinks.classList.contains('open')) {
-        // Close the drawer but do not block default navigation
-        setTimeout(closeMenu, 0);
+        // Close the drawer then force navigation to guarantee transition
+        setTimeout(() => {
+          closeMenu();
+          try { window.location.href = href; } catch (_) { /* noop */ }
+        }, 0);
       }
     }
     navLinks.addEventListener('click', handleNavActivate, { passive: true });
