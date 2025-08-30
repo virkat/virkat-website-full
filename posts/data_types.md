@@ -1,3 +1,8 @@
+```
+# Diving Deep into C++: Understanding Data Types and Input
+```
+}
+```
 # Diving Deep into C++: Understanding Data Types and Input
 
 C++ is a powerful language, and at its core lies the concept of **data types**. Think of data types as blueprints that tell the compiler what kind of values a variable can hold, how much memory it needs, and what operations can be performed on it. If you're just starting your C++ journey, mastering data types is a crucial first step.
