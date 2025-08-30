@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       navLinks.classList.remove('open');
       hamburger.classList.remove('active');
       document.body.classList.remove('no-scroll');
+      document.body.classList.remove('menu-open');
       backdrop.classList.remove('show');
       hamburger.setAttribute('aria-expanded', 'false');
   hamburger.setAttribute('aria-label', 'Open menu');
@@ -112,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
       navLinks.classList.add('open');
       hamburger.classList.add('active');
       document.body.classList.add('no-scroll');
+      document.body.classList.add('menu-open');
       backdrop.classList.add('show');
       hamburger.setAttribute('aria-expanded', 'true');
   hamburger.setAttribute('aria-label', 'Close menu');
@@ -171,7 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!navLinks.classList.contains('open')) return;
       try { window.location.href = a.href; } catch(_) { window.location.assign(href); }
     }
-    document.addEventListener('click', forceNavOnCapture, true);
+  document.addEventListener('click', forceNavOnCapture, true);
+  document.addEventListener('touchend', forceNavOnCapture, true);
 
     // Swipe-to-close (right swipe)
     let touchStartX = null, touchStartY = null;

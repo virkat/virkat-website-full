@@ -59,7 +59,7 @@ a:hover {
   box-shadow: 0 2px 15px var(--shadow-color);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 3000; /* ensure header/drawer sit above backdrop */
   padding: 15px 0;
 }
 
@@ -355,6 +355,11 @@ button[aria-disabled="true"],
 
 /* Performance hint for smoother drawer animation */
 .nav-links { will-change: transform; }
+
+/* When menu is open, disable header interactions except the drawer itself */
+.menu-open .header * { pointer-events: none; }
+.menu-open .nav-links,
+.menu-open .nav-links * { pointer-events: auto; }
 
 /* Team Page Specific Styles */
 .team-member img {
