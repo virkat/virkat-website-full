@@ -37,11 +37,18 @@ document.addEventListener('DOMContentLoaded', () => {
       backdrop.classList.toggle('show', isOpen);
     });
 
-    // Close menu when a nav link is clicked (mobile UX)
+    // Close menu when a nav link is clicked and then navigate
     navLinks.addEventListener('click', (e) => {
       const link = e.target.closest && e.target.closest('a.nav-link');
       if (!link) return;
-  closeMenu();
+      const href = link.getAttribute('href');
+      if (href) {
+        e.preventDefault();
+        closeMenu();
+        setTimeout(() => { window.location.assign(href); }, 120);
+      } else {
+        closeMenu();
+      }
     });
 
     // Close on outside click
