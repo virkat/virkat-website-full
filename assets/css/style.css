@@ -418,6 +418,16 @@ button[aria-disabled="true"],
   border-radius: var(--radius);
 }
 
+/* Make links in blog content clearly clickable */
+.blog-post-content a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  word-break: break-word; /* prevent overflow for long URLs */
+}
+.blog-post-content a:hover {
+  color: #2c5d7a;
+}
+
 /* Responsive adjustments for blog content */
 @media (max-width: 768px) {
   .blog-post-content {

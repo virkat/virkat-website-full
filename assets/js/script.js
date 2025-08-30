@@ -176,6 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
   md = md.replace(/!\[([^\]]*)\]\s*\(([^\)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" decoding="async" fetchpriority="low" />');
   // Links [text](url) (allow optional space before parenthesis)
   md = md.replace(/\[([^\]]+)\]\s*\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  // Autolink bare URLs to ensure clickability even if markdown syntax fails
+  md = md.replace(/(?<!["'=])(https?:\/\/[^\s<>)]+[\w\/#-])/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
     // Headings ####, ###, ##, #
     md = md.replace(/^######\s?(.+)$/gm, '<h6>$1</h6>')
            .replace(/^#####\s?(.+)$/gm, '<h5>$1</h5>')
