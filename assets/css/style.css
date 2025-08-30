@@ -28,7 +28,7 @@ body.no-scroll {
   overflow: hidden;
 }
 
-/* Disable interactions on background while drawer is open (iOS-friendly alternative to inert) */
+/* Disable interactions on background while the menu overlay is open (iOS-friendly alternative to inert) */
 .no-interact { pointer-events: none !important; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -59,7 +59,7 @@ a:hover {
   box-shadow: 0 2px 15px var(--shadow-color);
   position: sticky;
   top: 0;
-  z-index: 3000; /* ensure header/drawer sit above backdrop */
+  z-index: 3000; /* ensure header/menu overlay sits above content */
   padding: 15px 0;
 }
 
@@ -335,13 +335,12 @@ button[aria-disabled="true"],
   .section-header h2 { font-size: 2.2rem; }
 }
 
-/* (Backdrop no longer needed for overlay menu, keeping styles in case of reuse) */
-/* .mobile-backdrop { ... } */
+/* Backdrop no longer used with overlay menu */
 
 /* Performance hint */
 .nav-links { will-change: opacity; }
 
-/* When menu is open, disable header interactions except the drawer itself */
+/* When menu is open, disable header interactions except the menu overlay itself */
 .menu-open .header * { pointer-events: none; }
 .menu-open .nav-links,
 .menu-open .nav-links * { pointer-events: auto; }

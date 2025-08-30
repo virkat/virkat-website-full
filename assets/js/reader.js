@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const current = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-link').forEach(a => { const href = (a.getAttribute('href')||'').split('/').pop(); if (href === current) a.classList.add('active'); });
 
-  // Mobile nav basic toggle (reuse CSS classes)
+  // Mobile nav basic toggle (overlay menu)
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
   if (hamburger && navLinks){
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburger.setAttribute('aria-controls', navLinks.id);
     hamburger.setAttribute('aria-expanded','false');
     if (!hamburger.getAttribute('aria-label')) hamburger.setAttribute('aria-label','Open menu');
-  let backdrop = null; // not required for overlay menu
+  let backdrop = null; // no backdrop used for overlay menu
     // Focus helpers
     const FOCUSABLE_SELECTOR = 'a[href]:not([tabindex="-1"]):not([aria-disabled="true"]), button:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])';
     let previouslyFocusedEl = null;
@@ -69,9 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const close=()=>{navLinks.classList.remove('open'); hamburger.classList.remove('active'); document.body.classList.remove('no-scroll'); document.body.classList.remove('menu-open'); hamburger.setAttribute('aria-expanded','false'); hamburger.setAttribute('aria-label','Open menu'); setPageInert(false); document.removeEventListener('keydown', trapFocus, true); setTimeout(()=>{ if(previouslyFocusedEl&&previouslyFocusedEl.focus) previouslyFocusedEl.focus(); else if(hamburger&&hamburger.focus) hamburger.focus(); },0);}; 
   hamburger.addEventListener('click', (e)=>{e.preventDefault(); navLinks.classList.contains('open')?close():open();}); 
   hamburger.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); navLinks.classList.contains('open')?close():open(); }});
-    backdrop.addEventListener('click', close); 
   document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close();}); 
-    // Close drawer on nav activation; let default navigation proceed
+    // Close menu on nav activation; let default navigation proceed
     function handleNavActivate(e){
       const a=e.target.closest&&e.target.closest('.nav-link');
       if(!a) return;
@@ -87,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (navLinks.classList.contains('open')) setTimeout(close, 0);
     }
     navLinks.addEventListener('click', handleNavActivate, { passive: false });
-    // iOS fallback: force navigation at capture phase if drawer is open
+  // iOS fallback: force navigation at capture phase if menu is open
     function forceNavOnCapture(e){
       const a = e.target.closest && e.target.closest('.nav-links .nav-link');
       if (!a) return;
@@ -98,10 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   document.addEventListener('click', forceNavOnCapture, true);
   document.addEventListener('touchend', forceNavOnCapture, true);
-  // Swipe-to-close (right swipe)
-  let touchStartX=null, touchStartY=null;
-  navLinks.addEventListener('touchstart', (e)=>{ const t=e.changedTouches&&e.changedTouches[0]; if(!t) return; touchStartX=t.clientX; touchStartY=t.clientY; }, { passive:true });
-  navLinks.addEventListener('touchend', (e)=>{ const t=e.changedTouches&&e.changedTouches[0]; if(!t||touchStartX==null) return; const dx=t.clientX-touchStartX; const dy=Math.abs(t.clientY-touchStartY); if(dx>80 && dy<30 && navLinks.classList.contains('open')) close(); touchStartX=touchStartY=null; }, { passive:true });
+  // Close when clicking outside
   document.addEventListener('click', (e)=>{ if(!navLinks.classList.contains('open')) return; const inside = navLinks.contains(e.target); const onHamb = hamburger.contains(e.target); if(!inside && !onHamb) close(); });
   }
 

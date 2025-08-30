@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Mobile hamburger menu - simplified and bulletproof
+  // Mobile hamburger menu - simplified full-screen overlay
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
   
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Backdrop not required for overlay menu
   let backdrop = null;
 
-    // Prevent background interaction when the drawer is open
+  // Prevent background interaction when the menu overlay is open
     const pageMain = document.querySelector('main');
     const pageFooter = document.querySelector('footer');
     function setPageInert(on){
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         focusFirstInMenu();
       }, 0);
-      // Trap focus within the drawer
+  // Trap focus within the menu overlay
       document.addEventListener('keydown', trapFocus, true);
     }
 
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Handle navigation link taps/clicks: close drawer if open, let browser navigate normally
+  // Handle navigation link taps/clicks: close menu if open, let browser navigate normally
     function handleNavActivate(e) {
       const a = e.target.closest && e.target.closest('.nav-link');
       if (!a) return;
@@ -152,12 +152,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (target) target.scrollIntoView({ behavior: 'smooth' });
         return;
       }
-      // For normal links, allow the browser to navigate; optionally close drawer without blocking
+  // For normal links, allow the browser to navigate; optionally close menu without blocking
       if (navLinks.classList.contains('open')) setTimeout(closeMenu, 0);
     }
     navLinks.addEventListener('click', handleNavActivate, { passive: false });
 
-    // iOS fallback: force navigation at capture phase if drawer is open
+  // iOS fallback: force navigation at capture phase if menu is open
     function forceNavOnCapture(e){
       const a = e.target.closest && e.target.closest('.nav-links .nav-link');
       if (!a) return;
@@ -169,26 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', forceNavOnCapture, true);
   document.addEventListener('touchend', forceNavOnCapture, true);
 
-    // Swipe-to-close (right swipe)
-    let touchStartX = null, touchStartY = null;
-    navLinks.addEventListener('touchstart', function(e){
-      const t = e.changedTouches && e.changedTouches[0];
-      if (!t) return;
-      touchStartX = t.clientX; touchStartY = t.clientY;
-    }, { passive: true });
-    navLinks.addEventListener('touchmove', function(e){
-      // passive: true, do not prevent scrolling
-    }, { passive: true });
-    navLinks.addEventListener('touchend', function(e){
-      const t = e.changedTouches && e.changedTouches[0];
-      if (!t || touchStartX == null) return;
-      const dx = t.clientX - touchStartX;
-      const dy = Math.abs(t.clientY - touchStartY);
-      if (dx > 50 && dy < 30 && navLinks.classList.contains('open')) {
-        closeMenu();
-      }
-      touchStartX = touchStartY = null;
-    }, { passive: true });
 
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
