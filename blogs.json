@@ -6,42 +6,42 @@
     "description": "Data cleaning is the first and most crucial step in any data analysis project. In this post, we explore the tools and techniques for ensuring your data is reliable and accurate.",
     "author": "Asad Raza Virk",
     "date": "August 22, 2025",
-  "file": "posts/blog-post-1.md"
+    "file": "posts/blog-post-1.md"
   },
   {
     "id": "kisa-journey",
-  "title": "Kisa’s Journey to Becoming a Google Certified Data Analyst",
-  "image": "assets/images/blog2.jpg",
-  "description": "Kisa’s personal journey from curiosity to certification—overcoming challenges, embracing learning, and finding confidence as a Google Certified Data Analyst.",
+    "title": "Kisa’s Journey to Becoming a Google Certified Data Analyst",
+    "image": "assets/images/blog2.jpg",
+    "description": "Kisa’s personal journey from curiosity to certification—overcoming challenges, embracing learning, and finding confidence as a Google Certified Data Analyst.",
     "author": "Kisa Fatima",
-  "date": "August 29, 2025",
-  "file": "posts/blog-post-2.md"
+    "date": "August 29, 2025",
+    "file": "posts/blog-post-2.md"
   },
   {
-  "id": "flood-data-story",
-  "title": "The Story of Data and the Mighty Floods in Punjab",
-  "image": "assets/images/flood-data-story.jpg",
-  "description": "A powerful story about how data is helping communities in Punjab, Pakistan, predict, prepare for, and respond to devastating floods.",
-  "author": "Asad Raza Virk",
-  "date": "August 30, 2025",
-  "file": "posts/The-Story-of_floods-and-data.md"
-},
-{
-  "id": "summer-camp-feedback",
-  "title": "Why a Simple Feedback Form is a Powerful Tool",
-  "image": "posts/feed-back-form.jpg",
-  "description": "My first semester project taught me the importance of data collection and form design. This blog post explains how a simple feedback form can turn raw opinions into actionable insights.",
-  "author": "Kisa Fatima",
-  "date": "August 30, 2025",
-  "file": "posts/feed-back-form.md"
-},
-{
-  "id": "diving-deep-into-cpp",
-  "title": "Diving Deep into C++: Understanding Data Types and Input",
-  "image": "posts/data_types.jpg",
-  "description": "This post explains the fundamental building blocks of C++: data types and how to handle user input. Understanding these concepts is essential for writing effective and efficient C++ programs.",
-  "author": "Kisa Fatima",
-  "date": "August 30, 2025",
-  "file": "posts/data_types.md"
-}
+    "id": "flood-data-story",
+    "title": "The Story of Data and the Mighty Floods in Punjab",
+    "image": "assets/images/flood-data-story.jpg",
+    "description": "A powerful story about how data is helping communities in Punjab, Pakistan, predict, prepare for, and respond to devastating floods.",
+    "author": "Asad Raza Virk",
+    "date": "August 30, 2025",
+    "file": "posts/The-Story-of_floods-and-data.md"
+  },
+  {
+    "id": "summer-camp-feedback",
+    "title": "Why a Simple Feedback Form is a Powerful Tool",
+    "image": "posts/feed-back-form.jpg",
+    "description": "My first semester project taught me the importance of data collection and form design. This blog post explains how a simple feedback form can turn raw opinions into actionable insights.",
+    "author": "Kisa Fatima",
+    "date": "August 30, 2025",
+    "file": "posts/feed-back-form.md"
+  },
+  {
+    "id": "diving-deep-into-cpp",
+    "title": "Diving Deep into C++: Understanding Data Types and Input",
+    "image": "posts/data_types.jpg",
+    "description": "This post explains the fundamental building blocks of C++: data types and how to handle user input. Understanding these concepts is essential for writing effective and efficient C++ programs.",
+    "author": "Kisa Fatima",
+    "date": "August 30, 2025",
+    "file": "posts/data_types.md"
+  }
 ]
