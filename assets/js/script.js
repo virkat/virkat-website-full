@@ -37,7 +37,47 @@ document.addEventListener('DOMContentLoaded', () => {
       backdrop.classList.toggle('show', isOpen);
     });
 
-    
+    // Close menu when a nav link is tapped/clicked and then navigate
+    navLinks.addEventListener('click', (e) => {
+      // Robustly resolve the anchor even if the tap lands on a text node
+      let target = e.target;
+      if (target && target.nodeType === 3) { // TEXT_NODE
+        target = target.parentElement;
+      }
+      let link = null;
+      if (target && target.closest) {
+        link = target.closest('a.nav-link');
+      } else {
+        // Fallback manual climb
+        let el = target;
+        while (el && el !== navLinks) {
+          if (el.matches && el.matches('a.nav-link')) { link = el; break; }
+          el = el.parentElement;
+        }
+      }
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!href) { closeMenu(); return; }
+      const absoluteUrl = link.href; // resolves ../ and relative paths reliably
+      e.preventDefault();
+      closeMenu();
+      // Defer navigation slightly so the drawer/backdrop can close cleanly
+      setTimeout(() => {
+        if (href.startsWith('#')) {
+          const id = href.replace(/^#/, '');
+          const el = document.getElementById(id);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            // If target isn't on this page, fall back to default hash behavior
+            window.location.hash = id;
+          }
+        } else {
+          // Use href to navigate; more reliable on some mobile browsers
+          window.location.href = absoluteUrl;
+        }
+      }, 300);
+    });
 
     // Close on outside click
     document.addEventListener('click', (e) => {
@@ -285,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
               const md = fetchedText != null ? fetchedText : await response.text();
               let articleHtml = markdownToHtml(md);
               // Resolve relative image paths (like image.png) to the post directory
-              const baseDir = blogFile.replace(/[^\]+$/, '');
+              const baseDir = blogFile.replace(/[^\/]+$/, '');
               articleHtml = articleHtml.replace(/src="(?!https?:|\/|assets\/images\/|posts\/)([^\"]+)"/g, (m, p1) => `src="${baseDir}${p1}"`);
               // Ensure inline images from assets/images get cache-busted
               articleHtml = addCacheBustToImages(articleHtml);
@@ -407,52 +447,6 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(error => console.error('Error fetching blogs.json:', error));
   }
 });
-
-    // Close menu when a nav link is tapped/clicked and then navigate
-    navLinks.addEventListener('click', (e) => {
-      // Robustly resolve the anchor even if the tap lands on a text node
-      let target = e.target;
-      if (target && target.nodeType === 3) { // TEXT_NODE
-        target = target.parentElement;
-      }
-      let link = null;
-      if (target && target.closest) {
-        link = target.closest('a.nav-link');
-      } else {
-        // Fallback manual climb
-        let el = target;
-        while (el && el !== navLinks) {
-          if (el.matches && el.matches('a.nav-link')) { link = el; break; }
-          el = el.parentElement;
-        }
-      }
-      if (!link) return;
-      const href = link.getAttribute('href');
-      if (!href) { closeMenu(); return; }
-      const absoluteUrl = link.href; // resolves ../ and relative paths reliably
-      e.preventDefault();
-      closeMenu();
-      // Defer navigation slightly so the drawer/backdrop can close cleanly
-      setTimeout(() => {
-        if (href.startsWith('#')) {
-          const id = href.replace(/^#/, '');
-          const el = document.getElementById(id);
-          if (el) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          } else {
-            // If target isn't on this page, fall back to default hash behavior
-            window.location.hash = id;
-          }
-        } else {
-          // Use assign to navigate; more reliable on some mobile browsers
-          window.location.assign(absoluteUrl);
-        }
-      }, 300);
-    });
-
-  // Close when tapping backdrop
-  backdrop.addEventListener('click', closeMenu);
-  }
 
   // Function to calculate reading time (can be adapted if needed)
   function calculateReadingTime(text) {
