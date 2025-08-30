@@ -177,6 +177,10 @@ a:hover {
   padding: 80px 0;
 }
 
+/* Prevent sticky header from covering content when jumping to anchors */
+.section { scroll-margin-top: 80px; }
+#contact { scroll-margin-top: 90px; }
+
 /* Utilities */
 .centered {
   text-align: center;
@@ -284,7 +288,7 @@ button[aria-disabled="true"],
     top: 0;
     right: 0;
     height: 100vh;
-    width: min(84vw, 360px);
+  width: 100vw; /* cover full screen to avoid side overlap */
     background-color: var(--surface-color);
     display: flex;
     flex-direction: column;
