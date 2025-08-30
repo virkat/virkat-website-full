@@ -48,7 +48,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mobile nav basic toggle (reuse CSS classes)
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
-  if (hamburger && navLinks){ let backdrop = document.querySelector('.mobile-backdrop'); if(!backdrop){ backdrop=document.createElement('div'); backdrop.className='mobile-backdrop'; document.body.appendChild(backdrop);} const open=()=>{navLinks.classList.add('open'); hamburger.classList.add('active'); document.body.classList.add('no-scroll'); backdrop.classList.add('show');}; const close=()=>{navLinks.classList.remove('open'); hamburger.classList.remove('active'); document.body.classList.remove('no-scroll'); backdrop.classList.remove('show');}; hamburger.addEventListener('click', (e)=>{e.preventDefault(); navLinks.classList.contains('open')?close():open();}); backdrop.addEventListener('click', close); document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close();}); navLinks.addEventListener('click', (e)=>{ const a=e.target.closest&&e.target.closest('.nav-link'); if(!a) return; e.preventDefault(); const href=a.getAttribute('href'); close(); setTimeout(()=>{ window.location.href = href; }, 100);}); }
+  if (hamburger && navLinks){
+    let backdrop = document.querySelector('.mobile-backdrop');
+    if(!backdrop){ backdrop=document.createElement('div'); backdrop.className='mobile-backdrop'; document.body.appendChild(backdrop);} 
+    const open=()=>{navLinks.classList.add('open'); hamburger.classList.add('active'); document.body.classList.add('no-scroll'); backdrop.classList.add('show');}; 
+    const close=()=>{navLinks.classList.remove('open'); hamburger.classList.remove('active'); document.body.classList.remove('no-scroll'); backdrop.classList.remove('show');}; 
+    hamburger.addEventListener('click', (e)=>{e.preventDefault(); navLinks.classList.contains('open')?close():open();}); 
+    backdrop.addEventListener('click', close); 
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close();}); 
+    // Only intercept clicks when drawer is open (mobile); allow default on desktop
+    navLinks.addEventListener('click', (e)=>{ 
+      const a=e.target.closest&&e.target.closest('.nav-link'); 
+      if(!a) return; 
+      const href=a.getAttribute('href');
+      const isOpen = navLinks.classList.contains('open');
+      if (!isOpen) { return; }
+      e.preventDefault(); 
+      close(); 
+      setTimeout(()=>{ window.location.href = href; }, 100);
+    }); 
+  }
 
   // Standalone reader flow
   const id = getQueryParam('id');

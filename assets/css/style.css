@@ -286,7 +286,7 @@ button[aria-disabled="true"],
   .nav-links {
     position: fixed;
     top: 0;
-    right: -280px; /* Start off-screen */
+  right: 0; /* anchor to right edge */
     width: 280px;
     height: 100vh;
     background-color: var(--surface-color);
@@ -297,15 +297,14 @@ button[aria-disabled="true"],
     z-index: 1001; /* above backdrop */
     box-sizing: border-box;
     overflow-y: auto;
-    transform: translateX(0); /* Corrected transform */
-    opacity: 1; /* Corrected opacity */
+  transform: translateX(100%); /* hidden off-canvas to the right */
     pointer-events: none;
     transition: transform var(--transition);
     gap: 16px;
   }
 
   .nav-links.open {
-    transform: translateX(-280px); /* Slide in */
+  transform: translateX(0); /* slide into view */
     pointer-events: auto;
   }
 

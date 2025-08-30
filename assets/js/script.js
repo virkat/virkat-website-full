@@ -51,12 +51,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Handle navigation link clicks
+    // Handle navigation link clicks: only intercept when drawer is open (mobile)
     navLinks.addEventListener('click', function(e) {
       const a = e.target.closest && e.target.closest('.nav-link');
       if (!a) return;
       const href = a.getAttribute('href');
       if (!href) return;
+      const isOpen = navLinks.classList.contains('open');
+      if (!isOpen) {
+        // Let normal navigation happen on desktop
+        return;
+      }
       e.preventDefault();
       closeMenu();
       // Navigate after menu closes
