@@ -203,6 +203,15 @@ document.addEventListener('DOMContentLoaded', () => {
         return response.json();
       })
       .then(blogs => {
+        // Sort by date descending so latest posts appear first
+        try {
+          blogs.sort((a, b) => {
+            const da = Date.parse(a.date || '') || 0;
+            const db = Date.parse(b.date || '') || 0;
+            return db - da;
+          });
+        } catch (_) {}
+
   blogs.forEach(blog => {
           const blogCard = document.createElement('div');
           blogCard.classList.add('card', 'blog-card');
