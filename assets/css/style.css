@@ -229,6 +229,17 @@ a:hover {
 }
 
 @media (max-width: 768px) {
+  /* Use a single column on small screens to avoid horizontal overflow */
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Slightly reduce side padding to protect against clipping */
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
   .card-grid .card > img {
   height: 220px;
   }
