@@ -60,6 +60,8 @@ a:hover {
   align-items: center;
 }
 
+.nav { position: relative; }
+
 .logo img {
   height: 40px;
 }
