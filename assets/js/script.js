@@ -153,11 +153,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const href = a.getAttribute('href');
       if (!href) return;
       if (navLinks.classList.contains('open')) {
-        // Close the drawer then force navigation to guarantee transition
-        setTimeout(() => {
-          closeMenu();
-          try { window.location.href = href; } catch (_) { /* noop */ }
-        }, 0);
+        // Navigate immediately to satisfy iOS gesture timing, then close drawer
+        try { window.location.assign(href); } catch (_) { window.location.href = href; }
+        closeMenu();
       }
     }
     navLinks.addEventListener('click', handleNavActivate, { passive: true });
