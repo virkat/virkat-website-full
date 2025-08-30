@@ -287,74 +287,59 @@ button[aria-disabled="true"],
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-  /* Slide-in drawer for mobile nav */
+  /* Full-screen overlay menu for mobile */
   .nav-links {
     position: fixed;
-    top: 0;
-  right: 0; /* anchor to right edge */
-    width: 280px;
+    inset: 0; /* cover the whole viewport */
+    width: 100vw;
     height: 100vh;
     background-color: var(--surface-color);
     display: flex;
     flex-direction: column;
-    padding: 24px 20px;
-    box-shadow: -2px 0 20px var(--shadow-color);
-    z-index: 2000; /* ensure above backdrop/content */
+    padding: 96px 24px 24px; /* leave room for header area visually */
     box-sizing: border-box;
     overflow-y: auto;
-  transform: translateX(100%); /* hidden off-canvas to the right */
+    z-index: 4000; /* above header */
+    opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: transform var(--transition);
-    gap: 16px;
+    transition: opacity var(--transition), visibility var(--transition);
+    gap: 12px;
   }
 
   .nav-links.open {
-  transform: translateX(0); /* slide into view */
+    opacity: 1;
+    visibility: visible;
     pointer-events: auto;
   }
 
-  /* Make sure links inside the drawer are always tappable */
-  .nav-links.open .nav-link { pointer-events: auto; position: relative; z-index: 1; }
+  /* Make sure links are large, easy tap targets */
+  .nav-links li { margin: 6px 0; }
+  .nav-links .nav-link {
+    padding: 16px 8px;
+    display: block;
+    font-size: 1.15rem;
+    -webkit-tap-highlight-color: rgba(0,0,0,0.08);
+  }
+  .nav-links .nav-link:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 2px; border-radius: 6px; }
 
-  /* Prevent hamburger from eating taps while drawer overlaps */
+  /* Prevent hamburger from eating taps while menu is open */
   .hamburger.active { pointer-events: none; }
 
   .hamburger {
     display: block;
-  touch-action: manipulation; /* improve tap responsiveness */
+    touch-action: manipulation; /* improve tap responsiveness */
   }
 
-  /* Comfortable touch targets */
-  .nav-links li { margin: 8px 0; }
-  .nav-links .nav-link { padding: 12px 4px; display: block; -webkit-tap-highlight-color: rgba(0,0,0,0.08); }
-  .nav-links .nav-link:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 2px; border-radius: 6px; }
-
-  .hero h1 {
-    font-size: 2.8rem;
-  }
-
-  .section-header h2 {
-    font-size: 2.2rem;
-  }
+  .hero h1 { font-size: 2.8rem; }
+  .section-header h2 { font-size: 2.2rem; }
 }
 
-/* Backdrop for mobile drawer */
-.mobile-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  z-index: 1000; /* below drawer, above content */
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--transition);
-}
-.mobile-backdrop.show {
-  opacity: 1;
-  pointer-events: auto;
-}
+/* (Backdrop no longer needed for overlay menu, keeping styles in case of reuse) */
+/* .mobile-backdrop { ... } */
 
-/* Performance hint for smoother drawer animation */
-.nav-links { will-change: transform; }
+/* Performance hint */
+.nav-links { will-change: opacity; }
 
 /* When menu is open, disable header interactions except the drawer itself */
 .menu-open .header * { pointer-events: none; }

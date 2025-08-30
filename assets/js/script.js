@@ -22,13 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!hamburger.getAttribute('aria-label')) {
       hamburger.setAttribute('aria-label', 'Open menu');
     }
-    // Create backdrop if it doesn't exist
-    let backdrop = document.querySelector('.mobile-backdrop');
-    if (!backdrop) {
-      backdrop = document.createElement('div');
-      backdrop.className = 'mobile-backdrop';
-      document.body.appendChild(backdrop);
-    }
+  // Backdrop not required for overlay menu
+  let backdrop = null;
 
     // Prevent background interaction when the drawer is open
     const pageMain = document.querySelector('main');
@@ -89,11 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Simple function to close menu
     function closeMenu() {
-      navLinks.classList.remove('open');
-      hamburger.classList.remove('active');
-      document.body.classList.remove('no-scroll');
-      document.body.classList.remove('menu-open');
-      backdrop.classList.remove('show');
+  navLinks.classList.remove('open');
+  hamburger.classList.remove('active');
+  document.body.classList.remove('no-scroll');
+  document.body.classList.remove('menu-open');
       hamburger.setAttribute('aria-expanded', 'false');
   hamburger.setAttribute('aria-label', 'Open menu');
   setPageInert(false);
@@ -110,11 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Simple function to open menu
     function openMenu() {
-      navLinks.classList.add('open');
-      hamburger.classList.add('active');
-      document.body.classList.add('no-scroll');
-      document.body.classList.add('menu-open');
-      backdrop.classList.add('show');
+  navLinks.classList.add('open');
+  hamburger.classList.add('active');
+  document.body.classList.add('no-scroll');
+  document.body.classList.add('menu-open');
       hamburger.setAttribute('aria-expanded', 'true');
   hamburger.setAttribute('aria-label', 'Close menu');
   setPageInert(true);
@@ -197,16 +190,12 @@ document.addEventListener('DOMContentLoaded', () => {
       touchStartX = touchStartY = null;
     }, { passive: true });
 
-    // Close menu when clicking backdrop
-    backdrop.addEventListener('click', closeMenu);
-
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
-      if (navLinks.classList.contains('open')) {
-        if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
-          closeMenu();
-        }
-      }
+      if (!navLinks.classList.contains('open')) return;
+      const clickedInsideMenu = navLinks.contains(e.target);
+      const clickedHamburger = hamburger.contains(e.target);
+      if (!clickedInsideMenu && !clickedHamburger) closeMenu();
     });
 
     // Close menu on escape key
