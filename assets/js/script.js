@@ -162,6 +162,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     navLinks.addEventListener('click', handleNavActivate, { passive: false });
 
+    // iOS fallback: force navigation at capture phase if drawer is open
+    function forceNavOnCapture(e){
+      const a = e.target.closest && e.target.closest('.nav-links .nav-link');
+      if (!a) return;
+      const href = a.getAttribute('href') || '';
+      if (!href || href.startsWith('#')) return;
+      if (!navLinks.classList.contains('open')) return;
+      try { window.location.href = a.href; } catch(_) { window.location.assign(href); }
+    }
+    document.addEventListener('click', forceNavOnCapture, true);
+
     // Swipe-to-close (right swipe)
     let touchStartX = null, touchStartY = null;
     navLinks.addEventListener('touchstart', function(e){

@@ -313,6 +313,9 @@ button[aria-disabled="true"],
     pointer-events: auto;
   }
 
+  /* Make sure links inside the drawer are always tappable */
+  .nav-links.open .nav-link { pointer-events: auto; position: relative; z-index: 1; }
+
   /* Prevent hamburger from eating taps while drawer overlaps */
   .hamburger.active { pointer-events: none; }
 

@@ -65,9 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function trapFocus(e){ if(!navLinks.classList.contains('open')) return; if(e.key!=='Tab') return; const els = Array.from(navLinks.querySelectorAll(FOCUSABLE_SELECTOR)).filter(isVisible); if(!els.length){ e.preventDefault(); navLinks.focus(); return;} const first = els[0]; const last = els[els.length-1]; if(e.shiftKey){ if(document.activeElement===first || !navLinks.contains(document.activeElement)){ e.preventDefault(); last.focus(); } } else { if(document.activeElement===last || !navLinks.contains(document.activeElement)){ e.preventDefault(); first.focus(); } } }
   const pageMain = document.querySelector('main');
   const pageFooter = document.querySelector('footer');
-  function setPageInert(on){ [pageMain, pageFooter].forEach(el=>{ if(!el) return; try{ if(on){ el.setAttribute('inert',''); el.setAttribute('aria-hidden','true'); } else { el.removeAttribute('inert'); el.removeAttribute('aria-hidden'); } }catch(_){}}); }
-  const open=()=>{navLinks.classList.add('open'); hamburger.classList.add('active'); document.body.classList.add('no-scroll'); backdrop.classList.add('show'); setPageInert(true); previouslyFocusedEl = document.activeElement; setTimeout(focusFirst, 0); document.addEventListener('keydown', trapFocus, true);}; 
-  const close=()=>{navLinks.classList.remove('open'); hamburger.classList.remove('active'); document.body.classList.remove('no-scroll'); backdrop.classList.remove('show'); setPageInert(false); document.removeEventListener('keydown', trapFocus, true); setTimeout(()=>{ if(previouslyFocusedEl&&previouslyFocusedEl.focus) previouslyFocusedEl.focus(); else if(hamburger&&hamburger.focus) hamburger.focus(); },0);}; 
+  function setPageInert(on){ [pageMain, pageFooter].forEach(el=>{ if(!el) return; try{ if(on){ el.classList.add('no-interact'); el.setAttribute('aria-hidden','true'); } else { el.classList.remove('no-interact'); el.removeAttribute('aria-hidden'); } }catch(_){}}); }
+  const open=()=>{navLinks.classList.add('open'); hamburger.classList.add('active'); document.body.classList.add('no-scroll'); backdrop.classList.add('show'); hamburger.setAttribute('aria-expanded','true'); hamburger.setAttribute('aria-label','Close menu'); setPageInert(true); previouslyFocusedEl = document.activeElement; setTimeout(focusFirst, 0); document.addEventListener('keydown', trapFocus, true);}; 
+  const close=()=>{navLinks.classList.remove('open'); hamburger.classList.remove('active'); document.body.classList.remove('no-scroll'); backdrop.classList.remove('show'); hamburger.setAttribute('aria-expanded','false'); hamburger.setAttribute('aria-label','Open menu'); setPageInert(false); document.removeEventListener('keydown', trapFocus, true); setTimeout(()=>{ if(previouslyFocusedEl&&previouslyFocusedEl.focus) previouslyFocusedEl.focus(); else if(hamburger&&hamburger.focus) hamburger.focus(); },0);}; 
   hamburger.addEventListener('click', (e)=>{e.preventDefault(); navLinks.classList.contains('open')?close():open();}); 
   hamburger.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); navLinks.classList.contains('open')?close():open(); }});
     backdrop.addEventListener('click', close); 
@@ -88,6 +88,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (navLinks.classList.contains('open')) setTimeout(close, 0);
     }
     navLinks.addEventListener('click', handleNavActivate, { passive: false });
+    // iOS fallback: force navigation at capture phase if drawer is open
+    function forceNavOnCapture(e){
+      const a = e.target.closest && e.target.closest('.nav-links .nav-link');
+      if (!a) return;
+      const href = a.getAttribute('href') || '';
+      if (!href || href.startsWith('#')) return;
+      if (!navLinks.classList.contains('open')) return;
+      try { window.location.href = a.href; } catch(_) { window.location.assign(href); }
+    }
+    document.addEventListener('click', forceNavOnCapture, true);
   // Swipe-to-close (right swipe)
   let touchStartX=null, touchStartY=null;
   navLinks.addEventListener('touchstart', (e)=>{ const t=e.changedTouches&&e.changedTouches[0]; if(!t) return; touchStartX=t.clientX; touchStartY=t.clientY; }, { passive:true });
