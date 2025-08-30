@@ -36,15 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function setPageInert(on){
       [pageMain, pageFooter].forEach(el => {
         if (!el) return;
-        try {
-          if (on) {
-            el.setAttribute('inert', '');
-            el.setAttribute('aria-hidden', 'true');
-          } else {
-            el.removeAttribute('inert');
-            el.removeAttribute('aria-hidden');
-          }
-        } catch(_){}
+        if (on) {
+          el.classList.add('no-interact');
+          el.setAttribute('aria-hidden', 'true');
+        } else {
+          el.classList.remove('no-interact');
+          el.removeAttribute('aria-hidden');
+        }
       });
     }
 

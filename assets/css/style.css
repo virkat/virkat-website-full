@@ -28,6 +28,9 @@ body.no-scroll {
   overflow: hidden;
 }
 
+/* Disable interactions on background while drawer is open (iOS-friendly alternative to inert) */
+.no-interact { pointer-events: none !important; }
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
@@ -296,7 +299,7 @@ button[aria-disabled="true"],
     flex-direction: column;
     padding: 24px 20px;
     box-shadow: -2px 0 20px var(--shadow-color);
-    z-index: 1001; /* above backdrop */
+    z-index: 2000; /* ensure above backdrop/content */
     box-sizing: border-box;
     overflow-y: auto;
   transform: translateX(100%); /* hidden off-canvas to the right */
@@ -309,6 +312,9 @@ button[aria-disabled="true"],
   transform: translateX(0); /* slide into view */
     pointer-events: auto;
   }
+
+  /* Prevent hamburger from eating taps while drawer overlaps */
+  .hamburger.active { pointer-events: none; }
 
   .hamburger {
     display: block;
