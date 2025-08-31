@@ -422,10 +422,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
               dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
                 el.classList.add('compact');
-                let effectiveUrl = blogFile ? `${window.location.origin}/${blogFile}` : '';
+                // Prefer OG-tagged share page for rich previews
+                let effectiveUrl = blogId ? `${window.location.origin}/share/${encodeURIComponent(blogId)}.html` : '';
                 if (!effectiveUrl) {
-                  effectiveUrl = blogId ? `${window.location.origin}/reader.html?id=${encodeURIComponent(blogId)}`
-                                        : `${window.location.origin}/blogs.html`;
+                  effectiveUrl = blogFile ? `${window.location.origin}/${blogFile}` : `${window.location.origin}/blogs.html`;
                 }
                 renderShareButtons(el, effectiveUrl);
               });
@@ -609,11 +609,10 @@ document.addEventListener('DOMContentLoaded', () => {
               dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
                 // Use compact variant for dynamically rendered posts
                 el.classList.add('compact');
-                // Share exact content file when available; fallback to reader deep-link
-                let effectiveUrl = blogFile ? `${window.location.origin}/${blogFile}` : '';
+                // Prefer OG-tagged share page for rich previews
+                let effectiveUrl = blogId ? `${window.location.origin}/share/${encodeURIComponent(blogId)}.html` : '';
                 if (!effectiveUrl) {
-                  effectiveUrl = blogId ? `${window.location.origin}/reader.html?id=${encodeURIComponent(blogId)}`
-                                        : `${window.location.origin}/blogs.html`;
+                  effectiveUrl = blogFile ? `${window.location.origin}/${blogFile}` : `${window.location.origin}/blogs.html`;
                 }
                 el.dataset.shareTitle = blogTitle;
                 renderShareButtons(el, effectiveUrl);

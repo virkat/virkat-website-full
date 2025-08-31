@@ -1,0 +1,8 @@
+{
+  "name": "virkat-website-full",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "gen:share": "node tools/generate-share-pages.js"
+  }
+}

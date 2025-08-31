@@ -203,9 +203,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
         el.classList.add('compact');
-        let effectiveUrl = blogFile ? `${window.location.origin}/${blogFile}` : '';
+        // Prefer OG-tagged share page for rich previews
+        let effectiveUrl = id ? `${window.location.origin}/share/${encodeURIComponent(id)}.html` : '';
         if (!effectiveUrl) {
-          effectiveUrl = `${window.location.origin}/reader.html?id=${encodeURIComponent(id)}`;
+          effectiveUrl = blogFile ? `${window.location.origin}/${blogFile}` : `${window.location.origin}/reader.html?id=${encodeURIComponent(id)}`;
         }
         renderShareButtons(el, effectiveUrl);
       });
