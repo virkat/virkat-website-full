@@ -1,4 +1,4 @@
-### **The Real Work: From Digital Noise to Real-World Wins**
+### **The Real Work: From Digital Noise to Real World Wins**
 
 **Stop scrolling for a second.**
 
