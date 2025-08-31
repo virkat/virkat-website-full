@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400" role="img" aria-label="Bar chart comparing categories">
+  <rect width="800" height="400" fill="#ffffff"/>
+  <g transform="translate(60,20)">
+    <text x="0" y="-2" font-family="Arial" font-size="16" fill="#073B4C">Q3 Sales (Units)</text>
+    <g transform="translate(0,20)">
+      <line x1="0" y1="320" x2="700" y2="320" stroke="#e0e0e0"/>
+      <line x1="0" y1="240" x2="700" y2="240" stroke="#e0e0e0"/>
+      <line x1="0" y1="160" x2="700" y2="160" stroke="#e0e0e0"/>
+      <line x1="0" y1="80" x2="700" y2="80" stroke="#e0e0e0"/>
+      <g>
+        <rect x="40" y="120" width="80" height="200" fill="#118AB2"/>
+        <rect x="180" y="60" width="80" height="260" fill="#06D6A0"/>
+        <rect x="320" y="160" width="80" height="160" fill="#FFD166"/>
+        <rect x="460" y="100" width="80" height="220" fill="#118AB2"/>
+        <rect x="600" y="200" width="80" height="120" fill="#FFD166"/>
+      </g>
+      <g font-family="Arial" font-size="12" fill="#073B4C">
+        <text x="40" y="340">Product Alpha</text>
+        <text x="180" y="340">Product Beta</text>
+        <text x="320" y="340">Product Gamma</text>
+        <text x="460" y="340">Product Delta</text>
+        <text x="600" y="340">Product Epsilon</text>
+      </g>
+    </g>
+  </g>
+</svg>

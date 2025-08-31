@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400" role="img" aria-label="Line chart with actual vs forecast">
+  <rect width="800" height="400" fill="#ffffff"/>
+  <g transform="translate(60,20)">
+    <text x="0" y="-2" font-family="Arial" font-size="16" fill="#073B4C">Actual vs Projected Sales</text>
+    <g transform="translate(0,20)">
+      <line x1="0" y1="320" x2="700" y2="320" stroke="#e0e0e0"/>
+      <line x1="0" y1="240" x2="700" y2="240" stroke="#e0e0e0"/>
+      <line x1="0" y1="160" x2="700" y2="160" stroke="#e0e0e0"/>
+      <line x1="0" y1="80" x2="700" y2="80" stroke="#e0e0e0"/>
+      <!-- Actual line -->
+      <polyline fill="none" stroke="#118AB2" stroke-width="3" points="0,280 100,290 200,240 300,235 400,260 500,265"/>
+      <!-- Projected line -->
+      <polyline fill="none" stroke="#06D6A0" stroke-width="3" stroke-dasharray="6,6" points="500,265 600,230 700,210"/>
+      <g font-family="Arial" font-size="12" fill="#073B4C">
+        <text x="0" y="340">Jan</text>
+        <text x="100" y="340">Feb</text>
+        <text x="200" y="340">Mar</text>
+        <text x="300" y="340">Apr</text>
+        <text x="400" y="340">May</text>
+        <text x="500" y="340">Jun</text>
+        <text x="600" y="340">Jul (Forecast)</text>
+        <text x="700" y="340">Aug (Forecast)</text>
+      </g>
+      <g font-family="Arial" font-size="12" fill="#073B4C">
+        <rect x="500" y="0" width="12" height="12" fill="#118AB2"/>
+        <text x="520" y="10">Actual</text>
+        <rect x="580" y="0" width="12" height="12" fill="#06D6A0"/>
+        <text x="600" y="10">Projected</text>
+      </g>
+    </g>
+  </g>
+</svg>

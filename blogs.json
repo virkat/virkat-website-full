@@ -47,10 +47,10 @@
   {
     "id": "data-chaos-to-business-clarity",
     "title": "From Data Chaos to Business Clarity",
-    "image": "posts/images/messy-data-to-clarity.jpg",
+  "image": "posts/images/analysis.svg",
     "description": "A friendly walkthrough of how messy data turns into tangible business outcomes with analysis, modeling, and delivery.",
-    "author": "Asad Raza Virk",
+  "author": "Asad Raza Virk",
     "date": "August 31, 2025",
-    "file": "posts/data-chaos-to-business-clarity.html"
+  "file": "posts/data-chaos-to-business-clarity.md"
   }
 ]
