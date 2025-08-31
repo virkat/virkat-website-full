@@ -45,12 +45,12 @@
     "file": "posts/data_types.md"
   },
   {
-    "id": "data-chaos-to-business-clarity",
-    "title": "From Data Chaos to Business Clarity",
-  "image": "posts/images/analysis.svg",
-    "description": "A friendly walkthrough of how messy data turns into tangible business outcomes with analysis, modeling, and delivery.",
+    "id": "turning-messy-data-business-gold",
+    "title": "Turning Messy Data Into Business Gold",
+  "image": "posts/messy-data-to-clarity.jpg",
+    "description": "In today's world, everyone talks about 'data.' We collect tons of it every single day. But just having a pile of data is like having a pile of bricks. It's not a house. It's just potential. The real magic, and the real business growth, happens when you turn that messy data into something useful.",
   "author": "Asad Raza Virk",
     "date": "August 31, 2025",
-  "file": "posts/data-chaos-to-business-clarity.md"
+    "file": "posts/turning-messy-data-business-gold.md"
   }
 ]
