@@ -32,6 +32,10 @@ function generateShareHtml({ id, title, description, image, baseUrl }){
   const canonical = `${baseUrl}/blogs.html#${encodeURIComponent(id)}`;
   const shareUrl = `${baseUrl}/share/${encodeURIComponent(id)}.html`;
   const readerUrl = `${baseUrl}/reader.html?id=${encodeURIComponent(id)}`;
+  const twitterHandle = (process.env.SITE_TWITTER_HANDLE || '@virkat').trim();
+  const imgType = absoluteImage.toLowerCase().endsWith('.png') ? 'image/png' : absoluteImage.toLowerCase().endsWith('.webp') ? 'image/webp' : 'image/jpeg';
+  const imgW = String(process.env.SOCIAL_IMAGE_WIDTH || '1200');
+  const imgH = String(process.env.SOCIAL_IMAGE_HEIGHT || '630');
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,11 +50,17 @@ function generateShareHtml({ id, title, description, image, baseUrl }){
   <meta property="og:description" content="${safeDesc}" />
   <meta property="og:url" content="${shareUrl}" />
   <meta property="og:image" content="${absoluteImage}" />
+  <meta property="og:image:secure_url" content="${absoluteImage}" />
+  <meta property="og:image:type" content="${imgType}" />
+  <meta property="og:image:width" content="${imgW}" />
+  <meta property="og:image:height" content="${imgH}" />
   <meta property="og:image:alt" content="${safeTitle}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${safeTitle}" />
   <meta name="twitter:description" content="${safeDesc}" />
   <meta name="twitter:image" content="${absoluteImage}" />
+  <meta name="twitter:image:alt" content="${safeTitle}" />
+  <meta name="twitter:site" content="${twitterHandle}" />
   <meta http-equiv="refresh" content="0; url=${readerUrl}" />
 </head>
 <body>
