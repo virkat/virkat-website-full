@@ -422,8 +422,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
               dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
                 el.classList.add('compact');
-                const sharePage = blogId ? `${window.location.origin}/share/${encodeURIComponent(blogId)}.html` : `${window.location.origin}/blogs.html`;
-                renderShareButtons(el, sharePage);
+                let effectiveUrl = blogFile ? `${window.location.origin}/${blogFile}` : '';
+                if (!effectiveUrl) {
+                  effectiveUrl = blogId ? `${window.location.origin}/reader.html?id=${encodeURIComponent(blogId)}`
+                                        : `${window.location.origin}/blogs.html`;
+                }
+                renderShareButtons(el, effectiveUrl);
               });
 
               fullBlogPostContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -605,10 +609,12 @@ document.addEventListener('DOMContentLoaded', () => {
               dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
                 // Use compact variant for dynamically rendered posts
                 el.classList.add('compact');
-                // Prefer static share pages with Open Graph tags so platforms can render title/image
-                const sharePage = blogId ? `${window.location.origin}/share/${encodeURIComponent(blogId)}.html`
-                                         : `${window.location.origin}/blogs.html`;
-                const effectiveUrl = sharePage;
+                // Share exact content file when available; fallback to reader deep-link
+                let effectiveUrl = blogFile ? `${window.location.origin}/${blogFile}` : '';
+                if (!effectiveUrl) {
+                  effectiveUrl = blogId ? `${window.location.origin}/reader.html?id=${encodeURIComponent(blogId)}`
+                                        : `${window.location.origin}/blogs.html`;
+                }
                 el.dataset.shareTitle = blogTitle;
                 renderShareButtons(el, effectiveUrl);
               });

@@ -201,9 +201,13 @@ document.addEventListener('DOMContentLoaded', () => {
         img.addEventListener('error', () => { img.src = withCacheBust(FALLBACK_IMG); }, { once: true });
       });
 
-  dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
+      dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
         el.classList.add('compact');
-        renderShareButtons(el, window.location.href);
+        let effectiveUrl = blogFile ? `${window.location.origin}/${blogFile}` : '';
+        if (!effectiveUrl) {
+          effectiveUrl = `${window.location.origin}/reader.html?id=${encodeURIComponent(id)}`;
+        }
+        renderShareButtons(el, effectiveUrl);
       });
 
   // Execute any embedded scripts (e.g., Chart.js) present in HTML posts
