@@ -39,6 +39,30 @@ document.addEventListener('DOMContentLoaded', () => {
       <a href="https://wa.me/?text=${encodeURIComponent(waText)}" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><img src="/${iconBase}/whatsapp-icon.svg" alt="WhatsApp" /><\/a>`;
   }
 
+  // Execute script tags found within loaded HTML content (preserve order)
+  async function executeEmbeddedScripts(root){
+    try{
+      const scripts = Array.from(root.querySelectorAll('script'));
+      for (const oldScript of scripts){
+        const newScript = document.createElement('script');
+        // copy attributes (type, src, etc.)
+        for (const attr of Array.from(oldScript.attributes)) newScript.setAttribute(attr.name, attr.value);
+        if (!newScript.getAttribute('type') || newScript.getAttribute('type') === 'text/javascript') {
+          // default type
+        }
+        if (oldScript.src) {
+          // Replace and wait for load
+          oldScript.parentNode.replaceChild(newScript, oldScript);
+          await new Promise(res=>{ newScript.onload = res; newScript.onerror = res; });
+        } else {
+          newScript.textContent = oldScript.textContent || '';
+          oldScript.parentNode.replaceChild(newScript, oldScript);
+          // inline executes immediately on insertion
+        }
+      }
+    } catch(err){ console.error('Script execution error:', err); }
+  }
+
   function getQueryParam(name){const params=new URLSearchParams(window.location.search);return params.get(name);}  
 
   // Highlight current page
@@ -164,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!contentToLoad) throw new Error('No content');
 
       const backBtn = `<div class="container" style="margin-top:20px;margin-bottom:10px"><a class="btn btn-secondary" href="/blogs.html">← Back to all posts</a></div>`;
-      container.innerHTML = backBtn + contentToLoad;
+  container.innerHTML = backBtn + contentToLoad;
 
       const dynamicContent = container.querySelector('.blog-post-content') || container;
       const readingTimeEl = dynamicContent.querySelector('.reading-time');
@@ -177,10 +201,13 @@ document.addEventListener('DOMContentLoaded', () => {
         img.addEventListener('error', () => { img.src = withCacheBust(FALLBACK_IMG); }, { once: true });
       });
 
-      dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
+  dynamicContent.querySelectorAll('.share-buttons').forEach(el => {
         el.classList.add('compact');
         renderShareButtons(el, window.location.href);
       });
+
+  // Execute any embedded scripts (e.g., Chart.js) present in HTML posts
+  await executeEmbeddedScripts(dynamicContent);
 
       container.scrollIntoView({ behavior: 'smooth', block: 'start' });
       document.title = `${blogTitle} — Virkat`;
