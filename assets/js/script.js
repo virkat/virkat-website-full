@@ -8,10 +8,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Sticky Header Effect
+  const header = document.querySelector('.header');
+  if (header) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  }
+
+  // Scroll Animations
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // Only animate once
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.fade-in-up').forEach(el => {
+    observer.observe(el);
+  });
+
   // Mobile hamburger menu - simplified full-screen overlay
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
-  
+
   if (hamburger && navLinks) {
     // Ensure elements have proper accessibility attributes
     if (!navLinks.id) navLinks.id = 'primary-navigation';
@@ -22,13 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!hamburger.getAttribute('aria-label')) {
       hamburger.setAttribute('aria-label', 'Open menu');
     }
-  // Backdrop not required for overlay menu
-  let backdrop = null;
+    // Backdrop not required for overlay menu
+    let backdrop = null;
 
-  // Prevent background interaction when the menu overlay is open
+    // Prevent background interaction when the menu overlay is open
     const pageMain = document.querySelector('main');
     const pageFooter = document.querySelector('footer');
-    function setPageInert(on){
+    function setPageInert(on) {
       [pageMain, pageFooter].forEach(el => {
         if (!el) return;
         if (on) {
@@ -44,21 +76,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Focus management helpers
     const FOCUSABLE_SELECTOR = 'a[href]:not([tabindex="-1"]):not([aria-disabled="true"]), button:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])';
     let previouslyFocusedEl = null;
-    function isVisible(el){
+    function isVisible(el) {
       if (!el) return false;
       const style = window.getComputedStyle(el);
       return style.visibility !== 'hidden' && style.display !== 'none';
     }
-    function focusFirstInMenu(){
+    function focusFirstInMenu() {
       const focusables = Array.from(navLinks.querySelectorAll(FOCUSABLE_SELECTOR)).filter(isVisible);
       if (focusables.length > 0) {
         focusables[0].focus();
       } else {
-        navLinks.setAttribute('tabindex','-1');
+        navLinks.setAttribute('tabindex', '-1');
         navLinks.focus();
       }
     }
-    function trapFocus(e){
+    function trapFocus(e) {
       if (!navLinks.classList.contains('open')) return;
       if (e.key !== 'Tab') return;
       const focusables = Array.from(navLinks.querySelectorAll(FOCUSABLE_SELECTOR)).filter(isVisible);
@@ -84,13 +116,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Simple function to close menu
     function closeMenu() {
-  navLinks.classList.remove('open');
-  hamburger.classList.remove('active');
-  document.body.classList.remove('no-scroll');
-  document.body.classList.remove('menu-open');
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+      document.body.classList.remove('no-scroll');
+      document.body.classList.remove('menu-open');
       hamburger.setAttribute('aria-expanded', 'false');
-  hamburger.setAttribute('aria-label', 'Open menu');
-  setPageInert(false);
+      hamburger.setAttribute('aria-label', 'Open menu');
+      setPageInert(false);
       document.removeEventListener('keydown', trapFocus, true);
       // Restore focus
       setTimeout(() => {
@@ -104,27 +136,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Simple function to open menu
     function openMenu() {
-  navLinks.classList.add('open');
-  hamburger.classList.add('active');
-  document.body.classList.add('no-scroll');
-  document.body.classList.add('menu-open');
+      navLinks.classList.add('open');
+      hamburger.classList.add('active');
+      document.body.classList.add('no-scroll');
+      document.body.classList.add('menu-open');
       hamburger.setAttribute('aria-expanded', 'true');
-  hamburger.setAttribute('aria-label', 'Close menu');
-  setPageInert(true);
+      hamburger.setAttribute('aria-label', 'Close menu');
+      setPageInert(true);
       previouslyFocusedEl = document.activeElement;
       // Defer focusing to ensure layout is updated
       setTimeout(() => {
         focusFirstInMenu();
       }, 0);
-  // Trap focus within the menu overlay
+      // Trap focus within the menu overlay
       document.addEventListener('keydown', trapFocus, true);
     }
 
     // Toggle menu on hamburger click
-    hamburger.addEventListener('click', function(e) {
+    hamburger.addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
-      
+
       if (navLinks.classList.contains('open')) {
         closeMenu();
       } else {
@@ -132,14 +164,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     // Keyboard support for hamburger (Enter/Space)
-    hamburger.addEventListener('keydown', function(e){
+    hamburger.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         if (navLinks.classList.contains('open')) closeMenu(); else openMenu();
       }
     });
 
-  // Handle navigation link taps/clicks: close menu if open, let browser navigate normally
+    // Handle navigation link taps/clicks: close menu if open, let browser navigate normally
     function handleNavActivate(e) {
       const a = e.target.closest && e.target.closest('.nav-link');
       if (!a) return;
@@ -152,26 +184,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (target) target.scrollIntoView({ behavior: 'smooth' });
         return;
       }
-  // For normal links, allow the browser to navigate; optionally close menu without blocking
+      // For normal links, allow the browser to navigate; optionally close menu without blocking
       if (navLinks.classList.contains('open')) setTimeout(closeMenu, 0);
     }
     navLinks.addEventListener('click', handleNavActivate, { passive: false });
 
-  // iOS fallback: force navigation at capture phase if menu is open
-    function forceNavOnCapture(e){
+    // iOS fallback: force navigation at capture phase if menu is open
+    function forceNavOnCapture(e) {
       const a = e.target.closest && e.target.closest('.nav-links .nav-link');
       if (!a) return;
       const href = a.getAttribute('href') || '';
       if (!href || href.startsWith('#')) return;
       if (!navLinks.classList.contains('open')) return;
-      try { window.location.href = a.href; } catch(_) { window.location.assign(href); }
+      try { window.location.href = a.href; } catch (_) { window.location.assign(href); }
     }
-  document.addEventListener('click', forceNavOnCapture, true);
-  document.addEventListener('touchend', forceNavOnCapture, true);
+    document.addEventListener('click', forceNavOnCapture, true);
+    document.addEventListener('touchend', forceNavOnCapture, true);
 
 
     // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       if (!navLinks.classList.contains('open')) return;
       const clickedInsideMenu = navLinks.contains(e.target);
       const clickedHamburger = hamburger.contains(e.target);
@@ -179,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Close menu on escape key
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && navLinks.classList.contains('open')) {
         closeMenu();
       }
@@ -264,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add cache-busting to image src attributes inside an HTML string
   function addCacheBustToImages(html) {
     if (!html) return html;
-  return html.replace(/src="((?:assets\/images|posts)\/[^"\?]+)(\?[^"']*)?"/g, (m, p1) => `src="${withCacheBust(p1)}"`);
+    return html.replace(/src="((?:assets\/images|posts)\/[^"\?]+)(\?[^"']*)?"/g, (m, p1) => `src="${withCacheBust(p1)}"`);
   }
 
   // Minimal Markdown to HTML converter (subset)
@@ -276,26 +308,26 @@ document.addEventListener('DOMContentLoaded', () => {
     md = md.replace(/```([\s\S]*?)```/g, (m, p1) => `<pre><code>${p1.replace(/\n/g, '\n')}</code></pre>`);
     // Inline code `code`
     md = md.replace(/`([^`]+)`/g, '<code>$1</code>');
-  // Emphasis and strong
-  // Strong (bold) first to avoid interfering with italic parsing
-  md = md.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-  md = md.replace(/__([^_]+)__/g, '<strong>$1</strong>');
-  // Italic (simple)
-  md = md.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-  md = md.replace(/_([^_]+)_/g, '<em>$1</em>');
-  // Images ![alt](src) (allow optional space before parenthesis)
-  md = md.replace(/!\[([^\]]*)\]\s*\(([^\)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" decoding="async" fetchpriority="low" />');
-  // Links [text](url) (allow optional space before parenthesis)
-  md = md.replace(/\[([^\]]+)\]\s*\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-  // Autolink bare URLs to ensure clickability even if markdown syntax fails
-  md = md.replace(/(?<!["\'=])(https?:\/\/[^\s<>)]+[\w\/#-])/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+    // Emphasis and strong
+    // Strong (bold) first to avoid interfering with italic parsing
+    md = md.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    md = md.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+    // Italic (simple)
+    md = md.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    md = md.replace(/_([^_]+)_/g, '<em>$1</em>');
+    // Images ![alt](src) (allow optional space before parenthesis)
+    md = md.replace(/!\[([^\]]*)\]\s*\(([^\)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" decoding="async" fetchpriority="low" />');
+    // Links [text](url) (allow optional space before parenthesis)
+    md = md.replace(/\[([^\]]+)\]\s*\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    // Autolink bare URLs to ensure clickability even if markdown syntax fails
+    md = md.replace(/(?<!["\'=])(https?:\/\/[^\s<>)]+[\w\/#-])/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
     // Headings ####, ###, ##, #
     md = md.replace(/^######\s?(.*)$/gm, '<h6>$1</h6>')
-           .replace(/^#####\s?(.+)$/gm, '<h5>$1</h5>')
-           .replace(/^####\s?(.+)$/gm, '<h4>$1</h4>')
-           .replace(/^###\s?(.+)$/gm, '<h3>$1</h3>')
-           .replace(/^##\s?(.+)$/gm, '<h2>$1</h2>')
-           .replace(/^#\s?(.+)$/gm, '<h1>$1</h1>');
+      .replace(/^#####\s?(.+)$/gm, '<h5>$1</h5>')
+      .replace(/^####\s?(.+)$/gm, '<h4>$1</h4>')
+      .replace(/^###\s?(.+)$/gm, '<h3>$1</h3>')
+      .replace(/^##\s?(.+)$/gm, '<h2>$1</h2>')
+      .replace(/^#\s?(.+)$/gm, '<h1>$1</h1>');
     // Blockquotes
     md = md.replace(/^>\s?(.+)$/gm, '<blockquote>$1</blockquote>');
     // Unordered lists
@@ -318,8 +350,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const fullBlogPostContainer = document.getElementById('blog-post-container');
 
   if (blogPostsContainer && fullBlogPostContainer) {
-  // Cache-bust blogs.json so updates are picked up immediately
-  fetch(`blogs.json?v=${__cb}`)
+    // Cache-bust blogs.json so updates are picked up immediately
+    fetch(`blogs.json?v=${__cb}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -334,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const db = Date.parse(b.date || '') || 0;
             return db - da;
           });
-        } catch (_) {}
+        } catch (_) { }
         // Helper to open a blog post directly (used for hash deep-link)
         async function openBlog(meta) {
           if (!meta) return;
@@ -385,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (src.startsWith('assets/images/') || src.includes('/assets/images/')) {
                       img.setAttribute('src', withCacheBust(src));
                     }
-                  } catch (_) {}
+                  } catch (_) { }
                 });
                 const contentNode = doc.querySelector('.blog-post-content') || doc.body || doc.documentElement;
                 contentToLoad = contentNode ? contentNode.innerHTML : html;
@@ -456,22 +488,22 @@ document.addEventListener('DOMContentLoaded', () => {
         blogs.forEach(blog => {
           const blogCard = document.createElement('div');
           blogCard.classList.add('card', 'blog-card');
-      const cardImg = withCacheBust(blog.image);
-      const heroImg = withCacheBust(blog.image || '');
-       blogCard.innerHTML = `
+          const cardImg = withCacheBust(blog.image);
+          const heroImg = withCacheBust(blog.image || '');
+          blogCard.innerHTML = `
             <img src="${cardImg}" alt="${blog.title}" class="blog-image" loading="lazy" />
             <h3>${blog.title}</h3>
             <p class="meta">By ${blog.author || 'Virkat Team'} • ${blog.date || 'New Post'}</p>
             <p>${blog.description}</p>
-        <a href="${blog.file}" class="btn read-more-btn"
-          data-blog-file="${blog.file}"
-          data-blog-title="${blog.title}"
-          data-blog-author="${blog.author || 'Virkat Team'}"
-          data-blog-date="${blog.date || ''}"
-          data-blog-image="${heroImg}"
-          data-blog-id="${blog.id || ''}">
-          Read More
-        </a>
+            <a href="${blog.file}" class="btn read-more-btn"
+              data-blog-file="${blog.file}"
+              data-blog-title="${blog.title}"
+              data-blog-author="${blog.author || 'Virkat Team'}"
+              data-blog-date="${blog.date || ''}"
+              data-blog-image="${heroImg}"
+              data-blog-id="${blog.id || ''}">
+              Read More
+            </a>
           `;
           blogPostsContainer.appendChild(blogCard);
           // Attach image error fallback for card image
@@ -498,11 +530,11 @@ document.addEventListener('DOMContentLoaded', () => {
           // Best-effort fetch; ignore errors
           fetch(blogFile).then(r => r.ok ? r.text() : Promise.reject()).then(txt => {
             postCache.set(blogFile, txt);
-          }).catch(() => {});
+          }).catch(() => { });
         });
 
         // Event delegation for Read More buttons (more robust)
-  blogPostsContainer.addEventListener('click', async (e) => {
+        blogPostsContainer.addEventListener('click', async (e) => {
           const btn = e.target.closest && e.target.closest('.read-more-btn');
           if (!btn) return;
           e.preventDefault();
@@ -541,7 +573,7 @@ document.addEventListener('DOMContentLoaded', () => {
               // Ensure inline images from assets/images get cache-busted
               articleHtml = addCacheBustToImages(articleHtml);
               const hero = blogImage ? `<img src="${blogImage}" alt="${blogTitle}" class="blog-image" loading="lazy" />` : '';
-        contentToLoad = `
+              contentToLoad = `
                 <div class="blog-post-content">
                   <div class="section-header">
                     <h2>${blogTitle}</h2>
@@ -549,30 +581,30 @@ document.addEventListener('DOMContentLoaded', () => {
                   </div>
                   ${hero}
                   <div>${articleHtml}</div>
-          <div class="share-buttons compact"></div>
+                  <div class="share-buttons compact"></div>
                 </div>`;
-              } else {
-                const html = await response.text();
-                // Parse full HTML documents robustly
-                try {
-                  const parser = new DOMParser();
-                  const doc = parser.parseFromString(html, 'text/html');
-                  // Cache-bust images inside the HTML if they point to our assets/images
-                  doc.querySelectorAll('img').forEach(img => {
-                    try {
-                      const src = img.getAttribute('src') || '';
-                      if (src.startsWith('assets/images/') || src.includes('/assets/images/')) {
-                        img.setAttribute('src', withCacheBust(src));
-                      }
-                    } catch (_) {}
-                  });
-                  const contentNode = doc.querySelector('.blog-post-content') || doc.body || doc.documentElement;
-                  contentToLoad = contentNode ? contentNode.innerHTML : html;
-                } catch (_) {
-                  // Fallback to raw HTML if parsing fails
-                  contentToLoad = addCacheBustToImages(html || '');
-                }
+            } else {
+              const html = await response.text();
+              // Parse full HTML documents robustly
+              try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                // Cache-bust images inside the HTML if they point to our assets/images
+                doc.querySelectorAll('img').forEach(img => {
+                  try {
+                    const src = img.getAttribute('src') || '';
+                    if (src.startsWith('assets/images/') || src.includes('/assets/images/')) {
+                      img.setAttribute('src', withCacheBust(src));
+                    }
+                  } catch (_) { }
+                });
+                const contentNode = doc.querySelector('.blog-post-content') || doc.body || doc.documentElement;
+                contentToLoad = contentNode ? contentNode.innerHTML : html;
+              } catch (_) {
+                // Fallback to raw HTML if parsing fails
+                contentToLoad = addCacheBustToImages(html || '');
               }
+            }
 
             if (contentToLoad) {
               // Add a back button for better UX
